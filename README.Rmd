@@ -30,7 +30,7 @@ When using this package, you acknowledge that you have read ACLED's terms and co
 
 ## Installation
 
-You can install the released version of acled.api from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of acled.api from [CRAN](https://CRAN.R-project.org) with: 
 
 ``` r
 install.packages("acled.api")
