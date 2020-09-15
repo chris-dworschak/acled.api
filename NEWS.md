@@ -3,7 +3,7 @@
 
 ## alced.api version 1.0.1
 
-* Minor bug and spelling fixes
+* Minor bug and spelling fixes, title renamed, example down-sized.
 
 
 ## alced.api version 1.0.0
