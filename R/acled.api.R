@@ -1,20 +1,22 @@
-#' @title ACLED API: Retrieval of ACLED event data
-#' @author Christoph Dworschak
-#' @description This package retrieves ACLED event data. It accesses the API of the Armed Conflict Location & Event Data Project (ACLED) at https://www.acleddata.com.
-#' When using this package and accessing ACLED, you agree to ACLED's Terms & Conditions.
-#' @name acled_data
+#' @title acled.api: Automated retrieval of ACLED conflict event data
+#' @name acled.api
+#' @description This package accesses the application programming interface (API) of the \href{https://www.acleddata.com}{Armed Conflict Location & Event
+#' Data Project (ACLED) at https://www.acleddata.com}. \n \n
+#' When using this package, you acknowledge that you have read ACLED's terms and conditions of use and follow their attribution requirements.
 #' @param regions numeric vector. Supply one or a vector of multiple ACLED region numbers (see ACLED's codebook for details).
 #' @param start.date character string. Enter the earliest date to be retrieved. Format: "yyyy-mm-dd".
 #' @param end.date character string. Enter the last date to be retrieved. Format: "yyyy-mm-dd".
 #' @param more.variables character vector. Supply the names of ACLED variables you wish to add to the default output (see ACLED's codebook for details). Variables that are always are: region, country, year, event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.
 #' @param dyadic logical. Optional. When set to NULL (default) or FALSE, monadic data is returned (one observation per event). If set to TRUE, dyadic data is returned.
 #' @param other.query character vector. Optional. Allows users to add their own ACLED API queries to the GET call. Note that some query terms require a ? in front.
-#' @return A data frame object with ACLED events.
+#' @return A data frame object containing ACLED events.
 #' @import jsonlite
 #' @import httr
+#' @author Christoph Dworschak \n Website: \href{https://www.chrisdworschak.com}{chrisdworschak.com}
+#' @references Armed Conflict Location & Event Data Project (ACLED); https://www.acleddata.com
 #' @export
 #'
-acled_data <- function(
+acled.api <- function(
   regions = NULL,
   start.date = NULL,
   end.date = NULL,
