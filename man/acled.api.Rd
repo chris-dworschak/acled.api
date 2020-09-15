@@ -14,38 +14,37 @@ acled.api(
 )
 }
 \arguments{
-\item{regions}{numeric vector. Required. Supply one or a vector of multiple ACLED region
-numbers (see ACLED's codebook for details).}
+\item{regions}{required numeric vector. Supply one or a vector of multiple integers indicating the geographic region
+you wish to retrieve (see ACLED's codebook for details on region variable indicators).}
 
-\item{start.date}{character string. Required. Enter the earliest date to be retrieved. Format: "yyyy-mm-dd".}
+\item{start.date}{required character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".}
 
-\item{end.date}{character string. Required. Enter the last date to be retrieved. Format: "yyyy-mm-dd".}
+\item{end.date}{required character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".}
 
-\item{more.variables}{character vector. Optional. Supply the names of ACLED variables you wish to add to the
+\item{more.variables}{optional character vector. Supply the names of ACLED variables you wish to add to the
 default output (see ACLED's codebook for details). Variables that are always are: region, country, year,
 event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.}
 
-\item{dyadic}{logical. Optional. When set to NULL (default) or FALSE, monadic data is returned (one
+\item{dyadic}{optional logical. When set to NULL (default) or FALSE, monadic data is returned (one
 observation per event). If set to TRUE, dyadic data is returned.}
 
-\item{other.query}{character vector. Optional. Allows users to add their own ACLED API queries to the
+\item{other.query}{optional character vector. Allows users to add their own ACLED API queries to the
 GET call. Note that some query terms require a ? in front.}
 }
 \value{
 A data frame object containing ACLED events.
 }
 \description{
-Use acled.api() to access the application programming interface (API) of
-the \href{https://www.acleddata.com}{Armed Conflict Location & Event Data
-Project (ACLED) at https://www.acleddata.com}. \cr \cr
+A small package to access the application programming interface (API) of
+the Armed Conflict Location & Event Data
+Project (ACLED) at \href{https://www.acleddata.com}{https://www.acleddata.com}. \cr \cr
 When using this package, you acknowledge that you have read ACLED's terms and conditions
 of use, and that you agree with their attribution requirements.
 }
 \examples{
 my.data.frame1 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31") \cr
 head(my.data.frame1)  \cr \cr
-my.data.frame2 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31", \cr
-more.variables = c("geo_precision", "time_precision")) \cr
+my.data.frame2 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31", \cr more.variables = c("geo_precision", "time_precision")) \cr
 sd(my.data.frame2$geo_precision)
 }
 \references{

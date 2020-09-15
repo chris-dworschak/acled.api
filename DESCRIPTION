@@ -1,14 +1,14 @@
 Package: acled.api
 Title: acled.api: Automated retrieval of ACLED conflict event data
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Christoph",
            family = "Dworschak",
            role = c("aut", "cre"),
            email = "c.dworschak@essex.ac.uk",
            comment = c(ORCID = "0000-0003-0196-9545"))
-Description: Use acled.api() to access the application programming interface (API) of the Armed Conflict Location & Event Data Project (ACLED) at https://www.acleddata.com. When using this package, you acknowledge that you have read ACLED's terms and conditions of use, and that you agree with their attribution requirements.
-License:
+Description: A small package to access the application programming interface (API) of the Armed Conflict Location & Event Data Project (ACLED) at https://www.acleddata.com. When using this package, you acknowledge that you have read ACLED's terms and conditions of use, and that you agree with their attribution requirements.
+License: GPL
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
