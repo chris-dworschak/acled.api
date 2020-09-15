@@ -1,19 +1,32 @@
 #' @title acled.api: Automated retrieval of ACLED conflict event data
 #' @name acled.api
-#' @description This package accesses the application programming interface (API) of the \href{https://www.acleddata.com}{Armed Conflict Location & Event
-#' Data Project (ACLED) at https://www.acleddata.com}. \n \n
-#' When using this package, you acknowledge that you have read ACLED's terms and conditions of use and follow their attribution requirements.
-#' @param regions numeric vector. Supply one or a vector of multiple ACLED region numbers (see ACLED's codebook for details).
+#' @description Use acled.api() to access the application programming interface (API) of
+#' the \href{https://www.acleddata.com}{Armed Conflict Location & Event Data
+#' Project (ACLED) at https://www.acleddata.com}. \n \n
+#' When using this package, you acknowledge that you have read ACLED's terms and conditions
+#' of use, and that you agree with their attribution requirements.
+#' @param regions numeric vector. Supply one or a vector of multiple ACLED region
+#' numbers (see ACLED's codebook for details).
 #' @param start.date character string. Enter the earliest date to be retrieved. Format: "yyyy-mm-dd".
 #' @param end.date character string. Enter the last date to be retrieved. Format: "yyyy-mm-dd".
-#' @param more.variables character vector. Supply the names of ACLED variables you wish to add to the default output (see ACLED's codebook for details). Variables that are always are: region, country, year, event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.
-#' @param dyadic logical. Optional. When set to NULL (default) or FALSE, monadic data is returned (one observation per event). If set to TRUE, dyadic data is returned.
-#' @param other.query character vector. Optional. Allows users to add their own ACLED API queries to the GET call. Note that some query terms require a ? in front.
+#' @param more.variables character vector. Supply the names of ACLED variables you wish to add to the
+#' default output (see ACLED's codebook for details). Variables that are always are: region, country, year,
+#' event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.
+#' @param dyadic logical. Optional. When set to NULL (default) or FALSE, monadic data is returned (one
+#' observation per event). If set to TRUE, dyadic data is returned.
+#' @param other.query character vector. Optional. Allows users to add their own ACLED API queries to the
+#' GET call. Note that some query terms require a ? in front.
 #' @return A data frame object containing ACLED events.
 #' @import jsonlite
 #' @import httr
 #' @author Christoph Dworschak \n Website: \href{https://www.chrisdworschak.com}{chrisdworschak.com}
 #' @references Armed Conflict Location & Event Data Project (ACLED); https://www.acleddata.com
+#' @examples
+#' my.data.frame1 <- acled.api(regions = c(1,2,7), \n start.date = "2018-01-15", \n end.date = "2018-12-31") \n
+#' head(my.data.frame1)  \n \n
+#' my.data.frame2 <- acled.api(regions = c(1,2,7), \n start.date = "2018-01-15", \n end.date = "2018-12-31", \n
+#' more.variables = c("geo_precision", "time_precision")) \n
+#' sd(my.data.frame2$geo_precision)
 #' @export
 #'
 acled.api <- function(
@@ -36,6 +49,10 @@ acled.api <- function(
   if (is.null(start.date) | is.null(end.date) == TRUE) {
     stop("You need to supply both a start date and an end date. For example use: \n
          acled_data(regions = c(1), start.date = '1995-01-15', end.date = '2005-12-15')", call. = FALSE)
+  }else{
+    if ( start.date>end.date ) {
+      stop("The start date cannot be larger than the end date.", call. = FALSE)
+    }
   }
   time.frame1 <- paste0("&event_date=", paste(start.date, end.date, sep = "|"), "&event_date_where=BETWEEN")
 
