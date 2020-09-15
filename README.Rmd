@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 
 
 
-# Acled.api: Automated Retrieval of ACLED Conflict Event Data
+# Automated Retrieval of ACLED Conflict Event Data
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/chris-dworschak/acled.api)

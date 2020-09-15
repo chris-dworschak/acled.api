@@ -2,7 +2,7 @@
 % Please edit documentation in R/acled.api.R
 \name{acled.api}
 \alias{acled.api}
-\title{Acled.api: Automated Retrieval of ACLED Conflict Event Data}
+\title{Automated Retrieval of ACLED Conflict Event Data}
 \usage{
 acled.api(
   regions = NULL,
@@ -52,13 +52,13 @@ of use, and that you agree with their attribution requirements.
 }
 \examples{
 my.data.frame1 <- acled.api(regions = c(1,2,7),
-start.date = "2018-09-15",
-end.date = "2018-12-31")
+start.date = "2018-11-01",
+end.date = "2018-11-31")
 head(my.data.frame1)
 
 my.data.frame2 <- acled.api(regions = c(1,2,7),
-start.date = "2018-09-15",
-end.date = "2018-12-31",
+start.date = "2018-11-01",
+end.date = "2018-11-31",
 more.variables = c("geo_precision", "time_precision"))
 sd(my.data.frame2$geo_precision)
 }

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Acled.api: Automated Retrieval of ACLED Conflict Event Data
+# Automated Retrieval of ACLED Conflict Event Data
 
 <!-- badges: start -->
 

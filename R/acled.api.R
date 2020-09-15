@@ -1,4 +1,4 @@
-#' @title Acled.api: Automated Retrieval of ACLED Conflict Event Data
+#' @title Automated Retrieval of ACLED Conflict Event Data
 #' @name acled.api
 #' @description A small package to access the application programming interface (API) of
 #' the Armed Conflict Location & Event Data
@@ -30,13 +30,13 @@
 #' "Introducing ACLED-Armed Conflict Location and Event Data." Journal of Peace Research 47 (5): 651-660.
 #' @examples
 #' my.data.frame1 <- acled.api(regions = c(1,2,7),
-#' start.date = "2018-10-15",
-#' end.date = "2018-12-31")
+#' start.date = "2018-11-01",
+#' end.date = "2018-11-31")
 #' head(my.data.frame1)
 #'
 #' my.data.frame2 <- acled.api(regions = c(1,2,7),
-#' start.date = "2018-10-15",
-#' end.date = "2018-12-31",
+#' start.date = "2018-11-01",
+#' end.date = "2018-11-31",
 #' more.variables = c("geo_precision", "time_precision"))
 #' sd(my.data.frame2$geo_precision)
 #' @export
