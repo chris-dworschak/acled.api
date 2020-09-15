@@ -2,29 +2,36 @@
 % Please edit documentation in R/acled_data.R
 \name{acled_data}
 \alias{acled_data}
-\title{ACLED API}
+\title{ACLED API: Retrieval of ACLED event data}
 \usage{
 acled_data(
-  regions = "1|2|3|4|5",
-  time.frame = NULL,
-  more.variables = "",
-  other.query = ""
+  regions = NULL,
+  start.date = NULL,
+  end.date = NULL,
+  more.variables = NULL,
+  dyadic = NULL,
+  other.query = NULL
 )
 }
 \arguments{
-\item{regions}{character string. Enter ACLED region numbers separated by |. Defaults to Africa: 1|2|3|4|5}
+\item{regions}{numeric vector. Supply one or a vector of multiple ACLED region numbers (see ACLED's codebook for details).}
 
-\item{time.frame}{character string. Enter the time period of observation to be retrieved. Format: "yyyy-mm-dd|yyyy-mm-dd"}
+\item{start.date}{character string. Enter the earliest date to be retrieved. Format: "yyyy-mm-dd".}
 
-\item{more.variables}{character string. Enter names of ACLED variables you wish to add to the default output, each separated by |.}
+\item{end.date}{character string. Enter the last date to be retrieved. Format: "yyyy-mm-dd".}
 
-\item{other.query}{character string. Enter other ACLED API queries you like to pass on to GET, with a & at the beginning of each term.}
+\item{more.variables}{character vector. Supply the names of ACLED variables you wish to add to the default output (see ACLED's codebook for details). Variables that are always are: region, country, year, event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.}
+
+\item{dyadic}{logical. Optional. When set to NULL (default) or FALSE, monadic data is returned (one observation per event). If set to TRUE, dyadic data is returned.}
+
+\item{other.query}{character vector. Optional. Allows users to add their own ACLED API queries to the GET call. Note that some query terms require a ? in front.}
 }
 \value{
 A data frame object with ACLED events.
 }
 \description{
 This package retrieves ACLED event data. It accesses the API of the Armed Conflict Location & Event Data Project (ACLED) at https://www.acleddata.com.
+When using this package and accessing ACLED, you agree to ACLED's Terms & Conditions.
 }
 \author{
 Christoph Dworschak
