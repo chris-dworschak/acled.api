@@ -2,7 +2,7 @@
 #' @name acled.api
 #' @description Use acled.api() to access the application programming interface (API) of
 #' the \href{https://www.acleddata.com}{Armed Conflict Location & Event Data
-#' Project (ACLED) at https://www.acleddata.com}. \n \n
+#' Project (ACLED) at https://www.acleddata.com}. \cr \cr
 #' When using this package, you acknowledge that you have read ACLED's terms and conditions
 #' of use, and that you agree with their attribution requirements.
 #' @param regions numeric vector. Required. Supply one or a vector of multiple ACLED region
@@ -19,13 +19,13 @@
 #' @return A data frame object containing ACLED events.
 #' @import jsonlite
 #' @import httr
-#' @author Christoph Dworschak \n Website: \href{https://www.chrisdworschak.com}{chrisdworschak.com}
+#' @author Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com}{chrisdworschak.com}
 #' @references Armed Conflict Location & Event Data Project (ACLED); https://www.acleddata.com
 #' @examples
-#' my.data.frame1 <- acled.api(regions = c(1,2,7), \n start.date = "2018-01-15", \n end.date = "2018-12-31") \n
-#' head(my.data.frame1)  \n \n
-#' my.data.frame2 <- acled.api(regions = c(1,2,7), \n start.date = "2018-01-15", \n end.date = "2018-12-31", \n
-#' more.variables = c("geo_precision", "time_precision")) \n
+#' my.data.frame1 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31") \cr
+#' head(my.data.frame1)  \cr \cr
+#' my.data.frame2 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31", \cr
+#' more.variables = c("geo_precision", "time_precision")) \cr
 #' sd(my.data.frame2$geo_precision)
 #' @export
 #'
@@ -41,13 +41,13 @@ acled.api <- function(
 
   if (is.null(regions) | !is.numeric(regions) == TRUE) {
     stop("You need to supply a number or a vector of numbers to indicate the geographic regions you wish to retrieve
-    (see ACLED's codebook for region codes). For example use: \n
+    (see ACLED's codebook for region codes). For example use: \cr
          acled_data(regions = c(1), start.date = '1995-01-15', end.date = '2005-12-15')", call. = FALSE)
   }
   regions1 <- paste0("&region=", paste(regions, collapse = "|") )
 
   if (is.null(start.date) | is.null(end.date) == TRUE) {
-    stop("You need to supply both a start date and an end date. For example use: \n
+    stop("You need to supply both a start date and an end date. For example use: \cr
          acled_data(regions = c(1), start.date = '1995-01-15', end.date = '2005-12-15')", call. = FALSE)
   }else{
     if ( start.date>end.date ) {
