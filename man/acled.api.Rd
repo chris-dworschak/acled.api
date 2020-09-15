@@ -2,15 +2,17 @@
 % Please edit documentation in R/acled.api.R
 \name{acled.api}
 \alias{acled.api}
-\title{acled.api: Automated retrieval of ACLED conflict event data}
+\title{Acled.api: Automated Retrieval of ACLED Conflict Event Data}
 \usage{
 acled.api(
   regions = NULL,
   start.date = NULL,
   end.date = NULL,
   more.variables = NULL,
-  dyadic = NULL,
-  other.query = NULL
+  all.variables = FALSE,
+  dyadic = FALSE,
+  other.query = NULL,
+  print.data = FALSE
 )
 }
 \arguments{
@@ -25,11 +27,18 @@ you wish to retrieve (see ACLED's codebook for details on region variable indica
 default output (see ACLED's codebook for details). Variables that are always are: region, country, year,
 event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.}
 
-\item{dyadic}{optional logical. When set to NULL (default) or FALSE, monadic data is returned (one
+\item{all.variables}{optional logical. When set to FALSE (default), a default selection of variables is returned, which
+can be refined using the argument more.variables). If set to TRUE, all variables are included in the output (overrides
+argument more.variables).}
+
+\item{dyadic}{optional logical. When set to FALSE (default), monadic data is returned (one
 observation per event). If set to TRUE, dyadic data is returned.}
 
 \item{other.query}{optional character vector. Allows users to add their own ACLED API queries to the
 GET call. Note that some query terms require a ? in front.}
+
+\item{print.data}{optional logical. When set to FALSE (default), a message is returned that confirms the
+successful data access. If set to TRUE, the whole retrieved data set is returned.}
 }
 \value{
 A data frame object containing ACLED events.

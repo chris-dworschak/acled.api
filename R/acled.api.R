@@ -1,4 +1,4 @@
-#' @title acled.api: Automated retrieval of ACLED conflict event data
+#' @title Acled.api: Automated Retrieval of ACLED Conflict Event Data
 #' @name acled.api
 #' @description A small package to access the application programming interface (API) of
 #' the Armed Conflict Location & Event Data
@@ -12,10 +12,15 @@
 #' @param more.variables optional character vector. Supply the names of ACLED variables you wish to add to the
 #' default output (see ACLED's codebook for details). Variables that are always are: region, country, year,
 #' event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.
-#' @param dyadic optional logical. When set to NULL (default) or FALSE, monadic data is returned (one
+#' @param all.variables optional logical. When set to FALSE (default), a default selection of variables is returned, which
+#' can be refined using the argument more.variables). If set to TRUE, all variables are included in the output (overrides
+#' argument more.variables).
+#' @param dyadic optional logical. When set to FALSE (default), monadic data is returned (one
 #' observation per event). If set to TRUE, dyadic data is returned.
 #' @param other.query optional character vector. Allows users to add their own ACLED API queries to the
 #' GET call. Note that some query terms require a ? in front.
+#' @param print.data optional logical. When set to FALSE (default), a message is returned that confirms the
+#' successful data access. If set to TRUE, the whole retrieved data set is returned.
 #' @return A data frame object containing ACLED events.
 #' @import jsonlite
 #' @import httr
@@ -41,8 +46,10 @@ acled.api <- function(
   start.date = NULL,
   end.date = NULL,
   more.variables = NULL,
-  dyadic = NULL,
-  other.query = NULL){
+  all.variables = FALSE,
+  dyadic = FALSE,
+  other.query = NULL,
+  print.data = FALSE){
 
   terms <- "read?terms=accept&limit=0"
 
@@ -63,19 +70,24 @@ acled.api <- function(
   }
   time.frame1 <- paste0("&event_date=", paste(start.date, end.date, sep = "|"), "&event_date_where=BETWEEN")
 
-  if( is.null(more.variables)==TRUE ){
-    variables <- "&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities"
-  }else{
-    variables <- paste0("&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities",
+  if( is.logical(all.variables)==TRUE ){
+    if( all.variables==FALSE ){
+        if( is.null(more.variables)==TRUE ){
+          variables <- "&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities"
+          }else{
+            variables <- paste0("&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities",
                         "|", paste(more.variables, collapse = "|") )
+            }
+      }else{
+          variables <- ""
+          }
+    }else{
+      stop("The argument 'all.variables' requires a logical value.", call. = FALSE)
   }
 
-  if( is.null(dyadic)==TRUE ){
-  dyadic1 <- "&?export_type=monadic"}else{
-    if( is.logical(dyadic)==TRUE ){
+  if( is.logical(dyadic)==TRUE ){
       dyadic1 <- ifelse(dyadic==FALSE, "&?export_type=monadic", "")}else{
-        stop("The argument 'dyadic' requires a logical value or must be set to NULL.", call. = FALSE)
-      }
+        stop("The argument 'dyadic' requires a logical value.", call. = FALSE)
   }
 
   other.query1 <- ifelse( is.null(other.query)==TRUE, "", paste0("&", paste(other.query, collapse = "&")) )
@@ -109,7 +121,18 @@ acled.api <- function(
            range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], ".")
   )
 
-  print(acled.data)
+  if( is.logical(print.data)==TRUE ){
+    ifelse(print.data==TRUE,
+           print(acled.data),
+           message(
+             paste0("Your ACLED data request was successful. ",
+                    length(unique(acled.data$region)), " regions were retrieved for the time starting ",
+                    range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], ".")
+           )
+           )}else{
+      stop("The argument 'print.data' requires a logical value.", call. = FALSE)
+    }
+
   return(acled.data)
 
 }
