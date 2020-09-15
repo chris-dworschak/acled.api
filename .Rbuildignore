@@ -1,3 +1,4 @@
 ^acled\.api\.Rproj$
 ^\.Rproj\.user$
 ^cran-comments.md$
+^\.travis\.yml$

@@ -20,11 +20,19 @@
 #' @import jsonlite
 #' @import httr
 #' @author Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com}{chrisdworschak.com}
-#' @references Armed Conflict Location & Event Data Project (ACLED); https://www.acleddata.com
+#' @references Armed Conflict Location & Event Data Project (ACLED); https://www.acleddata.com \cr
+#' Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
+#' "Introducing ACLED-Armed Conflict Location and Event Data." Journal of Peace Research 47 (5): 651-660.
 #' @examples
-#' my.data.frame1 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31") \cr
-#' head(my.data.frame1)  \cr \cr
-#' my.data.frame2 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31", \cr more.variables = c("geo_precision", "time_precision")) \cr
+#' my.data.frame1 <- acled.api(regions = c(1,2,7),
+#' start.date = "2018-01-15",
+#' end.date = "2018-12-31")
+#' head(my.data.frame1)
+#'
+#' my.data.frame2 <- acled.api(regions = c(1,2,7),
+#' start.date = "2018-01-15",
+#' end.date = "2018-12-31",
+#' more.variables = c("geo_precision", "time_precision"))
 #' sd(my.data.frame2$geo_precision)
 #' @export
 #'
