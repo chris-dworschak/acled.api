@@ -93,8 +93,6 @@ acled.api <- function(
   other.query1 <- ifelse( is.null(other.query)==TRUE, "", paste0("&", paste(other.query, collapse = "&")) )
 
 
-
-
   url <- paste0("https://api.acleddata.com/acled/", terms, dyadic1, time.frame1, variables, regions1, other.query1)
   response <- httr::GET(url)
   if (httr::http_type(response) != "application/json") {
@@ -115,21 +113,12 @@ acled.api <- function(
   acled.data <- data.frame(acled.matrix, stringsAsFactors = FALSE)
   names(acled.data) <- names(json.content[[1L]])
 
-  message(
-    paste0("Your ACLED data request was successful. ",
-           length(unique(acled.data$region)), " regions were retrieved for the time starting ",
-           range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], ".")
-  )
-
   if( is.logical(print.data)==TRUE ){
-    ifelse(print.data==TRUE,
-           print(acled.data),
-           message(
+    if(print.data==TRUE){ print(acled.data) }else{ message(
              paste0("Your ACLED data request was successful. ",
                     length(unique(acled.data$region)), " regions were retrieved for the time starting ",
-                    range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], ".")
-           )
-           )}else{
+                    range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], ".")) }
+           }else{
       stop("The argument 'print.data' requires a logical value.", call. = FALSE)
     }
 
