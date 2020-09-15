@@ -41,13 +41,13 @@ acled.api <- function(
 
   if (is.null(regions) | !is.numeric(regions) == TRUE) {
     stop("You need to supply a number or a vector of numbers to indicate the geographic regions you wish to retrieve
-    (see ACLED's codebook for region codes). For example use: \cr
+    (see ACLED's codebook for region codes). For example use: \n
          acled_data(regions = c(1), start.date = '1995-01-15', end.date = '2005-12-15')", call. = FALSE)
   }
   regions1 <- paste0("&region=", paste(regions, collapse = "|") )
 
   if (is.null(start.date) | is.null(end.date) == TRUE) {
-    stop("You need to supply both a start date and an end date. For example use: \cr
+    stop("You need to supply both a start date and an end date. For example use: \n
          acled_data(regions = c(1), start.date = '1995-01-15', end.date = '2005-12-15')", call. = FALSE)
   }else{
     if ( start.date>end.date ) {
