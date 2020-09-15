@@ -14,14 +14,14 @@ acled.api(
 )
 }
 \arguments{
-\item{regions}{numeric vector. Supply one or a vector of multiple ACLED region
+\item{regions}{numeric vector. Required. Supply one or a vector of multiple ACLED region
 numbers (see ACLED's codebook for details).}
 
-\item{start.date}{character string. Enter the earliest date to be retrieved. Format: "yyyy-mm-dd".}
+\item{start.date}{character string. Required. Enter the earliest date to be retrieved. Format: "yyyy-mm-dd".}
 
-\item{end.date}{character string. Enter the last date to be retrieved. Format: "yyyy-mm-dd".}
+\item{end.date}{character string. Required. Enter the last date to be retrieved. Format: "yyyy-mm-dd".}
 
-\item{more.variables}{character vector. Supply the names of ACLED variables you wish to add to the
+\item{more.variables}{character vector. Optional. Supply the names of ACLED variables you wish to add to the
 default output (see ACLED's codebook for details). Variables that are always are: region, country, year,
 event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.}
 
@@ -37,20 +37,20 @@ A data frame object containing ACLED events.
 \description{
 Use acled.api() to access the application programming interface (API) of
 the \href{https://www.acleddata.com}{Armed Conflict Location & Event Data
-Project (ACLED) at https://www.acleddata.com}. \n \n
+Project (ACLED) at https://www.acleddata.com}. \cr \cr
 When using this package, you acknowledge that you have read ACLED's terms and conditions
 of use, and that you agree with their attribution requirements.
 }
 \examples{
-my.data.frame1 <- acled.api(regions = c(1,2,7), \n start.date = "2018-01-15", \n end.date = "2018-12-31") \n
-head(my.data.frame1)  \n \n
-my.data.frame2 <- acled.api(regions = c(1,2,7), \n start.date = "2018-01-15", \n end.date = "2018-12-31", \n
-more.variables = c("geo_precision", "time_precision")) \n
+my.data.frame1 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31") \cr
+head(my.data.frame1)  \cr \cr
+my.data.frame2 <- acled.api(regions = c(1,2,7), \cr start.date = "2018-01-15", \cr end.date = "2018-12-31", \cr
+more.variables = c("geo_precision", "time_precision")) \cr
 sd(my.data.frame2$geo_precision)
 }
 \references{
 Armed Conflict Location & Event Data Project (ACLED); https://www.acleddata.com
 }
 \author{
-Christoph Dworschak \n Website: \href{https://www.chrisdworschak.com}{chrisdworschak.com}
+Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com}{chrisdworschak.com}
 }
