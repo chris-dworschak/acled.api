@@ -2,7 +2,7 @@
 #' @name acled.api
 #' @description A small package to access the application programming interface (API) of
 #' the Armed Conflict Location & Event Data
-#' Project (ACLED) at \href{https://www.acleddata.com}{https://www.acleddata.com}. \cr \cr
+#' Project (ACLED) at \href{https://www.acleddata.com/}{<https://www.acleddata.com/>}. \cr \cr
 #' When using this package, you acknowledge that you have read ACLED's terms and conditions
 #' of use, and that you agree with their attribution requirements.
 #' @param regions required numeric vector. Supply one or a vector of multiple integers indicating the geographic region
@@ -24,18 +24,18 @@
 #' @return A data frame object containing ACLED events.
 #' @import jsonlite
 #' @import httr
-#' @author Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com}{chrisdworschak.com}
-#' @references Armed Conflict Location & Event Data Project (ACLED); https://www.acleddata.com \cr
+#' @author Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com/}{<https://chrisdworschak.com/>}
+#' @references Armed Conflict Location & Event Data Project (ACLED); <https://www.acleddata.com> \cr
 #' Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
 #' "Introducing ACLED-Armed Conflict Location and Event Data." Journal of Peace Research 47 (5): 651-660.
 #' @examples
 #' my.data.frame1 <- acled.api(regions = c(1,2,7),
-#' start.date = "2018-01-15",
+#' start.date = "2018-09-15",
 #' end.date = "2018-12-31")
 #' head(my.data.frame1)
 #'
 #' my.data.frame2 <- acled.api(regions = c(1,2,7),
-#' start.date = "2018-01-15",
+#' start.date = "2018-09-15",
 #' end.date = "2018-12-31",
 #' more.variables = c("geo_precision", "time_precision"))
 #' sd(my.data.frame2$geo_precision)

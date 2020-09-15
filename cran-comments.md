@@ -1,7 +1,8 @@
 
 ## Test environment
-* local Linux Mint 18.1 Serena Xfce 64-bit OS, R version 4.0.2
-* win-builder (devel) Windows
+* local Fedora Linux Mint 18.1 Serena Xfce 64-bit OS, R version 4.0.2
+* win-builder Windows
+* R-devel, gfortran, clang
 
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
