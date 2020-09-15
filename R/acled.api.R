@@ -5,11 +5,11 @@
 #' Project (ACLED) at https://www.acleddata.com}. \n \n
 #' When using this package, you acknowledge that you have read ACLED's terms and conditions
 #' of use, and that you agree with their attribution requirements.
-#' @param regions numeric vector. Supply one or a vector of multiple ACLED region
+#' @param regions numeric vector. Required. Supply one or a vector of multiple ACLED region
 #' numbers (see ACLED's codebook for details).
-#' @param start.date character string. Enter the earliest date to be retrieved. Format: "yyyy-mm-dd".
-#' @param end.date character string. Enter the last date to be retrieved. Format: "yyyy-mm-dd".
-#' @param more.variables character vector. Supply the names of ACLED variables you wish to add to the
+#' @param start.date character string. Required. Enter the earliest date to be retrieved. Format: "yyyy-mm-dd".
+#' @param end.date character string. Required. Enter the last date to be retrieved. Format: "yyyy-mm-dd".
+#' @param more.variables character vector. Optional. Supply the names of ACLED variables you wish to add to the
 #' default output (see ACLED's codebook for details). Variables that are always are: region, country, year,
 #' event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.
 #' @param dyadic logical. Optional. When set to NULL (default) or FALSE, monadic data is returned (one
