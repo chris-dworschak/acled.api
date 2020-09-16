@@ -15,8 +15,8 @@ acled.api(
 )
 }
 \arguments{
-\item{regions}{required numeric vector. Supply one or a vector of multiple integers indicating the geographic region
-you wish to retrieve (see ACLED's codebook for details on region variable indicators).}
+\item{regions}{required numeric or character vector. Supply one or more region codes (numeric) or region names (character)
+indicating the geographic region you wish to retrieve (see ACLED's codebook for details on region codes and names).}
 
 \item{start.date}{required character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".}
 

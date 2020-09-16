@@ -5,8 +5,8 @@
 #' Project (ACLED) at \href{https://acleddata.com/}{<https://acleddata.com/>}. \cr \cr
 #' When using this package, you acknowledge that you have read ACLED's terms and conditions
 #' of use, and that you agree with their attribution requirements.
-#' @param regions required numeric vector. Supply one or a vector of multiple integers indicating the geographic region
-#' you wish to retrieve (see ACLED's codebook for details on region variable indicators).
+#' @param regions required numeric or character vector. Supply one or more region codes (numeric) or region names (character)
+#' indicating the geographic region you wish to retrieve (see ACLED's codebook for details on region codes and names).
 #' @param start.date required character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".
 #' @param end.date required character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".
 #' @param more.variables optional character vector. Supply the names of ACLED variables you wish to add to the
