@@ -41,7 +41,7 @@ GET call. Note that some query terms require a ? in front.}
 successful data access. If set to TRUE, the whole retrieved data set is returned.}
 }
 \value{
-A data frame object containing ACLED events.
+A data frame containing ACLED events.
 }
 \description{
 A small package to access the application programming interface (API) of
@@ -63,7 +63,7 @@ more.variables = c("geo_precision", "time_precision"))
 sd(my.data.frame2$geo_precision)
 }
 \references{
-Armed Conflict Location & Event Data Project (ACLED); \url{https://www.acleddata.com} \cr
+Armed Conflict Location & Event Data Project (ACLED); \url{https://www.acleddata.com/} \cr
 Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
 "Introducing ACLED-Armed Conflict Location and Event Data." Journal of Peace Research 47 (5): 651-660.
 }
