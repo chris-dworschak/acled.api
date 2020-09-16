@@ -44,17 +44,17 @@ between June 2019 and July 2020, you can supply:
 ``` r
 library(acled.api) # loads the package
 #> 
-#> The data must be cited as per ACLED attribution requirements. By using this package, you
-#> acknowledge that you have read ACLED's terms and conditions.
+#> By using this package, you acknowledge that you have read ACLED's terms
+#> and conditions. The data must be cited as per ACLED attribution requirements.
 #> The package may be cited as:
-#> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict Event Data."
-#> R package version 1.0.1. <https://github.com/chris-dworschak/acled.api/>
+#> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
+#> Event Data." R package version 1.0.2. <https://github.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   regions = c(12,14), 
   start.date = "2019-06-01", 
   end.date = "2020-07-31")
-#> Your ACLED data request was successful. 2 regions were retrieved for the time starting 2019-06-01 until 2020-07-31.
+#> Your ACLED data request was successful. Events were retrieved for the period starting 2019-06-01 until 2020-07-31.
 
 head(my.data.frame) # returns the first five observations of the ACLED sample
 #>            region country year event_date                 source       admin1
