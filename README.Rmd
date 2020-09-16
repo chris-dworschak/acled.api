@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![Travis build status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/chris-dworschak/acled.api)
 <!-- badges: end -->
 
-This small package makes it easy to automatically retrieve a user-defined sample or all available data of ACLED: the package provides functionality to access and manage the application programming interface (API) of the Armed Conflict Location & Event Data Project (ACLED) at https://www.acleddata.com. 
+This small package makes it easy to automatically retrieve a user-defined sample or all available data of ACLED: the package provides functionality to access and manage the application programming interface (API) of the Armed Conflict Location & Event Data Project (ACLED) at https://acleddata.com/. 
 
 When using this package, you acknowledge that you have read ACLED's terms and conditions of use, and that you agree with their attribution requirements.
 

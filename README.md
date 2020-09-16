@@ -13,7 +13,7 @@ This small package makes it easy to automatically retrieve a
 user-defined sample or all available data of ACLED: the package provides
 functionality to access and manage the application programming interface
 (API) of the Armed Conflict Location & Event Data Project (ACLED) at
-<https://www.acleddata.com>.
+<https://acleddata.com/>.
 
 When using this package, you acknowledge that you have read ACLED’s
 terms and conditions of use, and that you agree with their attribution
@@ -44,9 +44,11 @@ between June 2019 and July 2020, you can supply:
 ``` r
 library(acled.api) # loads the package
 #> 
-#> Please cite as:
-#>  Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict Event Data."
-#>  R package version 1.0.0. https://github.com/chris-dworschak/acled.api
+#> The data must be cited as per ACLED attribution requirements. By using this package, you
+#> acknowledge that you have read ACLED's terms and conditions.
+#> The package may be cited as:
+#> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict Event Data."
+#> R package version 1.0.1. <https://github.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   regions = c(12,14), 

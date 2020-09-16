@@ -11,8 +11,7 @@ acled.api(
   more.variables = NULL,
   all.variables = FALSE,
   dyadic = FALSE,
-  other.query = NULL,
-  print.data = FALSE
+  other.query = NULL
 )
 }
 \arguments{
@@ -36,9 +35,6 @@ observation per event). If set to TRUE, dyadic data is returned.}
 
 \item{other.query}{optional character vector. Allows users to add their own ACLED API queries to the
 GET call. Note that some query terms require a ? in front.}
-
-\item{print.data}{optional logical. When set to FALSE (default), a message is returned that confirms the
-successful data access. If set to TRUE, the whole retrieved data set is returned.}
 }
 \value{
 A data frame containing ACLED events.
@@ -46,7 +42,7 @@ A data frame containing ACLED events.
 \description{
 A small package to access the application programming interface (API) of
 the Armed Conflict Location & Event Data
-Project (ACLED) at \href{https://www.acleddata.com/}{\url{https://www.acleddata.com/}}. \cr \cr
+Project (ACLED) at \href{https://acleddata.com/}{\url{https://acleddata.com/}}. \cr \cr
 When using this package, you acknowledge that you have read ACLED's terms and conditions
 of use, and that you agree with their attribution requirements.
 }
@@ -63,7 +59,7 @@ more.variables = c("geo_precision", "time_precision"))
 sd(my.data.frame2$geo_precision)
 }
 \references{
-Armed Conflict Location & Event Data Project (ACLED); \url{https://www.acleddata.com/} \cr
+Armed Conflict Location & Event Data Project (ACLED); \url{https://acleddata.com/} \cr
 Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
 "Introducing ACLED-Armed Conflict Location and Event Data." Journal of Peace Research 47 (5): 651-660.
 }

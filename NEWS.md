@@ -1,9 +1,19 @@
 
 # Release updates
 
+## alced.api version 1.0.2
+
+* Link adjustments, 
+* Removed argument "print.data" due to redudancy
+* Added automated numeric variable class recognition and conversion
+* Added ACLED T&C to pkg load message
+
+
 ## alced.api version 1.0.1
 
-* Minor bug and spelling fixes, title renamed, example down-sized.
+* Minor bug and spelling fixes 
+* Title renamed
+* Example down-sized
 
 
 ## alced.api version 1.0.0
