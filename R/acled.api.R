@@ -50,13 +50,35 @@ acled.api <- function(
 
   terms <- "read?terms=accept&limit=0"
 
-  if (is.null(regions) | !is.numeric(regions) == TRUE) {
-    stop("You need to supply a number or a vector of numbers to indicate the geographic regions you wish to retrieve
-    (see ACLED's codebook for region codes). For example use: \n
-         acled.api(regions = c(1), start.date = '1995-01-15', end.date = '2005-12-15')", call. = FALSE)
+  # regions argument
+  if (is.null(regions) | !(is.numeric(regions) | is.character(regions)) == TRUE) {
+    stop('You need to supply one or more region codes (numeric) or region names (character) to indicate the geographic regions
+   you wish to retrieve (see the ACLED codebook for region names or codes). For example use either: \n
+         acled.api(regions = c(1,2), start.date = "1995-01-15", end.date = "2005-12-15") or \n
+         acled.api(regions = c("Western Africa", "Middle Africa"), start.date = "1995-01-15", end.date = "2005-12-15")', call. = FALSE)
   }
-  regions1 <- paste0("&region=", paste(regions, collapse = "|") )
 
+  if(is.numeric(regions) == TRUE){
+    regions1 <- paste0("&region=", paste(regions, collapse = "|") )
+  }
+
+  region.data.frame <- data.frame(
+    region = c("Western Africa", "Middle Africa", "Eastern Africa", "Southern Africa", "Northern Africa",
+               "Southern Asia", "Western Asia", "South-Eastern Asia", "South Asia",
+               "Middle East", "Europe", "Caucasus and Central Asia", "Central America", "South America", "Caribbean"),
+    code = c(1,2,3,4,5,
+             7,8,9,10,
+             11,12,13,14,15,16))
+  if(is.character(regions) == TRUE){
+    char.regions <- which(region.data.frame$region%in%regions)
+    regions1 <- paste0("&region=", paste(char.regions, collapse = "|") )
+        if(length(regions) != length(char.regions)){
+          warning('At least one of the region names supplied in argument "regions = " does not match the original
+              ACLED region names. Check your spelling, or the ACLED codebook for the correct names.', call. = FALSE)
+        }
+  }
+
+  # start.date & end.date arguments
   if (is.null(start.date) | is.null(end.date) == TRUE) {
     stop("You need to supply both a start date and an end date. For example use: \n
          acled.api(regions = c(1), start.date = '1995-01-15', end.date = '2005-12-15')", call. = FALSE)
@@ -67,6 +89,7 @@ acled.api <- function(
   }
   time.frame1 <- paste0("&event_date=", paste(start.date, end.date, sep = "|"), "&event_date_where=BETWEEN")
 
+  # all.variables argument
   if( is.logical(all.variables)==TRUE ){
     if( all.variables==FALSE ){
         if( is.null(more.variables)==TRUE ){
@@ -82,11 +105,13 @@ acled.api <- function(
       stop("The argument 'all.variables' requires a logical value.", call. = FALSE)
   }
 
+  # dyadic argument
   if( is.logical(dyadic)==TRUE ){
       dyadic1 <- ifelse(dyadic==FALSE, "&?export_type=monadic", "")}else{
         stop("The argument 'dyadic' requires a logical value.", call. = FALSE)
   }
 
+  # other.query argument
   other.query1 <- ifelse( is.null(other.query)==TRUE, "", paste0("&", paste(other.query, collapse = "&")) )
 
 
