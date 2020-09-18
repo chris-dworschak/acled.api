@@ -2,10 +2,10 @@
 #' @name acled.api
 #' @description This small package provides functionality to access and manage the application programming
 #' interface (API) of the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/).
-#' The package `acleda.api` makes it easy to retrieve a user-defined sample (or all of the
+#' The function _`acled.api()`_ makes it easy to retrieve a user-defined sample (or all of the
 #' available data) of ACLED, enabling a seamless integration of regular data updates into
 #' the research work flow. \cr \cr
-#' Important: When using this package, you acknowledge that you have read ACLED's terms and
+#' When using this package, you acknowledge that you have read ACLED's terms and
 #' conditions of use, and that you agree with their attribution requirements.
 #' @param regions required numeric or character vector. Supply one or more region codes (numeric) or region names (character)
 #' indicating the geographic region you wish to retrieve (see ACLED's codebook for details on region codes and names).
@@ -21,17 +21,19 @@
 #' observation per event). If set to TRUE, dyadic data is returned.
 #' @param other.query optional character vector. Allows users to add their own ACLED API queries to the
 #' GET call. Note that some query terms require a ? in front.
-#' @details The package provides an R wrapper for the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/) API.
-#' Internally it uses `httr` to access the API, and `jsonlite` to manage the JSON content that the call returns. The data
-#' are converted into the base class `data.frame`. Variables are of class `character` by default. Variables which only contain numbers
-#' as recognized by the regular expression `^[0-9]+$` are coerced `as.numeric` before `data.frame` is returned.
+#' @details The function _`acled.api()`_ is an R wrapper for
+#' the [Armed Conflict Location & Event Data Project](https://acleddata.com/) API.
+#' Internally it uses _`httr`_ to access the API, and _`jsonlite`_ to manage the JSON content that the call returns. The JSON data
+#' are converted into the base class _`data.frame`_. Variables are of class _`character`_ by default.
+#' Variables which only contain numbers as recognized by the regular
+#' expression `^[0-9]+$` are coerced into _`numeric`_ before the _`data.frame`_ object is returned.
 #' @return A data frame containing ACLED events.
 #' @import jsonlite
 #' @import httr
 #' @author Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com/}{<https://chrisdworschak.com/>}
 #' @references Armed Conflict Location & Event Data Project (ACLED); <https://acleddata.com/> \cr
 #' Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
-#' "Introducing ACLED-Armed Conflict Location and Event Data." Journal of Peace Research 47 (5): 651-660.
+#' "Introducing ACLED-Armed Conflict Location and Event Data." _Journal of Peace Research_ 47 (5): 651-660.
 #' @examples
 #' my.data.frame1 <- acled.api(regions = c(1,2,7),
 #' start.date = "2018-11-01",

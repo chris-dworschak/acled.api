@@ -1,9 +1,16 @@
 
 # Release updates
 
+<!-- Upcoming changes for version 1.0.3:
+* Revised package and function description
+* Conducted more tests
+* Revised readme, added badges
+ -->
+
 ## alced.api version 1.0.2
 
-* Link adjustments, 
+* Added functionality: argument "regions" now also recognizes region names
+* Link adjustments
 * Removed argument "print.data" due to redudancy
 * Added automated numeric variable class recognition and conversion
 * Added ACLED T&C to pkg load message

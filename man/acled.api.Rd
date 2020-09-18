@@ -42,17 +42,19 @@ A data frame containing ACLED events.
 \description{
 This small package provides functionality to access and manage the application programming
 interface (API) of the \href{https://acleddata.com/}{Armed Conflict Location & Event Data Project (ACLED)}.
-The package \code{acleda.api} makes it easy to retrieve a user-defined sample (or all of the
+The function \emph{\code{acled.api()}} makes it easy to retrieve a user-defined sample (or all of the
 available data) of ACLED, enabling a seamless integration of regular data updates into
 the research work flow. \cr \cr
-Important: When using this package, you acknowledge that you have read ACLED's terms and
+When using this package, you acknowledge that you have read ACLED's terms and
 conditions of use, and that you agree with their attribution requirements.
 }
 \details{
-The package provides an R wrapper for the \href{https://acleddata.com/}{Armed Conflict Location & Event Data Project (ACLED)} API.
-Internally it uses \code{httr} to access the API, and \code{jsonlite} to manage the JSON content that the call returns. The data
-are converted into the base class \code{data.frame}. Variables are of class \code{character} by default. Variables which only contain numbers
-as recognized by the regular expression \verb{^[0-9]+$} are coerced \code{as.numeric} before \code{data.frame} is returned.
+The function \emph{\code{acled.api()}} is an R wrapper for
+the \href{https://acleddata.com/}{Armed Conflict Location & Event Data Project} API.
+Internally it uses \emph{\code{httr}} to access the API, and \emph{\code{jsonlite}} to manage the JSON content that the call returns. The JSON data
+are converted into the base class \emph{\code{data.frame}}. Variables are of class \emph{\code{character}} by default.
+Variables which only contain numbers as recognized by the regular
+expression \verb{^[0-9]+$} are coerced into \emph{\code{numeric}} before the \emph{\code{data.frame}} object is returned.
 }
 \examples{
 my.data.frame1 <- acled.api(regions = c(1,2,7),
@@ -69,7 +71,7 @@ sd(my.data.frame2$geo_precision)
 \references{
 Armed Conflict Location & Event Data Project (ACLED); \url{https://acleddata.com/} \cr
 Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
-"Introducing ACLED-Armed Conflict Location and Event Data." Journal of Peace Research 47 (5): 651-660.
+"Introducing ACLED-Armed Conflict Location and Event Data." \emph{Journal of Peace Research} 47 (5): 651-660.
 }
 \author{
 Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com/}{\url{https://chrisdworschak.com/}}

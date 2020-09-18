@@ -15,14 +15,14 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www
 
 This small package provides functionality to access and manage the
 application programming interface (API) of the [Armed Conflict Location
-& Event Data Project (ACLED)](https://acleddata.com/). The package
-`acleda.api` makes it easy to retrieve a user-defined sample (or all of
+& Event Data Project (ACLED)](https://acleddata.com/). The function
+`acled.api()` makes it easy to retrieve a user-defined sample (or all of
 the available data) of ACLED, enabling a seamless integration of regular
 data updates into the research work flow.
 
-Important: When using this package, you acknowledge that you have read
-ACLED’s terms and conditions of use, and that you agree with their
-attribution requirements.
+When using this package, you acknowledge that you have read ACLED’s
+terms and conditions of use, and that you agree with their attribution
+requirements.
 
 ## Installation
 
@@ -60,7 +60,8 @@ my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   regions = c("Europe", "Central America"), 
   start.date = "2019-06-01", 
   end.date = "2020-07-31")
-#> Your ACLED data request was successful. Events were retrieved for the period starting 2019-06-01 until 2020-07-31.
+#> Your ACLED data request was successful.
+#>                  Events were retrieved for the period starting 2019-06-01 until 2020-07-31.
 
 head(my.data.frame) # returns the first five observations of the ACLED sample
 #>        region country year event_date                            source
