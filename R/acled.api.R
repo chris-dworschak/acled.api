@@ -1,10 +1,12 @@
 #' @title Automated Retrieval of ACLED Conflict Event Data
 #' @name acled.api
-#' @description A small package to access the application programming interface (API) of
-#' the Armed Conflict Location & Event Data
-#' Project (ACLED) at \href{https://acleddata.com/}{<https://acleddata.com/>}. \cr \cr
-#' When using this package, you acknowledge that you have read ACLED's terms and conditions
-#' of use, and that you agree with their attribution requirements.
+#' @description This small package provides functionality to access and manage the application programming
+#' interface (API) of the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/).
+#' The package `acleda.api` makes it easy to retrieve a user-defined sample (or all of the
+#' available data) of ACLED, enabling a seamless integration of regular data updates into
+#' the research work flow. \cr \cr
+#' Important: When using this package, you acknowledge that you have read ACLED's terms and
+#' conditions of use, and that you agree with their attribution requirements.
 #' @param regions required numeric or character vector. Supply one or more region codes (numeric) or region names (character)
 #' indicating the geographic region you wish to retrieve (see ACLED's codebook for details on region codes and names).
 #' @param start.date required character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".
@@ -19,6 +21,10 @@
 #' observation per event). If set to TRUE, dyadic data is returned.
 #' @param other.query optional character vector. Allows users to add their own ACLED API queries to the
 #' GET call. Note that some query terms require a ? in front.
+#' @details The package provides an R wrapper for the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/) API.
+#' Internally it uses `httr` to access the API, and `jsonlite` to manage the JSON content that the call returns. The data
+#' are converted into the base class `data.frame`. Variables are of class `character` by default. Variables which only contain numbers
+#' as recognized by the regular expression `^[0-9]+$` are coerced `as.numeric` before `data.frame` is returned.
 #' @return A data frame containing ACLED events.
 #' @import jsonlite
 #' @import httr
@@ -145,7 +151,8 @@ acled.api <- function(
       acled.data[,i] <- as.numeric(acled.data[,i])}
   }
 
-  message(paste0("Your ACLED data request was successful. Events were retrieved for the period starting ",
+  message(paste0("Your ACLED data request was successful.
+                 Events were retrieved for the period starting ",
                     range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], "."))
 
   return(acled.data)
