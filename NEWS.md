@@ -1,10 +1,11 @@
 
 # Release updates
 
-<!-- Upcoming changes for version 1.0.3:
-* Revised package and function description
-* Conducted more tests
-* Revised readme, added badges
+<!-- Upcoming changes for future versions:
+* Functionality to retrieve individual countries in addition to regions
+* Functionality to do immediate geographic/temporal aggregation as part of the data retrieval
+* Functionality for actor-based data retrieval
+* New "acled.update" function: the user supplies an existing ACLED data set to the update function, and it flexibly recognizes which ACLED events were added or changed since the user downloaded their data last. Missing events are selectively downloaded to update the existing user data set
  -->
 
 ## alced.api version 1.0.2
@@ -14,6 +15,9 @@
 * Removed argument "print.data" due to redudancy
 * Added automated numeric variable class recognition and conversion
 * Added ACLED T&C to pkg load message
+* Revised package and function descriptions
+* Conducted more tests
+* Revised readme, added badges
 
 
 ## alced.api version 1.0.1
