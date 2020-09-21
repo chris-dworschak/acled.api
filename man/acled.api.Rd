@@ -8,7 +8,7 @@ acled.api(
   regions = NULL,
   start.date = NULL,
   end.date = NULL,
-  more.variables = NULL,
+  add.variables = NULL,
   all.variables = FALSE,
   dyadic = FALSE,
   other.query = NULL
@@ -16,15 +16,17 @@ acled.api(
 }
 \arguments{
 \item{regions}{required numeric or character vector. Supply one or more region codes (numeric) or region names (character)
-indicating the geographic region you wish to retrieve (see ACLED's codebook for details on region codes and names).}
+indicating the geographic region you wish to retrieve (see \href{https://acleddata.com/resources/general-guides/}{ACLED's codebook}
+for details on region codes and names).}
 
 \item{start.date}{required character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".}
 
 \item{end.date}{required character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".}
 
-\item{more.variables}{optional character vector. Supply the names of ACLED variables you wish to add to the
-default output (see ACLED's codebook for details). Variables that are always are: region, country, year,
-event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.}
+\item{add.variables}{optional character vector. Supply the names of ACLED variables you wish to add to the
+default output (see \href{https://acleddata.com/resources/general-guides/}{ACLED's codebook} for details). The default
+output includes: region, country, year, event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type,
+interaction, fatalities.}
 
 \item{all.variables}{optional logical. When set to FALSE (default), a default selection of variables is returned, which
 can be refined using the argument more.variables). If set to TRUE, all variables are included in the output (overrides
@@ -65,7 +67,7 @@ head(my.data.frame1)
 my.data.frame2 <- acled.api(regions = c(1,2,7),
 start.date = "2018-11-01",
 end.date = "2018-11-31",
-more.variables = c("geo_precision", "time_precision"))
+add.variables = c("geo_precision", "time_precision"))
 sd(my.data.frame2$geo_precision)
 }
 \references{

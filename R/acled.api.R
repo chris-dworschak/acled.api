@@ -8,12 +8,14 @@
 #' When using this package, you acknowledge that you have read ACLED's terms and
 #' conditions of use, and that you agree with their attribution requirements.
 #' @param regions required numeric or character vector. Supply one or more region codes (numeric) or region names (character)
-#' indicating the geographic region you wish to retrieve (see ACLED's codebook for details on region codes and names).
+#' indicating the geographic region you wish to retrieve (see [ACLED's codebook](https://acleddata.com/resources/general-guides/)
+#' for details on region codes and names).
 #' @param start.date required character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".
 #' @param end.date required character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".
-#' @param more.variables optional character vector. Supply the names of ACLED variables you wish to add to the
-#' default output (see ACLED's codebook for details). Variables that are always are: region, country, year,
-#' event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type, interaction, fatalities.
+#' @param add.variables optional character vector. Supply the names of ACLED variables you wish to add to the
+#' default output (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details). The default
+#' output includes: region, country, year, event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type,
+#' interaction, fatalities.
 #' @param all.variables optional logical. When set to FALSE (default), a default selection of variables is returned, which
 #' can be refined using the argument more.variables). If set to TRUE, all variables are included in the output (overrides
 #' argument more.variables).
@@ -43,7 +45,7 @@
 #' my.data.frame2 <- acled.api(regions = c(1,2,7),
 #' start.date = "2018-11-01",
 #' end.date = "2018-11-31",
-#' more.variables = c("geo_precision", "time_precision"))
+#' add.variables = c("geo_precision", "time_precision"))
 #' sd(my.data.frame2$geo_precision)
 #' @export
 #'
@@ -51,7 +53,7 @@ acled.api <- function(
   regions = NULL,
   start.date = NULL,
   end.date = NULL,
-  more.variables = NULL,
+  add.variables = NULL,
   all.variables = FALSE,
   dyadic = FALSE,
   other.query = NULL){
@@ -97,14 +99,14 @@ acled.api <- function(
   }
   time.frame1 <- paste0("&event_date=", paste(start.date, end.date, sep = "|"), "&event_date_where=BETWEEN")
 
-  # all.variables argument
+  # add.variables and all.variables argument
   if( is.logical(all.variables)==TRUE ){
     if( all.variables==FALSE ){
-        if( is.null(more.variables)==TRUE ){
+        if( is.null(add.variables)==TRUE ){
           variables <- "&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities"
           }else{
             variables <- paste0("&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities",
-                        "|", paste(more.variables, collapse = "|") )
+                        "|", paste(add.variables, collapse = "|") )
             }
       }else{
           variables <- ""
