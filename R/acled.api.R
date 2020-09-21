@@ -157,6 +157,6 @@ acled.api <- function(
                  Events were retrieved for the period starting ",
                     range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], "."))
 
-  return(acled.data)
+  acled.data
 
 }
