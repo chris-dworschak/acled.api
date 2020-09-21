@@ -1,6 +1,7 @@
 Package: acled.api
 Title: Automated Retrieval of ACLED Conflict Event Data
 Version: 1.0.2
+Date: 2020-09-21
 Authors@R: 
     person(given = "Christoph",
            family = "Dworschak",
