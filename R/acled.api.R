@@ -112,13 +112,14 @@ acled.api <- function(
   }
 
   # start.date & end.date arguments
-  if ( (is.null(start.date) | is.null(end.date)) == TRUE & (is.null(start.date) & is.null(end.date)) == FALSE ) {
+  if ( (is.null(start.date) & is.null(end.date)) == FALSE ){
+    if( (is.null(start.date) | is.null(end.date)) == TRUE){
     stop("You need to supply either no start date and no end date, in which case all available dates are requested, or both
     a start date and an end date.
     Usage example: \n
          acled.api(region = c(1), start.date = '1995-01-15', end.date = '2005-12-15') or
          acled.api(region = c(1), start.date = NULL, end.date = NULL)", call. = FALSE)
-  }else{
+    }
     if ( start.date>end.date ) {
       stop("The start date cannot be larger than the end date.", call. = FALSE)
     }
