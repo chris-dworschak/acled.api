@@ -59,7 +59,7 @@ Using `acled.api` is straight forward. To download data on, for example, all ACL
 library(acled.api) # loads the package
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
-  regions = c("Europe", "Central America"), 
+  region = c("Southern Asia", "Central America"), 
   start.date = "2019-06-01", 
   end.date = "2020-07-31")
 

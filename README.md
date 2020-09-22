@@ -57,32 +57,39 @@ library(acled.api) # loads the package
 #> Event Data." R package version 1.0.2. <https://github.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
-  regions = c("Europe", "Central America"), 
+  region = c("Southern Asia", "Central America"), 
   start.date = "2019-06-01", 
   end.date = "2020-07-31")
 #> Your ACLED data request was successful.
 #>                  Events were retrieved for the period starting 2019-06-01 until 2020-07-31.
 
 head(my.data.frame) # returns the first five observations of the ACLED sample
-#>        region country year event_date                            source
-#> 1 Middle East  Israel 2020 2020-07-31               Black Flag Movement
-#> 2 Middle East  Israel 2020 2020-07-31               Black Flag Movement
-#> 3 Middle East  Israel 2020 2020-07-31               Black Flag Movement
-#> 4 Middle East  Turkey 2020 2020-07-31 Human Rights Foundation of Turkey
-#> 5 Middle East  Israel 2020 2020-07-31               Black Flag Movement
-#> 6 Middle East  Israel 2020 2020-07-31               Black Flag Movement
-#>     admin1      admin2 admin3                         location event_type
-#> 1 Tel Aviv    Tel Aviv                       Mehlaf Alluf Sade   Protests
-#> 2 HaMerkaz Petah Tikva                                    Enat   Protests
-#> 3 HaMerkaz       Ramla        Ben Gurion International Airport   Protests
-#> 4   Ankara     Cankaya                                 Cankaya   Protests
-#> 5 HaMerkaz     Rehovot                           Rishon LeZion   Protests
-#> 6 HaMerkaz     Rehovot                                 Rehovot   Protests
-#>              sub_event_type interaction fatalities
-#> 1          Peaceful protest          60          0
-#> 2          Peaceful protest          60          0
-#> 3          Peaceful protest          60          0
-#> 4 Protest with intervention          16          0
-#> 5          Peaceful protest          60          0
-#> 6          Peaceful protest          60          0
+#>                      region     country year event_date
+#> 1 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
+#> 2 Caucasus and Central Asia Afghanistan 2020 2020-07-31
+#> 3 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
+#> 4 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
+#> 5 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
+#> 6 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
+#>                              source   admin1 admin2 admin3
+#> 1 Ministry of Defence of Azerbaijan Jabrayil              
+#> 2  Afghan Islamic Press News Agency  Helmand Sangin       
+#> 3 Ministry of Defence of Azerbaijan    Tovuz              
+#> 4 Ministry of Defence of Azerbaijan   Fizuli              
+#> 5 Ministry of Defence of Azerbaijan  Martuni              
+#> 6 Ministry of Defence of Azerbaijan   Fizuli              
+#>                         location                 event_type sub_event_type
+#> 1              Chodjuk-Mardjanli                    Battles    Armed clash
+#> 2                         Sangin Violence against civilians         Attack
+#> 3                         Aghdam                    Battles    Armed clash
+#> 4                        Alxanli                    Battles    Armed clash
+#> 5                Ashaghi Veysali                    Battles    Armed clash
+#> 6 Nameless Hills (Fizuli Region)                    Battles    Armed clash
+#>   interaction fatalities
+#> 1          11          0
+#> 2          37          1
+#> 3          18          0
+#> 4          11          0
+#> 5          11          0
+#> 6          11          0
 ```

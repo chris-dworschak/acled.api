@@ -7,28 +7,36 @@
 #' the research work flow. \cr \cr
 #' When using this package, you acknowledge that you have read ACLED's terms and
 #' conditions of use, and that you agree with their attribution requirements.
-#' @param regions required numeric or character vector. Supply one or more region codes (numeric) or region names (character)
-#' indicating the geographic region you wish to retrieve (see [ACLED's codebook](https://acleddata.com/resources/general-guides/)
-#' for details on region codes and names).
-#' @param start.date required character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".
-#' @param end.date required character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".
-#' @param add.variables optional character vector. Supply the names of ACLED variables you wish to add to the
+#' @param country character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
+#' below for information on how the arguments "country" and "region" interact.
+#' @param region numeric or character vector. Supply one or more region codes (numeric) or region names (character)
+#' to narrow down which events should be retrieved (see [ACLED's codebook](https://acleddata.com/resources/general-guides/)
+#' for details on region codes and names). See the details below for information on how the arguments "country" and "region" interact.
+#' @param start.date character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".
+#' @param end.date character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".
+#' @param add.variables character vector. Supply the names of ACLED variables you wish to add to the
 #' default output (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details). The default
 #' output includes: region, country, year, event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type,
 #' interaction, fatalities.
-#' @param all.variables optional logical. When set to FALSE (default), a default selection of variables is returned, which
-#' can be refined using the argument more.variables). If set to TRUE, all variables are included in the output (overrides
-#' argument more.variables).
-#' @param dyadic optional logical. When set to FALSE (default), monadic data is returned (one
+#' @param all.variables logical. When set to FALSE (default), a narrow default selection of variables is returned (which
+#' can be refined using the argument add.variables). If set to TRUE, all variables are included in the output (overrides
+#' argument add.variables).
+#' @param dyadic logical. When set to FALSE (default), monadic data is returned (one
 #' observation per event). If set to TRUE, dyadic data is returned.
-#' @param other.query optional character vector. Allows users to add their own ACLED API queries to the
-#' GET call. Note that some query terms require a ? in front.
+#' @param other.query character vector. Allows users to add their own ACLED API queries to the
+#' GET call. Vector elements are assumed to be individual queries, and are automatically separated by an & sign.
 #' @details The function _`acled.api()`_ is an R wrapper for
 #' the [Armed Conflict Location & Event Data Project](https://acleddata.com/) API.
 #' Internally it uses _`httr`_ to access the API, and _`jsonlite`_ to manage the JSON content that the call returns. The JSON data
 #' are converted into the base class _`data.frame`_. Variables are of class _`character`_ by default.
 #' Variables which only contain numbers as recognized by the regular
-#' expression `^[0-9]+$` are coerced into _`numeric`_ before the _`data.frame`_ object is returned.
+#' expression `^[0-9]+$` are coerced into _`numeric`_ before the _`data.frame`_ object is returned. \cr
+#' If both the country argument and the region argument remain unspecified, all available countries are retrieved. The same applies to
+#' the time frame when both the start date and the end date remain unspecified. Note that the API cannot handle requests with only one
+#' of the dates specified (either none of them or both of them need to be supplied). \cr
+#' The ACLED API combined the country argument and the region argument with a logical AND operator. Therefore, specifying e.g. the
+#' country "Togo" but the region "Southern Africa" leads the API to query for a country named "Togo" in the region "Southern Africa".
+#' In this case, no data will be returned as no events match this query.
 #' @return A data frame containing ACLED events.
 #' @import jsonlite
 #' @import httr
@@ -37,12 +45,12 @@
 #' Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
 #' "Introducing ACLED-Armed Conflict Location and Event Data." _Journal of Peace Research_ 47 (5): 651-660.
 #' @examples
-#' my.data.frame1 <- acled.api(regions = c(1,2,7),
+#' my.data.frame1 <- acled.api(region = c(1,7),
 #' start.date = "2018-11-01",
 #' end.date = "2018-11-31")
 #' head(my.data.frame1)
 #'
-#' my.data.frame2 <- acled.api(regions = c(1,2,7),
+#' my.data.frame2 <- acled.api(region = c(1,7),
 #' start.date = "2018-11-01",
 #' end.date = "2018-11-31",
 #' add.variables = c("geo_precision", "time_precision"))
@@ -50,7 +58,8 @@
 #' @export
 #'
 acled.api <- function(
-  regions = NULL,
+  country = NULL,
+  region = NULL,
   start.date = NULL,
   end.date = NULL,
   add.variables = NULL,
@@ -58,20 +67,31 @@ acled.api <- function(
   dyadic = FALSE,
   other.query = NULL){
 
+  # accept terms
   terms <- "read?terms=accept&limit=0"
 
-  # regions argument
-  if (is.null(regions) | !(is.numeric(regions) | is.character(regions)) == TRUE) {
-    stop('You need to supply one or more region codes (numeric) or region names (character) to indicate the geographic regions
-   you wish to retrieve (see the ACLED codebook for region names or codes). For example use either: \n
-         acled.api(regions = c(1,2), start.date = "1995-01-15", end.date = "2005-12-15") or \n
-         acled.api(regions = c("Western Africa", "Middle Africa"), start.date = "1995-01-15", end.date = "2005-12-15")', call. = FALSE)
+  # country argument
+  if ( (!is.null(country) & !is.character(country)) == TRUE ) {
+    stop('If you wish to specify country names, these need to be supplied as a character vector.
+    Usage example: \n
+         acled.api(country = c("Kenya", "Togo"), start.date = "2004-08-20", end.date = "2005-05-15")', call. = FALSE)
+  }
+  if(is.character(country) == TRUE){ country1 <- paste0("&country=", paste(country, collapse = "|") )  }
+  if(is.null(country) == TRUE){
+    country1 <- ""
   }
 
-  if(is.numeric(regions) == TRUE){
-    regions1 <- paste0("&region=", paste(regions, collapse = "|") )
+  # region argument
+  if ( (!is.null(region) & !is.numeric(region) & !is.character(region)) == TRUE ) {
+    stop('If you wish to specify regions, these need to be supplied as a numeric vector (region codes) or character
+    vector (region names). See the ACLED codebook for region names and codes.
+    Usage example: \n
+         acled.api(region = c(1,2), start.date = "2004-08-20", end.date = "2005-05-15") or \n
+         acled.api(region = c("Western Africa", "Middle Africa"), start.date = "2004-08-20", end.date = "2005-05-15")', call. = FALSE)
   }
-
+  if(is.numeric(region) == TRUE){
+    region1 <- paste0("&region=", paste(region, collapse = "|") )
+  }
   region.data.frame <- data.frame(
     region = c("Western Africa", "Middle Africa", "Eastern Africa", "Southern Africa", "Northern Africa",
                "Southern Asia", "Western Asia", "South-Eastern Asia", "South Asia",
@@ -79,19 +99,25 @@ acled.api <- function(
     code = c(1,2,3,4,5,
              7,8,9,10,
              11,12,13,14,15,16))
-  if(is.character(regions) == TRUE){
-    char.regions <- which(region.data.frame$region%in%regions)
-    regions1 <- paste0("&region=", paste(char.regions, collapse = "|") )
-        if(length(regions) != length(char.regions)){
-          warning('At least one of the region names supplied in argument "regions = " does not match the original
+  if(is.character(region) == TRUE){
+    char.region <- which(region.data.frame$region%in%region)
+    region1 <- paste0("&region=", paste(char.region, collapse = "|") )
+        if(length(region) != length(char.region)){
+          warning('At least one of the region names supplied in argument "region = " does not match the original
               ACLED region names. Check your spelling, or the ACLED codebook for the correct names.', call. = FALSE)
         }
   }
+  if(is.null(region) == TRUE){
+    region1 <- ""
+  }
 
   # start.date & end.date arguments
-  if (is.null(start.date) | is.null(end.date) == TRUE) {
-    stop("You need to supply both a start date and an end date. For example use: \n
-         acled.api(regions = c(1), start.date = '1995-01-15', end.date = '2005-12-15')", call. = FALSE)
+  if ( (is.null(start.date) | is.null(end.date)) == TRUE & (is.null(start.date) & is.null(end.date)) == FALSE ) {
+    stop("You need to supply either no start date and no end date, in which case all available dates are requested, or both
+    a start date and an end date.
+    Usage example: \n
+         acled.api(region = c(1), start.date = '1995-01-15', end.date = '2005-12-15') or
+         acled.api(region = c(1), start.date = NULL, end.date = NULL)", call. = FALSE)
   }else{
     if ( start.date>end.date ) {
       stop("The start date cannot be larger than the end date.", call. = FALSE)
@@ -125,12 +151,21 @@ acled.api <- function(
   other.query1 <- ifelse( is.null(other.query)==TRUE, "", paste0("&", paste(other.query, collapse = "&")) )
 
 
-  url <- paste0("https://api.acleddata.com/acled/", terms, dyadic1, time.frame1, variables, regions1, other.query1)
+  # GET call
+  url <- paste0("https://api.acleddata.com/acled/", terms, dyadic1, time.frame1, variables, country1, region1, other.query1)
   response <- httr::GET(url)
+
+  if ( exists("response")==FALSE ) {
+    stop("GET request was unsuccessful. Check your internet connection. If the problem persists despite a reliable internet connection,
+    the server may be temporarily not reachable; in this case try again later.",
+    call. = FALSE)
+  }
   if (httr::http_type(response) != "application/json") {
-    stop("API did not return a json file.", call. = FALSE)
+    stop(paste0("GET request was unsuccessful: the API did not return a JSON file, giving the status code ",
+                response$status_code, "."), call. = FALSE)
   }
 
+  # JSON
   json.content <- jsonlite::fromJSON( httr::content(response, "text", encoding = 'UTF-8'),
                             simplifyVector = FALSE)
   if(!json.content$success){
@@ -139,10 +174,12 @@ acled.api <- function(
   json.content <- json.content$data
 
   if( length(json.content)==0L ){
-    message("No data found for this region and time period.")
+    message("No data found for this area and time period.
+            Or did you supply both countries and (other) regions? These cannot be combined.")
     return(NULL)
   }
 
+  # data prep
   acled.matrix <- matrix( unlist(json.content),
                           byrow = T,
                           nrow = length(json.content) )

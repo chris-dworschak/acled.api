@@ -1,12 +1,22 @@
 
 # Release updates
 
+
 <!-- Upcoming changes for future versions:
-* Functionality to retrieve individual countries in addition to regions
 * Functionality to do immediate geographic/temporal aggregation as part of the data retrieval
 * Functionality for actor-based data retrieval
 * New "acled.update" function: the user supplies an existing ACLED data set to the update function, and it flexibly recognizes which ACLED events were added or changed since the user downloaded their data last. Missing events are selectively downloaded to update the existing user data set
  -->
+
+
+## alced.api version 1.0.3
+* Added functionality to retrieve individual countries in addition to regions
+* Revised and updated argument information
+* Revised argument names
+* Added function details
+* Revised and updated error messages and warnings
+* Added error messages for bad requests/internet connection
+
 
 ## alced.api version 1.0.2
 
