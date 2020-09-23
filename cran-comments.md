@@ -13,7 +13,7 @@ There was 1 NOTE:
 * checking for future file timestamps ... NOTE
   unable to verify current time
 
-    Flexible time zone on local OS.
+    EXPLANATION: Flexible time zone on local OS. Has no implications for package usability.
 
 
 ## R-hub builder results
@@ -30,13 +30,13 @@ Possibly mis-spelled words in DESCRIPTION:
   ACLED (2:31, 12:137)
   ACLED's (12:237)
 
-   Words are data set names, no misspelling.
+   EXPLANATION: Words are data set names, no misspelling.
 
 
 * checking for future file timestamps ... NOTE
 unable to verify current time
 
-    Flexible time zone on local OS.
+    EXPLANATION: Flexible time zone on local OS. Has no implications for package usability.
 
 
 
