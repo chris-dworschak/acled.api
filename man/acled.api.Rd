@@ -60,10 +60,10 @@ the \href{https://acleddata.com/}{Armed Conflict Location & Event Data Project} 
 Internally it uses \emph{\code{httr}} to access the API, and \emph{\code{jsonlite}} to manage the JSON content that the call returns. The JSON data
 are converted into the base class \emph{\code{data.frame}}. Variables are of class \emph{\code{character}} by default.
 Variables which only contain numbers as recognized by the regular
-expression \verb{^[0-9]+$} are coerced into \emph{\code{numeric}} before the \emph{\code{data.frame}} object is returned. \cr
+expression \verb{^[0-9]+$} are coerced into \emph{\code{numeric}} before the \emph{\code{data.frame}} object is returned. \cr \cr
 If both the country argument and the region argument remain unspecified, all available countries are retrieved. The same applies to
 the time frame when both the start date and the end date remain unspecified. Note that the API cannot handle requests with only one
-of the dates specified (either none of them or both of them need to be supplied). \cr
+of the dates specified (either none of them or both of them need to be supplied). \cr \cr
 The ACLED API combined the country argument and the region argument with a logical AND operator. Therefore, specifying e.g. the
 country "Togo" but the region "Southern Africa" leads the API to query for a country named "Togo" in the region "Southern Africa".
 In this case, no data will be returned as no events match this query.
