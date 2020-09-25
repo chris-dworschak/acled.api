@@ -9,6 +9,11 @@
  -->
 
 
+## alced.api version 1.0.4
+* Updated licensing and added file LICENSE
+* Minor description revisions
+
+
 ## alced.api version 1.0.3
 * Added functionality to retrieve individual countries in addition to regions
 * Revised and updated argument information

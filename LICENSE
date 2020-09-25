@@ -1,0 +1,91 @@
+For current and binding ACLED attribution requirements, see https://acleddata.com/resources/general-guides/
+
+Reading version copied from the source above, last updated on September 25th 2020:
+
+Terms & Conditions
+Terms of Use and Attrition Policy
+Background
+Non-Commercial Licenses - ACLED’s full dataset is available for use free of charge by non-
+commercial entities and organizations (e.g., non-profit organizations, government
+agencies, academic institutions) using the data for non-commercial purposes, subject to
+these Terms of Use. Non-commercial licenses may also be granted to for-profit media
+outlets or journalists citing ACLED’s content in works of journalism; provided that such
+works are made available to the general public and benefit public discourse on the topic,
+subject to ACLED’s prior, written approval.
+Commercial Licenses – All other commercial exploitation of ACLED content (including, but
+not limited to, any sale, licensing, sublicensing, or other distribution of the data, in whole
+or in part, or any incorporation of the data or analysis, in whole or in part, in a product for
+sale, license, sublicense, or other distribution, to third parties for profit, or use of the data
+or analysis by a commercial entity for situational awareness) is prohibited, except as
+expressly agreed by ACLED in a written Commercial License Agreement executed by ACLED
+and the licensee. Commercial entities seeking a commercial license to use the full ACLED
+dataset must submit a request to ACLED at admin@acleddata.com, including the details of
+the requested use. ACLED reserves the right to withhold approval in its sole discretion. Any
+approval granted is limited strictly to the use described in the corresponding request and/
+or approval (which will supersede the request in the case of any inconsistency or conflict).
+All commercial licensees are subject to ACLED's Terms & Conditions. By including "Accept"
+in the query, they are accepting the Terms & Conditions as outlined in the linked
+document.
+Regardless of the type of license, all rights to use or exploit ACLED data or analysis are
+conditioned on the licensee’s adherence to the Attribution Requirements outlined below.
+Crawling the ACLED website or API is allowed if done in accordance with the
+provisions of our robots.txt file, but scraping is prohibited.
+
+No user is permitted to (i) use ACLED’s data or analysis in any manner that may harm,
+target, oppress or defame ACLED, the data subjects, or any group or population, or
+cause any of the foregoing to be harmed, targeted, oppressed or defamed; (ii) provide,
+permit or allow direct access to any of ACLED’s original/raw data or analysis; (iii) use
+any of the data or analysis to create, develop, support or provide benchmarking for any
+dataset, product or platform similar to, or in competition with, or would create a
+functional substitute for, any of ACLED content, products or platform; and (iv) provide,
+permit or allow access to any of the data or analysis by ACLED's competitors.
+Attribution Requirements
+1.If using ACLED data in any way, direct or manipulated, the data must be clearly
+acknowledged. Acknowledgement should include (1) a footnote with the full citation
+which includes a/the link to ACLED’s website (see below for examples), (2) in text
+citation/acknowledgement, stating where the data you use are from and that ACLED
+data are publicly available, and (3) clear citation on any and all visuals making use of
+ACLED data.
+2.If generating a data file for public or private use, and presenting those data to
+another party, the ACLED data included must be directly acknowledged in a source
+column, including ACLED’s full name and a link: “Armed Conflict Location & Event Data
+Project (ACLED); https://www.acleddata.com.” 
+3.To reference the ACLED codebook, please cite as follows (substituting for the
+correct year):
+“ACLED. (2017). “Armed Conflict Location & Event Data Project (ACLED) Codebook,
+2017.””
+4. If using ACLED data in an academic paper or article, please cite as follows:
+“Raleigh, Clionadh, Andrew Linke, Håvard Hegre and Joakim Karlsen. (2010).
+“Introducing ACLED-Armed Conflict Location and Event Data.” Journal of Peace
+Research 47(5) 651-660.”
+5.If referring to figures or statistics published in ACLED analysis, infographics,
+working papers, etc., please cite the individual analysis piece or paper, including the
+author(s), using the following format:
+
+Hart, Tom, and Lauren Blaxter. (23 November 2018). “Ceasefire Divisions: Violations of
+the Truce with Gaza Lead to Rising Political Pressures in Israel.” Armed Conflict
+Location & Event Data Project (ACLED). <https://www.acleddata.com/2018/11/23/
+ceasefire-divisions-violations-of-the-truce-with-gaza-lead-to-rising-political-
+pressures-in-israel/>.
+If the ACLED piece does not have an author recognized (often the case for pieces on ACLED
+methodology), the citation should identify ACLED as the author.
+6.If using ACLED data in a visual, graphic, map or infographic of your own, please
+attribute the source data prominently on the visual itself or within the key / legend.
+7.If you wish to reproduce or publish a graphic, graph or map ACLED has already
+published (rather than creating an original image using raw data), please cite the
+individual analysis piece or paper, including the author(s), using the following format:
+Hart, Tom, and Lauren Blaxter. (23 November 2018). “Ceasefire Divisions: Violations
+of the Truce with Gaza Lead to Rising Political Pressures in Israel.” Figure 1, Armed
+Conflict Location & Event Data Project (ACLED). <https://www.acleddata.com/
+2018/11/23/ceasefire-divisions-violations-of-the-truce-with-gaza-lead-to-rising-
+political-pressures-in-israel/>. © 2018 ACLED All rights reserved. Used with
+permission from ACLED.
+If the ACLED piece does not have an author recognized (often the case for pieces on ACLED
+methodology), the citation should identify ACLED as the author.
+If you intend to use ACLED data or analysis in a manner not described in these Attribution
+Requirements, contact us directly at admin@acleddata.com for instruction regarding the
+attribution requirements.
+If you have any other questions about the Terms of Use or Attribution Policy, or their
+application, please feel free to contact us directly at admin@acleddata.com.
+
+
