@@ -31,11 +31,11 @@
 #' are converted into the base class _`data.frame`_. Variables are of class _`character`_ by default.
 #' Variables which only contain numbers as recognized by the regular
 #' expression `^[0-9]+$` are coerced into _`numeric`_ before the _`data.frame`_ object is returned. \cr \cr
-#' If both the country argument and the region argument remain unspecified, all available countries are retrieved. The same applies to
-#' the time frame when both the start date and the end date remain unspecified. Note that the API cannot handle requests with only one
+#' If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
+#' the time frame when both the start date and the end date are NULL (default). Note that the API cannot handle requests with only one
 #' of the dates specified (either none of them or both of them need to be supplied). \cr \cr
-#' The ACLED API combined the country argument and the region argument with a logical AND operator. Therefore, specifying e.g. the
-#' country "Togo" but the region "Southern Africa" leads the API to query for a country named "Togo" in the region "Southern Africa".
+#' The ACLED API combines the country argument and the region argument with a logical AND operator. Therefore, specifying e.g. the
+#' country "Togo" and the region "Southern Africa" leads the API to query for a country named "Togo" in the region "Southern Africa".
 #' In this case, no data will be returned as no events match this query.
 #' @return A data frame containing ACLED events.
 #' @import jsonlite
