@@ -76,7 +76,9 @@ acled.api <- function(
     Usage example: \n
          acled.api(country = c("Kenya", "Togo"), start.date = "2004-08-20", end.date = "2005-05-15")', call. = FALSE)
   }
-  if(is.character(country) == TRUE){ country1 <- paste0("&country=", paste(country, collapse = "|") )  }
+  if(is.character(country) == TRUE){
+    country1 <- paste0("&country=",
+                       paste( gsub("\\s{1}", "%", country), collapse = "|")) }
   if(is.null(country) == TRUE){
     country1 <- ""
   }
