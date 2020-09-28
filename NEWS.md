@@ -8,7 +8,8 @@
 * New "acled.update" function: the user supplies an existing ACLED data set to the update function, and it flexibly recognizes which ACLED events were added or changed since the user downloaded their data last. Missing events are selectively downloaded to update the existing user data set
  -->
 
-## alced.api development version 1.0.4+
+## alced.api version 1.0.5
+* Updated licensing
 * Bug fix in country argument to support country names containing whitespaces
 
 
