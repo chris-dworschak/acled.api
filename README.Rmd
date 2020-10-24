@@ -18,13 +18,9 @@ knitr::opts_chunk$set(
 # Automated Retrieval of ACLED Conflict Event Data
 
 <!-- badges: start -->
-```{r, include = FALSE}
-usethis::use_cran_badge()
-usethis::use_lifecycle_badge("maturing")
-```
-[![CRAN status](https://www.r-pkg.org/badges/version/acled.api)](https://CRAN.R-project.org/package=acled.api)
+[![CRAN status](https://www.r-pkg.org/badges/version-last-release/acled.api)](https://CRAN.R-project.org/package=acled.api)
 [![Travis build status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/chris-dworschak/acled.api)
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 <!-- badges: end -->
 
 This small package provides functionality to access and manage the application programming interface (API) of the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/). The function `acled.api()` makes it easy to retrieve a user-defined sample (or all of the available data) of ACLED, enabling a seamless integration of regular data updates into the research work flow. 
@@ -36,7 +32,7 @@ When using this package, you acknowledge that you have read ACLED's terms and co
 
 ## Installation
 
-You can install the released version of acled.api from [CRAN](https://CRAN.R-project.org) with: 
+You can install the latest release version of acled.api from [CRAN](https://CRAN.R-project.org) with: 
 
 ``` r
 install.packages("acled.api")

@@ -6,11 +6,11 @@
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/acled.api)](https://CRAN.R-project.org/package=acled.api)
+status](https://www.r-pkg.org/badges/version-last-release/acled.api)](https://CRAN.R-project.org/package=acled.api)
 [![Travis build
 status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/chris-dworschak/acled.api)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 <!-- badges: end -->
 
 This small package provides functionality to access and manage the
@@ -26,7 +26,7 @@ requirements.
 
 ## Installation
 
-You can install the released version of acled.api from
+You can install the latest release version of acled.api from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
@@ -54,7 +54,8 @@ library(acled.api) # loads the package
 #> and conditions. The data must be cited as per ACLED attribution requirements.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package version 1.0.2. <https://github.com/chris-dworschak/acled.api/>
+#> Event Data." R package. CRAN version 1.0.7.
+#> For the development version of this package, visit <https://github.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   region = c("Southern Asia", "Central America"), 
