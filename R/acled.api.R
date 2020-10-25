@@ -154,25 +154,41 @@ acled.api <- function(
   other.query1 <- ifelse( is.null(other.query)==TRUE, "", paste0("&", paste(other.query, collapse = "&")) )
 
 
+  # ACLED ping
+  acled.url.ping <- tryCatch(
+    httr::GET("https://api.acleddata.com/acled/read?terms=accept&limit=1&?export_type=monadic"),
+    error = function(e) e )
+  if( any(class(acled.url.ping) == "error") ) {
+    message("The resource api.acleddata.com cannot be reached. \n
+    1. Please check your internet connection.
+    2. If the internet connection is reliable, the server may be temporarily unavailable; in this case please try again later.
+    3. If the problem persists, please contact the package maintainer as the resource may have moved.")
+    return(NULL)
+  }
+
+
   # GET call
   url <- paste0("https://api.acleddata.com/acled/", terms, dyadic1, time.frame1, variables, country1, region1, other.query1)
-  response <- httr::GET(url)
 
+  response <- httr::GET(url)
   if ( exists("response")==FALSE ) {
-    stop("GET request was unsuccessful. Check your internet connection. If the problem persists despite a reliable internet connection,
-    the server may be temporarily not reachable; in this case try again later.",
+    message("GET request was unsuccessful. Please check your internet connection. If the problem persists despite a reliable internet connection,
+    the server may be temporarily not available; in this case try again later.",
     call. = FALSE)
+    return(NULL)
   }
   if (httr::http_type(response) != "application/json") {
-    stop(paste0("GET request was unsuccessful: the API did not return a JSON file, giving the status code ",
+    message(paste0("GET request was unsuccessful: the API did not return a JSON file, giving the status code ",
                 response$status_code, "."), call. = FALSE)
+    return(NULL)
   }
 
   # JSON
   json.content <- jsonlite::fromJSON( httr::content(response, "text", encoding = 'UTF-8'),
                             simplifyVector = FALSE)
   if(!json.content$success){
-    stop(paste0("GET request wasn't successful: ", json.content$error$message))
+    message(paste0("GET request wasn't successful: ", json.content$error$message))
+    return(NULL)
   }
   json.content <- json.content$data
 
@@ -195,8 +211,7 @@ acled.api <- function(
       acled.data[,i] <- as.numeric(acled.data[,i])}
   }
 
-  message(paste0("Your ACLED data request was successful.
-                 Events were retrieved for the period starting ",
+  message(paste0("Your ACLED data request was successful. \nEvents were retrieved for the period starting ",
                     range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], "."))
 
   acled.data
