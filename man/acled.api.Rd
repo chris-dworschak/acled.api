@@ -67,6 +67,8 @@ Internally it uses \emph{\code{httr}} to access the API, and \emph{\code{jsonlit
 are converted into the base class \emph{\code{data.frame}}. Variables are of class \emph{\code{character}} by default.
 Variables which only contain numbers as recognized by the regular
 expression \verb{^[0-9]+$} are coerced into \emph{\code{numeric}} before the \emph{\code{data.frame}} object is returned. \cr \cr
+The user's registered email address and ACLED access key can be supplied directly to the arguments, or set as environment variables
+using \emph{\code{Sys.setenv(EMAIL_ADDRESS="your.email.address")}} and \emph{\code{Sys.setenv(ACCESS_KEY="your.access.key")}}. \cr \cr
 If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
 the time frame when both the start date and the end date are NULL (default). Note that the API cannot handle requests with only one
 of the dates specified (either none of them or both of them need to be supplied). \cr \cr

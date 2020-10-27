@@ -53,12 +53,11 @@ Using `acled.api` is straight forward. To download data on, for example, all ACL
 
 
 ```{r example}
-# library(acled.api) # loads the package
-devtools::install_github("https://github.com/chris-dworschak/acled.api")
+library(acled.api) # loads the package
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
-  email.address = "your.email.address",
-  access.key = "your.access.key",
+  email.address = Sys.getenv("EMAIL_ADDRESS"),
+  access.key = Sys.getenv("ACCESS_KEY"),
   region = c("Southern Asia", "Central America"), 
   start.date = "2019-06-01", 
   end.date = "2020-07-31")

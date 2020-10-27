@@ -5,38 +5,27 @@
 * R-hub builder: Windows Server 2008 R2 SP1, 32/64 bit; Ubuntu Linux 16.04 LTS, R-release, GCC; Fedora Linux, R-devel, clang, gfortran
 * Travis CI
 
+
+
 ## R CMD check results
-There were no ERRORs or WARNINGs. 
+Duration: 10.6s
 
-There was 1 NOTE:
+0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 
-* checking for future file timestamps ... NOTE
-  unable to verify current time
 
-    EXPLANATION: Flexible time zone on local OS. Has no implications for package usability.
 
 
 ## R-hub builder results
 There were no ERRORs or WARNINGs. 
 
-There were 2 NOTES:
+There was 1 NOTE:
 
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: 'Christoph Dworschak <c.dworschak@essex.ac.uk>'
+N  checking CRAN incoming feasibility
+   Maintainer: 'Christoph Dworschak <c.dworschak@essex.ac.uk>'
+   Days since last update: 3
 
-New submission
+    EXPLANATION: 3 days since the last update on CRAN.
 
-Possibly mis-spelled words in DESCRIPTION:
-  ACLED (2:31, 12:137)
-  ACLED's (12:237)
-
-   EXPLANATION: Words are data set names, no misspelling.
-
-
-* checking for future file timestamps ... NOTE
-unable to verify current time
-
-    EXPLANATION: Flexible time zone on local OS. Has no implications for package usability.
 
 
 
