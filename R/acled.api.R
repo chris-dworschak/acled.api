@@ -8,7 +8,10 @@
 #' When using this package, you acknowledge that you have read ACLED's terms and
 #' conditions of use, and that you agree with their attribution requirements.
 #' @param email.address character string. Supply the email address that you registered with [ACLED access](https://developer.acleddata.com/).
-#' @param access.key character string. Supply your ACLED access key.
+#' The email address can also be set as an environment variable using _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_, in
+#' which case this argument can be skipped.
+#' @param access.key character string. Supply your ACLED access key. The  access key can also be set as an environment variable
+#' using _`Sys.setenv(ACCESS_KEY="your.access.key")`_, in which case this argument can be skipped.
 #' @param country character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
 #' below for information on how the arguments "country" and "region" interact.
 #' @param region numeric or character vector. Supply one or more region codes (numeric) or region names (character)
@@ -33,8 +36,9 @@
 #' are converted into the base class _`data.frame`_. Variables are of class _`character`_ by default.
 #' Variables which only contain numbers as recognized by the regular
 #' expression `^[0-9]+$` are coerced into _`numeric`_ before the _`data.frame`_ object is returned. \cr \cr
-#' The user's registered email address and ACLED access key can be supplied directly to the arguments, or set as environment variables
-#' using _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_ and _`Sys.setenv(ACCESS_KEY="your.access.key")`_. \cr \cr
+#' The user's registered email address and ACLED access key can be supplied as strings directly to their respective arguments,
+#' or set in advance as environment variables
+#' using _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_ and  _`Sys.setenv(ACCESS_KEY="your.access.key")`_. \cr \cr
 #' If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
 #' the time frame when both the start date and the end date are NULL (default). Note that the API cannot handle requests with only one
 #' of the dates specified (either none of them or both of them need to be supplied). \cr \cr
@@ -49,6 +53,7 @@
 #' Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
 #' "Introducing ACLED-Armed Conflict Location and Event Data." _Journal of Peace Research_ 47 (5): 651-660.
 #' @examples
+#' # Email and access key provided as strings:
 #' my.data.frame1 <- acled.api(email.address = "your.email.address",
 #' access.key = "your.access.key",
 #' region = c(1,7),
@@ -56,8 +61,9 @@
 #' end.date = "2018-11-31")
 #' head(my.data.frame1)
 #'
-#' my.data.frame2 <- acled.api(email.address = "your.email.address",
-#' access.key = "your.access.key",
+#' # Email and access key provided as environment variables:
+#' my.data.frame2 <- acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+#' access.key = Sys.getenv("ACCESS_KEY"),
 #' region = c(1,7),
 #' start.date = "2018-11-01",
 #' end.date = "2018-11-31",
