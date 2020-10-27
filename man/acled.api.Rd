@@ -81,22 +81,22 @@ country "Togo" and the region "Southern Africa" leads the API to query for a cou
 In this case, no data will be returned as no events match this query.
 }
 \examples{
-# > # Email and access key provided as strings:
-# > my.data.frame1 <- acled.api(email.address = "your.email.address",
-#   access.key = "your.access.key",
-#   region = c(1,7),
-#   start.date = "2018-11-01",
-#   end.date = "2018-11-31")
-# > head(my.data.frame1)
+# Email and access key provided as strings:
+\dontrun{my.data.frame1 <- acled.api(email.address = "your.email.address",
+  access.key = "your.access.key",
+  region = c(1,7),
+  start.date = "2018-11-01",
+  end.date = "2018-11-31")
+head(my.data.frame1)}
 
-# > # Email and access key provided as environment variables:
-# > my.data.frame2 <- acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
-#   access.key = Sys.getenv("ACCESS_KEY"),
-#   region = c(1,7),
-#   start.date = "2018-11-01",
-#   end.date = "2018-11-31",
-#   add.variables = c("geo_precision", "time_precision"))
-# > sd(my.data.frame2$geo_precision)
+# Email and access key provided as environment variables:
+\dontrun{my.data.frame2 <- acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+  access.key = Sys.getenv("ACCESS_KEY"),
+  region = c(1,7),
+  start.date = "2018-11-01",
+  end.date = "2018-11-31",
+  add.variables = c("geo_precision", "time_precision"))
+sd(my.data.frame2$geo_precision)}
 }
 \references{
 Armed Conflict Location & Event Data Project (ACLED); \url{https://acleddata.com/} \cr
