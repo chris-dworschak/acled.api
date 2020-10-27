@@ -5,6 +5,8 @@
 \title{Automated Retrieval of ACLED Conflict Event Data}
 \usage{
 acled.api(
+  email.address = Sys.getenv("EMAIL_ADDRESS"),
+  access.key = Sys.getenv("ACCESS_KEY"),
   country = NULL,
   region = NULL,
   start.date = NULL,
@@ -16,6 +18,10 @@ acled.api(
 )
 }
 \arguments{
+\item{email.address}{character string. Supply the email address that you registered with \href{https://developer.acleddata.com/}{ACLED access}.}
+
+\item{access.key}{character string. Supply your ACLED access key.}
+
 \item{country}{character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
 below for information on how the arguments "country" and "region" interact.}
 
@@ -69,12 +75,16 @@ country "Togo" and the region "Southern Africa" leads the API to query for a cou
 In this case, no data will be returned as no events match this query.
 }
 \examples{
-my.data.frame1 <- acled.api(region = c(1,7),
+my.data.frame1 <- acled.api(email.address = "your.email.address",
+access.key = "your.access.key",
+region = c(1,7),
 start.date = "2018-11-01",
 end.date = "2018-11-31")
 head(my.data.frame1)
 
-my.data.frame2 <- acled.api(region = c(1,7),
+my.data.frame2 <- acled.api(email.address = "your.email.address",
+access.key = "your.access.key",
+region = c(1,7),
 start.date = "2018-11-01",
 end.date = "2018-11-31",
 add.variables = c("geo_precision", "time_precision"))

@@ -1,8 +1,10 @@
 
 .onAttach <-
   function(libname, pkgname) {
-    packageStartupMessage("\nBy using this package, you acknowledge that you have read ACLED's terms")
-    packageStartupMessage("and conditions. The data must be cited as per ACLED attribution requirements. \n")
+    packageStartupMessage("\nBy using this package, you acknowledge that you have read ACLED's terms and")
+    packageStartupMessage("conditions. The data must be cited as per ACLED attribution requirements. To")
+    packageStartupMessage("download ACLED data, you require an ACLED access key. You can request your key")
+    packageStartupMessage("by freely registering with ACLED on https://developer.acleddata.com/. \n")
     packageStartupMessage("The package may be cited as:")
     packageStartupMessage('Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict ')
     packageStartupMessage('Event Data." R package. CRAN version 1.0.8. \n')

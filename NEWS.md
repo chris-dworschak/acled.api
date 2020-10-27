@@ -10,7 +10,10 @@
  
 
 ## alced.api version 1.0.8
-* Allow for "graceful fail" if resource not available (CRAN policy)
+* Adjusted package to accommodate new ACLED access requirements. New arguments are:
+  + email.address
+  + access.key
+* Allow for "graceful fail" if resource not available (accommodating CRAN policy)
 * Minor README adjustments
 
 

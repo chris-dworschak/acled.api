@@ -1,6 +1,6 @@
 
 ## Test environment
-* local Fedora Linux Mint 18.1 Serena Xfce 64-bit OS, R version 4.0.2
+* local Fedora Linux Mint 18.1 Serena Xfce 64-bit OS, R version 4.0.3
 * win-builder
 * R-hub builder: Windows Server 2008 R2 SP1, 32/64 bit; Ubuntu Linux 16.04 LTS, R-release, GCC; Fedora Linux, R-devel, clang, gfortran
 * Travis CI
