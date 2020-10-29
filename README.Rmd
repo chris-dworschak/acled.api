@@ -29,7 +29,7 @@ This small package provides functionality to access and manage the application p
 When using this package, you acknowledge that you have read ACLED's terms and conditions of use, and that you agree with their attribution requirements.
 
 
-```{r downloads, echo=FALSE, dpi=150, out.width=525, out.height=404, fig.align="center"}
+```{r downloads, echo=FALSE, dpi=200, out.width=525, out.height=404, fig.align="center"}
 response <- httr::GET("https://cranlogs.r-pkg.org/downloads/daily/2020-10-23:2025-10-29/acled.api")
 json.content <- jsonlite::fromJSON( httr::content(response, "text", encoding = 'UTF-8'), simplifyVector = FALSE)
 acled.matrix <- matrix( unlist(json.content[1L][[1]]$downloads),
@@ -73,7 +73,7 @@ axis(2,
 
 
 
-### Installation
+## Installation
 
 You can install the latest release version of acled.api from [CRAN](https://CRAN.R-project.org) with: 
 
@@ -89,7 +89,7 @@ devtools::install_github("chris-dworschak/acled.api") # downloads and installs t
 ```
 
 
-### Example
+## Example
 
 Using `acled.api` is straight forward. To download data on, for example, all ACLED conflict events in Europe and Central America that happened between June 2019 and July 2020, you can supply:
 

@@ -27,7 +27,7 @@ requirements.
 
 <img src="man/figures/README-downloads-1.png" width="525" height="404" style="display: block; margin: auto;" />
 
-### Installation
+## Installation
 
 You can install the latest release version of acled.api from
 [CRAN](https://CRAN.R-project.org) with:
@@ -44,7 +44,7 @@ You can install the development version from
 devtools::install_github("chris-dworschak/acled.api") # downloads and installs the package
 ```
 
-### Example
+## Example
 
 Using `acled.api` is straight forward. To download data on, for example,
 all ACLED conflict events in Europe and Central America that happened
