@@ -25,7 +25,9 @@ When using this package, you acknowledge that you have read ACLED’s
 terms and conditions of use, and that you agree with their attribution
 requirements.
 
-## Installation
+<img src="man/figures/README-downloads-1.png" width="525" height="404" style="display: block; margin: auto;" />
+
+### Installation
 
 You can install the latest release version of acled.api from
 [CRAN](https://CRAN.R-project.org) with:
@@ -42,7 +44,7 @@ You can install the development version from
 devtools::install_github("chris-dworschak/acled.api") # downloads and installs the package
 ```
 
-## Example
+### Example
 
 Using `acled.api` is straight forward. To download data on, for example,
 all ACLED conflict events in Europe and Central America that happened
@@ -69,33 +71,17 @@ my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
 #> Your ACLED data request was successful. 
 #> Events were retrieved for the period starting 2019-06-01 until 2020-07-31.
 
-head(my.data.frame) # returns the first five observations of the ACLED sample
+my.data.frame[1:3,] # returns the first three observations of the ACLED sample
 #>                      region     country year event_date
 #> 1 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
 #> 2 Caucasus and Central Asia Afghanistan 2020 2020-07-31
 #> 3 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
-#> 4 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
-#> 5 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
-#> 6 Caucasus and Central Asia  Azerbaijan 2020 2020-07-31
-#>                              source   admin1 admin2 admin3
-#> 1 Ministry of Defence of Azerbaijan Jabrayil              
-#> 2  Afghan Islamic Press News Agency  Helmand Sangin       
-#> 3 Ministry of Defence of Azerbaijan    Tovuz              
-#> 4 Ministry of Defence of Azerbaijan   Fizuli              
-#> 5 Ministry of Defence of Azerbaijan  Martuni              
-#> 6 Ministry of Defence of Azerbaijan   Fizuli              
-#>                         location                 event_type sub_event_type
-#> 1              Chodjuk-Mardjanli                    Battles    Armed clash
-#> 2                         Sangin Violence against civilians         Attack
-#> 3                         Aghdam                    Battles    Armed clash
-#> 4                        Alxanli                    Battles    Armed clash
-#> 5                Ashaghi Veysali                    Battles    Armed clash
-#> 6 Nameless Hills (Fizuli Region)                    Battles    Armed clash
-#>   interaction fatalities
-#> 1          11          0
-#> 2          37          1
-#> 3          18          0
-#> 4          11          0
-#> 5          11          0
-#> 6          11          0
+#>                              source   admin1 admin2 admin3          location
+#> 1 Ministry of Defence of Azerbaijan Jabrayil               Chodjuk-Mardjanli
+#> 2  Afghan Islamic Press News Agency  Helmand Sangin                   Sangin
+#> 3 Ministry of Defence of Azerbaijan    Tovuz                          Aghdam
+#>                   event_type sub_event_type interaction fatalities
+#> 1                    Battles    Armed clash          11          0
+#> 2 Violence against civilians         Attack          37          1
+#> 3                    Battles    Armed clash          18          0
 ```
