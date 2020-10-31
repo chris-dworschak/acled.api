@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+
+readRenviron(".Renv") # read in local file with personal ACLED access information
 ```
 
 
@@ -38,10 +40,10 @@ acled.matrix <- matrix( unlist(json.content[1L][[1]]$downloads),
 
 acled.data <- data.frame(acled.matrix, stringsAsFactors = FALSE)
 names(acled.data) <- c("date", "downloads")
-acled.data[,2] <- as.numeric(acled.data[,2])
-x.vector <- 1:length(acled.data[,1])
+acled.data$downloads <- as.numeric(acled.data$downloads)
+x.vector <- 1:length(acled.data$date)
 acled.data$cum.downloads <- acled.data$downloads
-for(i in 2:length(x.vector)){acled.data[i,3] <- acled.data[i,3]+acled.data[i-1,3]}
+for(i in 2:length(x.vector)){acled.data$cum.downloads[i] <- acled.data$cum.downloads[i]+acled.data$cum.downloads[i-1]}
 
 barplot(acled.data$downloads, col = "white", axes=FALSE, 
         ylab = "Number of downloads", main = "Daily number of CRAN package downloads")

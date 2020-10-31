@@ -5,3 +5,4 @@
 ^README\.Rmd$
 ^CRAN-RELEASE$
 ^LICENSE\.md$
+^\.Renv$
