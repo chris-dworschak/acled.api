@@ -31,49 +31,6 @@ This small package provides functionality to access and manage the application p
 When using this package, you acknowledge that you have read ACLED's terms and conditions of use, and that you agree with their attribution requirements.
 
 
-```{r downloads, echo=FALSE, dpi=200, out.width=525, out.height=404, fig.align="center"}
-response <- httr::GET("https://cranlogs.r-pkg.org/downloads/daily/2020-10-23:2025-10-29/acled.api")
-json.content <- jsonlite::fromJSON( httr::content(response, "text", encoding = 'UTF-8'), simplifyVector = FALSE)
-acled.matrix <- matrix( unlist(json.content[1L][[1]]$downloads),
-                          byrow = T,
-                          nrow = length( json.content[1L][[1]]$downloads ))
-
-acled.data <- data.frame(acled.matrix, stringsAsFactors = FALSE)
-names(acled.data) <- c("date", "downloads")
-acled.data$downloads <- as.numeric(acled.data$downloads)
-x.vector <- 1:length(acled.data$date)
-acled.data$cum.downloads <- acled.data$downloads
-for(i in 2:length(x.vector)){acled.data$cum.downloads[i] <- acled.data$cum.downloads[i]+acled.data$cum.downloads[i-1]}
-
-barplot(acled.data$downloads, col = "white", axes=FALSE, 
-        ylab = "Number of downloads", main = "Daily number of CRAN package downloads")
-text(cex=0.9, x=(x.vector-0.5)*1.2, y=-max(acled.data$downloads)/7, acled.data$date, xpd=TRUE, srt=45)
-axis(2,
-     at = round( seq(from = 1, to = max(acled.data$downloads), length=5) ),
-     las = 2
-     )
-
-# plot(x.vector, acled.data$cum.downloads, type="l", axes=FALSE,
-#      xlab = "Days", ylab = "Cumulative number of downloads", main = "CRAN package downloads")
-# axis(1, 
-#      at = x.vector, 
-#      labels = c(min(acled.data$date), 
-#                 rep("", length(2:round( length(x.vector)/2 ))-1 ),
-#                 acled.data$date[round( length(x.vector)/2 )],
-#                 rep("", length( (round( length(x.vector)/2 )+1):(length(x.vector)-1) ) ),
-#                 max(acled.data$date) ) 
-#      )
-# axis(2, 
-#      at = round( seq(from = 1, to = max(acled.data$cum.downloads), length=5) ), 
-#      las = 2
-#      )
-
-```
-
-
-
-
-
 
 ## Installation
 

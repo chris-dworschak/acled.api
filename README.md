@@ -25,8 +25,6 @@ When using this package, you acknowledge that you have read ACLED’s
 terms and conditions of use, and that you agree with their attribution
 requirements.
 
-<img src="man/figures/README-downloads-1.png" width="525" height="404" style="display: block; margin: auto;" />
-
 ## Installation
 
 You can install the latest release version of acled.api from
