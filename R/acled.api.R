@@ -1,10 +1,12 @@
 #' @title Automated Retrieval of ACLED Conflict Event Data
 #' @name acled.api
-#' @description This small package provides functionality to access and manage the application programming
+#' @description Access and manage the application programming
 #' interface (API) of the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/).
 #' The function _`acled.api()`_ makes it easy to retrieve a user-defined sample (or all of the
 #' available data) of ACLED, enabling a seamless integration of regular data updates into
-#' the research work flow. \cr \cr
+#' the research work flow. If the data are intended for replicable use (e.g., later publication of analysis results), the
+#' downloaded data should be stored locally after retrieval. See the package's README file for a
+#' note on replicability when using ACLED data. \cr \cr
 #' When using this package, you acknowledge that you have read ACLED's terms and
 #' conditions of use, and that you agree with their attribution requirements.
 #' @param email.address character string. Supply the email address that you registered with [ACLED access](https://developer.acleddata.com/).
@@ -38,7 +40,7 @@
 #' expression `^[0-9]+$` are coerced into _`numeric`_ before the _`data.frame`_ object is returned. \cr \cr
 #' The user's registered email address and ACLED access key can be supplied as strings directly to their respective arguments,
 #' or set in advance as environment variables
-#' using _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_ and  _`Sys.setenv(ACCESS_KEY="your.access.key")`_. \cr \cr
+#' using \cr \cr _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_ and \cr \cr _`Sys.setenv(ACCESS_KEY="your.access.key")`_. \cr \cr
 #' If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
 #' the time frame when both the start date and the end date are NULL (default). Note that the API cannot handle requests with only one
 #' of the dates specified (either none of them or both of them need to be supplied). \cr \cr
@@ -66,8 +68,8 @@
 #' my.data.frame2 <- acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
 #'   access.key = Sys.getenv("ACCESS_KEY"),
 #'   region = c(1,7),
-#'   start.date = "2018-11-01",
-#'   end.date = "2018-11-31",
+#'   start.date = "2020-11-01",
+#'   end.date = "2020-11-31",
 #'   add.variables = c("geo_precision", "time_precision"))
 #' sd(my.data.frame2$geo_precision)
 #' }
@@ -165,9 +167,9 @@ acled.api <- function(
   if( is.logical(all.variables)==TRUE ){
     if( all.variables==FALSE ){
         if( is.null(add.variables)==TRUE ){
-          variables <- "&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities"
+          variables <- "&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities|timestamp"
           }else{
-            variables <- paste0("&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities",
+            variables <- paste0("&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities|timestamp",
                         "|", paste(add.variables, collapse = "|") )
             }
       }else{

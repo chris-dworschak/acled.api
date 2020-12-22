@@ -5,9 +5,14 @@
 <!-- Changes for future versions (long term):
 * Functionality to do immediate geographic/temporal aggregation as part of the data retrieval
 * Functionality for actor-based data retrieval
-* New "acled.update" function: the user supplies an existing ACLED data set to the update function, and it flexibly recognizes which ACLED events were added or changed since the user downloaded their data last. Missing events are selectively downloaded to update the existing user data set
  -->
- 
+
+
+## alced.api version 1.0.9
+* Adjusted package documentation to address the issue of replicability
+* Added the variable "timestamp" to the function's default call
+* Other minor DESCRIPTION and README adjustments
+
 
 ## alced.api version 1.0.8
 * Adjusted package to accommodate new ACLED access requirements. New arguments are:

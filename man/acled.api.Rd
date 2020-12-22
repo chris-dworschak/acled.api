@@ -55,11 +55,13 @@ GET call. Vector elements are assumed to be individual queries, and are automati
 A data frame containing ACLED events.
 }
 \description{
-This small package provides functionality to access and manage the application programming
+Access and manage the application programming
 interface (API) of the \href{https://acleddata.com/}{Armed Conflict Location & Event Data Project (ACLED)}.
 The function \emph{\code{acled.api()}} makes it easy to retrieve a user-defined sample (or all of the
 available data) of ACLED, enabling a seamless integration of regular data updates into
-the research work flow. \cr \cr
+the research work flow. If the data are intended for replicable use (e.g., later publication of analysis results), the
+downloaded data should be stored locally after retrieval. See the package's README file for a
+note on replicability when using ACLED data. \cr \cr
 When using this package, you acknowledge that you have read ACLED's terms and
 conditions of use, and that you agree with their attribution requirements.
 }
@@ -72,7 +74,7 @@ Variables which only contain numbers as recognized by the regular
 expression \verb{^[0-9]+$} are coerced into \emph{\code{numeric}} before the \emph{\code{data.frame}} object is returned. \cr \cr
 The user's registered email address and ACLED access key can be supplied as strings directly to their respective arguments,
 or set in advance as environment variables
-using \emph{\code{Sys.setenv(EMAIL_ADDRESS="your.email.address")}} and  \emph{\code{Sys.setenv(ACCESS_KEY="your.access.key")}}. \cr \cr
+using \cr \cr \emph{\code{Sys.setenv(EMAIL_ADDRESS="your.email.address")}} and \cr \cr \emph{\code{Sys.setenv(ACCESS_KEY="your.access.key")}}. \cr \cr
 If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
 the time frame when both the start date and the end date are NULL (default). Note that the API cannot handle requests with only one
 of the dates specified (either none of them or both of them need to be supplied). \cr \cr
@@ -94,8 +96,8 @@ head(my.data.frame1)
 my.data.frame2 <- acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
   access.key = Sys.getenv("ACCESS_KEY"),
   region = c(1,7),
-  start.date = "2018-11-01",
-  end.date = "2018-11-31",
+  start.date = "2020-11-01",
+  end.date = "2020-11-31",
   add.variables = c("geo_precision", "time_precision"))
 sd(my.data.frame2$geo_precision)
 }

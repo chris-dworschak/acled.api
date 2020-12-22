@@ -8,9 +8,21 @@
 
 
 ## R CMD check results
-Duration: 10.6s
+  
+Possibly mis-spelled words in DESCRIPTION:
+    README (13:369)
+    replicability (13:395)
 
-0 errors ✓ | 0 warnings ✓ | 0 notes ✓
+    EXPLANATION: These words are not mispelled. 
+    "README" refers to the name of the readme file. 
+    "Replicability" refers to the possibility of replication.
+    
+Checking for future file timestamps ... NOTE
+  unable to verify current time
+
+    EXPLANATION: Flexible time zone on local OS.
+  
+0 errors ✓ | 0 warnings ✓ | 2 notes x
 
 
 
@@ -18,15 +30,20 @@ Duration: 10.6s
 ## R-hub builder results
 There were no ERRORs or WARNINGs. 
 
-There was 1 NOTE:
+There were 2 NOTEs:
 
-N  checking CRAN incoming feasibility
-   Maintainer: 'Christoph Dworschak <c.dworschak@essex.ac.uk>'
-   Days since last update: 3
+Possibly mis-spelled words in DESCRIPTION:
+  README (13:369)
+  replicability (13:395)
 
-    EXPLANATION: 3 days since the last update on CRAN.
+    EXPLANATION: These words are not mispelled. 
+    "README" refers to the name of the readme file. 
+    "Replicability" refers to the possibility of replication.
 
+Checking for future file timestamps ... NOTE
+  unable to verify current time
 
+    EXPLANATION: Flexible time zone on local OS.
 
 
 ## Downstream dependencies
