@@ -57,7 +57,7 @@ library(acled.api) # loads the package
 #> by freely registering with ACLED on https://developer.acleddata.com/.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package. CRAN version 1.0.8.
+#> Event Data." R package. CRAN version 1.0.9.
 #> For the development version of this package, visit <https://github.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
@@ -82,10 +82,10 @@ my.data.frame[1:3,] # returns the first three observations of the ACLED sample
 #> 1     Strategic developments Looting/property destruction          37
 #> 2                    Battles                  Armed clash          11
 #> 3 Violence against civilians                       Attack          37
-#>   fatalities
-#> 1          0
-#> 2          0
-#> 3          1
+#>   fatalities  timestamp
+#> 1          0 1607974383
+#> 2          0 1596473349
+#> 3          1 1599503174
 ```
 
 ## A note on replicability
