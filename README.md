@@ -16,10 +16,11 @@ status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](http
 
 This small package provides functionality to access and manage the
 application programming interface (API) of the [Armed Conflict Location
-& Event Data Project (ACLED)](https://acleddata.com/). The function
-`acled.api()` makes it easy to retrieve a user-defined sample (or all of
-the available data) of ACLED, enabling a seamless integration of regular
-data updates into the research work flow.
+& Event Data Project (ACLED)](https://acleddata.com/), while requiring a
+minimal number of dependencies. The function `acled.api()` makes it easy
+to retrieve a user-defined sample (or all of the available data) of
+ACLED, enabling a seamless integration of regular data updates into the
+research work flow.
 
 When using this package, you acknowledge that you have read ACLED’s
 terms and conditions of use, and that you agree with their attribution
