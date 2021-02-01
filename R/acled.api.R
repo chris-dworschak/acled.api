@@ -90,7 +90,7 @@ acled.api <- function(
 
   # access key
   if ( (is.null(access.key) | !is.character(access.key) | access.key=="") == TRUE ) {
-    stop('ACLED requires an access key, which needs to be supplied to this argument as a character string.
+    stop('ACLED requires an access key, which needs to be supplied to the argument "access.key" as a character string.
     You can request an access key by registering on https://developer.acleddata.com/.', call. = FALSE)
   }
   if( (is.character(access.key) & access.key!="") == TRUE){
@@ -98,7 +98,7 @@ acled.api <- function(
 
   # email address
   if ( (is.null(email.address) | !is.character(email.address) | email.address=="") == TRUE ) {
-    stop('ACLED requires an email address for access, which needs to be supplied to this argument as a character string.
+    stop('ACLED requires an email address for access, which needs to be supplied to the argument "email.address" as a character string.
     Use the email address you provided when registering on https://developer.acleddata.com/.', call. = FALSE)
   }
   if( (is.character(email.address) & email.address!="") == TRUE){
