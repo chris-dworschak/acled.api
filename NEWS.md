@@ -7,6 +7,9 @@
 * Functionality for actor-based data retrieval
  -->
 
+## alced.api version 1.1.0
+* Improved error messages
+
 
 ## alced.api version 1.0.9
 * Adjusted package documentation to address the issue of replicability
