@@ -29,7 +29,7 @@ requirements.
 ## Installation
 
 You can install the latest release version of acled.api from
-[CRAN](https://CRAN.R-project.org) with:
+[CRAN](https://CRAN.R-project.org/package=acled.api/) with:
 
 ``` r
 install.packages("acled.api") # downloads and installs the package from CRAN
@@ -57,8 +57,8 @@ library(acled.api) # loads the package
 #> by freely registering with ACLED on https://developer.acleddata.com/.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package. CRAN version 1.0.9.
-#> For the development version of this package, visit <https://github.com/chris-dworschak/acled.api/>
+#> Event Data." R package. CRAN version 1.1.0.
+#> For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   email.address = Sys.getenv("EMAIL_ADDRESS"),
