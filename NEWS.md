@@ -9,6 +9,7 @@
 
 ## alced.api version 1.1.0
 * Improved error messages
+* Dev link changes for GitLab switch
 
 
 ## alced.api version 1.0.9
