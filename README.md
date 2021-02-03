@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version-last-release/acled.api)](https://CR
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Travis build
-status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/chris-dworschak/acled.api)
+status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/gitlab/chris-dworschak/acled.api)
 [![CRANlogs](http://cranlogs.r-pkg.org/badges/grand-total/acled.api)](https://CRAN.R-project.org/package=acled.api)
 <!-- badges: end -->
 
@@ -32,15 +32,14 @@ You can install the latest release version of acled.api from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("acled.api")
+install.packages("acled.api") # downloads and installs the package from CRAN
 ```
 
 You can install the development version from
-[GitHub](https://github.com/) with:
+[GitLab](https://gitlab.com/chris-dworschak/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("chris-dworschak/acled.api") # downloads and installs the package
+remotes::install_gitlab("chris-dworschak/acled.api") # downloads and installs the package from GitLab
 ```
 
 ## Example

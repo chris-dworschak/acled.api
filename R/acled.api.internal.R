@@ -8,6 +8,6 @@
     packageStartupMessage("The package may be cited as:")
     packageStartupMessage('Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict ')
     packageStartupMessage('Event Data." R package. CRAN version 1.0.9. \n')
-    packageStartupMessage("For the development version of this package, visit <https://github.com/chris-dworschak/acled.api/> \n")
+    packageStartupMessage("For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/> \n")
   }
 
