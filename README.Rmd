@@ -20,10 +20,10 @@ readRenviron(".Renv") # read in local file with personal ACLED access informatio
 # Automated Retrieval of ACLED Conflict Event Data
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version-last-release/acled.api)](https://CRAN.R-project.org/package=acled.api)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Travis build status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/gitlab/chris-dworschak/acled.api)
-[![CRANlogs](http://cranlogs.r-pkg.org/badges/grand-total/acled.api)](https://CRAN.R-project.org/package=acled.api)
+[![CRAN status](https://www.r-pkg.org/badges/version-last-release/acled.api)](https://CRAN.R-project.org/package=acled.api/)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable/)
+[![Travis build status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/gitlab/chris-dworschak/acled.api/)
+[![CRANlogs](http://cranlogs.r-pkg.org/badges/grand-total/acled.api)](https://CRAN.R-project.org/package=acled.api/)
 <!-- badges: end -->
 
 This small package provides functionality to access and manage the application programming interface (API) of the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/), while requiring a minimal number of dependencies. The function `acled.api()` makes it easy to retrieve a user-defined sample (or all of the available data) of ACLED, enabling a seamless integration of regular data updates into the research work flow. 
