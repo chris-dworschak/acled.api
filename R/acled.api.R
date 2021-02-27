@@ -30,6 +30,12 @@
 #' argument add.variables).
 #' @param dyadic logical. When set to FALSE (default), monadic data is returned (one
 #' observation per event). If set to TRUE, dyadic data is returned.
+#' @param inter1 numeric vector. Supply one or more actor type codes for actor 1 to narrow down which events should be
+#' retrieved (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details).
+#' @param inter2 numeric vector. Supply one or more actor type codes for actor 2 to narrow down which events should be
+#' retrieved (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details).
+#' @param interaction numeric vector. Supply one or more interaction codes to narrow down which events should be retrieved
+#' see (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details.
 #' @param other.query character vector. Allows users to add their own ACLED API queries to the
 #' GET call. Vector elements are assumed to be individual queries, and are automatically separated by an & sign.
 #' @details The function _`acled.api()`_ is an R wrapper for
