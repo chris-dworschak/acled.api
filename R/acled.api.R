@@ -30,6 +30,12 @@
 #' argument add.variables).
 #' @param dyadic logical. When set to FALSE (default), monadic data is returned (one
 #' observation per event). If set to TRUE, dyadic data is returned.
+#' @param inter1 numeric vector. Supply one or more actor type codes for actor 1 to narrow down which events should be
+#' retrieved (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details).
+#' @param inter2 numeric vector. Supply one or more actor type codes for actor 2 to narrow down which events should be
+#' retrieved (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details).
+#' @param interaction numeric vector. Supply one or more interaction codes to narrow down which events should be retrieved
+#' see (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details.
 #' @param other.query character vector. Allows users to add their own ACLED API queries to the
 #' GET call. Vector elements are assumed to be individual queries, and are automatically separated by an & sign.
 #' @details The function _`acled.api()`_ is an R wrapper for
@@ -85,6 +91,9 @@ acled.api <- function(
   add.variables = NULL,
   all.variables = FALSE,
   dyadic = FALSE,
+  inter1 = NULL,
+  inter2 = NULL,
+  interaction = NULL,
   other.query = NULL){
 
 
@@ -185,6 +194,53 @@ acled.api <- function(
         stop("The argument 'dyadic' requires a logical value.", call. = FALSE)
   }
 
+  # check inter1 argument for numeric and agreement w/ interaction if present
+  if (!(is.numeric(inter1) | is.null(inter1))) {
+    stop("The argument 'inter1' requires a numeric value.", call. = FALSE)
+  } else {
+    if (is.numeric(interaction)) {
+      if (!all(all((inter1 %in% substr(as.character(interaction), 1, 1)) &
+                   (substr(as.character(interaction), 1, 1) %in% inter1)))) {
+        stop("All actor 1 type codes must be present in both the 'inter1' and 'interaction' arguments.",
+             call. = FALSE)
+      }
+    }
+  }
+
+  # check inter2 argument for numeric and agreement w/ interaction if present
+  if (!(is.numeric(inter2) | is.null(inter2))) {
+    stop("The argument 'inter2' requires a numeric value.", call. = FALSE)
+  } else {
+    if (is.numeric(interaction)) {
+      if (!all((inter2 %in% substr(as.character(interaction), 2, 2)) &
+               (substr(as.character(interaction), 2, 2) %in% inter2))) {
+        stop("All actor 2 type codes must be present in both the 'inter2' and 'interaction' arguments.",
+             call. = FALSE)
+      }
+    }
+  }
+
+  # check interaction
+  if (!(is.numeric(interaction) | is.null(interaction))) {
+    stop("The 'interaction' argument requires a numeric value.")
+  } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50, 55:58, 60, 66, 68, 78, 80))) {
+    stop(paste0("At least one of the interaction codes supplied in argument ",
+                "'code' does not match the original ACLED interaction codes.\n",
+                "Check the ACLED codebook for the correct codes."))
+  }
+
+  # inter1 filter argument
+  inter11 <- ifelse(is.null(inter1)==TRUE, "",
+                    paste0("&", paste0("inter1=", inter1, collapse = ":OR:")))
+
+  # inter2 filter argument
+  inter21 <- ifelse(is.null(inter2)==TRUE, "",
+                    paste0("&", paste0("inter2=", inter2, collapse = ":OR:")))
+
+  # interaction filter argument
+  interaction1 <- ifelse(is.null(interaction)==TRUE, "",
+                         paste0("&", paste0("interaction=", interaction, collapse = ":OR:")))
+
   # other.query argument
   other.query1 <- ifelse( is.null(other.query)==TRUE, "", paste0("&", paste(other.query, collapse = "&")) )
 
@@ -204,7 +260,7 @@ acled.api <- function(
 
   # GET call
   url <- paste0("https://api.acleddata.com/acled/read/?",
-                access.key1, email.address1, "&limit=0", dyadic1, time.frame1, variables, country1, region1, other.query1)
+                access.key1, email.address1, "&limit=0", dyadic1, time.frame1, variables, country1, region1, inter11, inter21, interaction1, other.query1)
 
   response <- httr::GET(url)
   if ( exists("response")==FALSE ) {
