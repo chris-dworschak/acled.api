@@ -7,6 +7,13 @@
 * Functionality for actor-based data retrieval
  -->
 
+## alced.api version 1.1.1
+* Travis environment variables push
+* 1 merge request by Rob Williams https://github.com/jayrobwilliams 
++ !1 Added unit tests
+* Minor README update
+
+
 ## alced.api version 1.1.0
 * Improved error messages
 * Dev link changes for GitLab switch
