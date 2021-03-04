@@ -4,8 +4,17 @@
 
 <!-- Changes for future versions (long term):
 * Functionality to do immediate geographic/temporal aggregation as part of the data retrieval
-* Functionality for actor-based data retrieval
  -->
+
+## alced.api version 1.1.2
+* 1 merge request by Rob Williams https://github.com/jayrobwilliams 
++ !2 Added filter argument "interaction"
+* Added Rob Williams as ctb
+* Minor revisions
+* Updated example in documentation
+* Added license badge
+* Minor correction to unit tests
+
 
 ## alced.api version 1.1.1
 * Travis environment variables push

@@ -1,4 +1,5 @@
 test_that("credential checks work", {
+  skip_on_cran()
   expect_error(acled.api(email.address = "",
                          access_key = "",
                          start.date = "2020-11-01",
@@ -16,6 +17,7 @@ test_that("credential checks work", {
 })
 
 test_that("check that country validation works", {
+  skip_on_cran()
   expect_error(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                          access.key = Sys.getenv("ACCESS_KEY"),
                          country = 1),
@@ -23,6 +25,7 @@ test_that("check that country validation works", {
 })
 
 test_that("check that region validation works", {
+  skip_on_cran()
   expect_error(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                          access.key = Sys.getenv("ACCESS_KEY"),
                          region = TRUE),
@@ -36,6 +39,7 @@ test_that("check that region validation works", {
 })
 
 test_that("check that date validation works", {
+  skip_on_cran()
   expect_error(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                          access.key = Sys.getenv("ACCESS_KEY"),
                          start.date = "1999-01-01"),
@@ -48,6 +52,7 @@ test_that("check that date validation works", {
 })
 
 test_that("check that all.variables validation works", {
+  skip_on_cran()
   expect_error(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                          access.key = Sys.getenv("ACCESS_KEY"),
                          all.variables = 1),
@@ -55,6 +60,7 @@ test_that("check that all.variables validation works", {
 })
 
 test_that("check that dyadic validation works", {
+  skip_on_cran()
   expect_error(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                          access.key = Sys.getenv("ACCESS_KEY"),
                          dyadic = 1),
@@ -62,18 +68,20 @@ test_that("check that dyadic validation works", {
 })
 
 test_that("unauthorized credentials return 403", {
+  skip_on_cran()
   expect_message(acled.api(email.address = "email@address.com",
                          access.key = "access_key"),
                regexp = "GET request wasn't successful. The API returned status 403")
 })
 
 test_that("API extraction works", {
+  skip_on_cran()
   expect_message(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                            access.key = Sys.getenv("ACCESS_KEY"),
                            start.date = "2007-04-01",
                            end.date = "2007-04-8",
                            region = 1),
-                 regexp = "Events were retrieved for the period starting 2007-04-01 until 2007-04-07")
+                 regexp = "Events were retrieved for the period starting 2007-04-01 until 2007-04-08")
   expect_gt(nrow(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                            access.key = Sys.getenv("ACCESS_KEY"),
                            start.date = "2007-04-01",
@@ -82,6 +90,7 @@ test_that("API extraction works", {
 })
 
 test_that("all.variables works", {
+  skip_on_cran()
   expect_equal(ncol(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                               access.key = Sys.getenv("ACCESS_KEY"),
                               start.date = "2007-04-01",
@@ -92,6 +101,7 @@ test_that("all.variables works", {
 })
 
 test_that("check that data outside coverage return empty", {
+  skip_on_cran()
   expect_message(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                            access.key = Sys.getenv("ACCESS_KEY"),
                            country = "turkey",
@@ -101,6 +111,7 @@ test_that("check that data outside coverage return empty", {
 })
 
 test_that("check add.variables works", {
+  skip_on_cran()
   expect_equal(ncol(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                               access.key = Sys.getenv("ACCESS_KEY"),
                               start.date = "2007-04-01",
@@ -115,7 +126,9 @@ test_that("check add.variables works", {
               regexp = "Unknown column 'actor3' in 'field list'")
 })
 
+
 test_that("other.query works", {
+  skip_on_cran()
   expect_lt(nrow(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                            access.key = Sys.getenv("ACCESS_KEY"),
                            start.date = "2007-04-01",

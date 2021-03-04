@@ -5,3 +5,5 @@ r:
   - oldrel
   - release
   - devel
+env:
+  - NOT_CRAN=true
