@@ -93,14 +93,14 @@ my.data.frame[1:3,] # returns the first three observations of the ACLED sample
 Some tasks, like real-time analyses and continuously updated forecasting
 models (e.g., as used by practitioners), may not require replicability
 of results. However, most research-related tasks assume the possibility
-of replication at a later stage (e.g., analyses of which the results are
-intended for publication, or a data project taking multiple days where a
-change to the underlying sample is not desirable). After the release of
-versions 1 through 8, ACLED changed their update system to allow for
-real-time amendments and post-release corrections, thereby forgoing
-traditional data versioning. This change requires researchers to take
-additional steps in order to ensure the replicability of their results
-when using ACLED data.
+of replication at a later stage (e.g., when results are intended for
+publication, or a data project taking multiple days where a change to
+the underlying sample is not desirable). After the release of versions 1
+through 8, ACLED changed their update system to allow for real-time
+amendments and post-release corrections, thereby forgoing traditional
+data versioning. This change requires researchers to take additional
+steps in order to ensure the replicability of their results when using
+ACLED data.
 
 Importantly, downloaded data intended for replicable use must be
 permanently stored by the analyst. Data downloaded through `acled.api()`
