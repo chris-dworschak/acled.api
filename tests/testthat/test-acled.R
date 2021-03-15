@@ -126,6 +126,15 @@ test_that("check add.variables works", {
               regexp = "Unknown column 'actor3' in 'field list'")
 })
 
+test_that("check URL encoding works for country", {
+  skip_on_cran()
+  expect_message(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+                           access.key = Sys.getenv("ACCESS_KEY"),
+                           country = "Burkina Faso",
+                           start.date = "2007-04-01",
+                           end.date = "2007-12-31"),
+                 regexp = "Your ACLED data request was successful.")
+})
 
 test_that("other.query works", {
   skip_on_cran()
