@@ -117,7 +117,7 @@ acled.api <- function(
   }
   if(is.character(country) == TRUE){
     country1 <- paste0("&country=",
-                       paste( gsub("\\s{1}", "%", country), collapse = "|")) }
+                       paste( gsub("\\s{1}", "%20", country), collapse = "|")) }
   if(is.null(country) == TRUE){
     country1 <- ""
   }
