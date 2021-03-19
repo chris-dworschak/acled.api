@@ -134,12 +134,12 @@ acled.api <- function(
          acled.api(region = c("Western Africa", "Middle Africa"), start.date = "2004-08-20", end.date = "2005-05-15")', call. = FALSE)
   }
   if(is.numeric(region) == TRUE){
-    region1 <- paste0("&region=", paste(region, collapse = "|") )
+    region1 <- paste0("&region=", paste(region, collapse = ":OR:") )
   }
   region.data.frame <- get.api.regions()[[1]]
   if(is.character(region) == TRUE){
     char.region <- region.data.frame$code[which(region.data.frame$region%in%region)]
-    region1 <- paste0("&region=", paste(char.region, collapse = "|") )
+    region1 <- paste0("&region=", paste(char.region, collapse = ":OR:") )
         if(length(region) != length(char.region)){
           warning('At least one of the region names supplied in argument "region = " does not match the original
               ACLED region names. Check your spelling, or see the ACLED API Guide for the correct names.', call. = FALSE)
@@ -186,7 +186,7 @@ acled.api <- function(
         stop("The argument 'dyadic' requires a logical value.", call. = FALSE)
   }
 
-  # check interaction
+  # interaction argument
   if (!(is.numeric(interaction) | is.null(interaction))) {
     stop("The 'interaction' argument requires a numeric value.")
   } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50, 55:58, 60, 66, 68, 78, 80))) {
@@ -194,8 +194,6 @@ acled.api <- function(
                 "'interaction' does not match the original ACLED interaction codes.\n",
                 "Check the ACLED codebook for the correct codes."))
   }
-
-  # interaction filter argument
   interaction1 <- ifelse(is.null(interaction)==TRUE, "",
                          paste0("&", paste0("interaction=", interaction, collapse = ":OR:")))
 

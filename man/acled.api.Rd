@@ -15,7 +15,8 @@ acled.api(
   all.variables = FALSE,
   dyadic = FALSE,
   interaction = NULL,
-  other.query = NULL
+  other.query = NULL,
+  aggregate = NULL
 )
 }
 \arguments{
@@ -30,7 +31,7 @@ using \emph{\code{Sys.setenv(ACCESS_KEY="your.access.key")}}, in which case this
 below for information on how the arguments "country" and "region" interact.}
 
 \item{region}{numeric or character vector. Supply one or more region codes (numeric) or region names (character)
-to narrow down which events should be retrieved (see \href{https://acleddata.com/resources/general-guides/}{ACLED's codebook}
+to narrow down which events should be retrieved (see \href{https://acleddata.com/resources/general-guides/}{ACLED's API user guide}
 for details on region codes and names). See the details below for information on how the arguments "country" and "region" interact.}
 
 \item{start.date}{character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".}
@@ -54,6 +55,9 @@ retrieved (see \href{https://acleddata.com/resources/general-guides/}{ACLED's co
 
 \item{other.query}{character vector. Allows users to add their own ACLED API queries to the
 GET call. Vector elements are assumed to be individual queries, and are automatically separated by an & sign.}
+
+\item{aggregate}{character vector. Allows for basic spatial & temporal aggregation of monadic data. The character vector
+requires two elements, one for each aggregation dimension. The order must be c("space", "time").}
 }
 \value{
 A data frame containing ACLED events.
