@@ -17,7 +17,7 @@
 #' @param country character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
 #' below for information on how the arguments "country" and "region" interact.
 #' @param region numeric or character vector. Supply one or more region codes (numeric) or region names (character)
-#' to narrow down which events should be retrieved (see [ACLED's codebook](https://acleddata.com/resources/general-guides/)
+#' to narrow down which events should be retrieved (see [ACLED's API user guide](https://acleddata.com/resources/general-guides/)
 #' for details on region codes and names). See the details below for information on how the arguments "country" and "region" interact.
 #' @param start.date character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".
 #' @param end.date character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".
@@ -34,6 +34,8 @@
 #' retrieved (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details.
 #' @param other.query character vector. Allows users to add their own ACLED API queries to the
 #' GET call. Vector elements are assumed to be individual queries, and are automatically separated by an & sign.
+#' @param aggregate character vector. Allows for basic spatial & temporal aggregation of monadic data. The character vector
+#' requires two elements, one for each aggregation dimension. The order must be c("space", "time").
 #' @details The function _`acled.api()`_ is an R wrapper for
 #' the [Armed Conflict Location & Event Data Project](https://acleddata.com/) API.
 #' Internally it uses _`httr`_ to access the API, and _`jsonlite`_ to manage the JSON content that the call returns. The JSON data
@@ -89,7 +91,8 @@ acled.api <- function(
   all.variables = FALSE,
   dyadic = FALSE,
   interaction = NULL,
-  other.query = NULL){
+  other.query = NULL,
+  aggregate = NULL){
 
 
   # access key
@@ -125,7 +128,7 @@ acled.api <- function(
   # region argument
   if ( (!is.null(region) & !is.numeric(region) & !is.character(region)) == TRUE ) {
     stop('If you wish to specify regions, these need to be supplied as a numeric vector (region codes) or character
-    vector (region names). See the ACLED codebook for region names and codes.
+    vector (region names). See the ACLED API guide for exact region names and codes.
     Usage example: \n
          acled.api(region = c(1,2), start.date = "2004-08-20", end.date = "2005-05-15") or \n
          acled.api(region = c("Western Africa", "Middle Africa"), start.date = "2004-08-20", end.date = "2005-05-15")', call. = FALSE)
@@ -133,19 +136,13 @@ acled.api <- function(
   if(is.numeric(region) == TRUE){
     region1 <- paste0("&region=", paste(region, collapse = "|") )
   }
-  region.data.frame <- data.frame(
-    region = c("Western Africa", "Middle Africa", "Eastern Africa", "Southern Africa", "Northern Africa",
-               "Southern Asia", "Western Asia", "South-Eastern Asia", "South Asia",
-               "Middle East", "Europe", "Caucasus and Central Asia", "Central America", "South America", "Caribbean"),
-    code = c(1,2,3,4,5,
-             7,8,9,10,
-             11,12,13,14,15,16))
+  region.data.frame <- get.api.regions()[[1]]
   if(is.character(region) == TRUE){
-    char.region <- which(region.data.frame$region%in%region)
+    char.region <- region.data.frame$code[which(region.data.frame$region%in%region)]
     region1 <- paste0("&region=", paste(char.region, collapse = "|") )
         if(length(region) != length(char.region)){
           warning('At least one of the region names supplied in argument "region = " does not match the original
-              ACLED region names. Check your spelling, or the ACLED codebook for the correct names.', call. = FALSE)
+              ACLED region names. Check your spelling, or see the ACLED API Guide for the correct names.', call. = FALSE)
         }
   }
   if(is.null(region) == TRUE){
@@ -267,6 +264,29 @@ acled.api <- function(
   message(paste0("Your ACLED data request was successful. \nEvents were retrieved for the period starting ",
                     range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], "."))
 
+
+  # # aggregate argument
+  # if ( (!is.null(aggregate) & !is.character(aggregate)) == TRUE ) {
+  #   stop(paste0("The 'aggregate' argument requires a character vector specifying the
+  #   desired spatial and temporal aggregation level, in the form ", 'c("space", "time").
+  #   See the argument documentation for valid spatial and temporal string values.
+  #   Usage example: \n
+  #        acled.api(country = c("Kenya"), start.date = "2004-08-20", end.date = "2005-01-15", aggregate = c("admin1", "month"))'), call. = FALSE)
+  # }
+  # if(is.character(aggregate) == TRUE){
+  #     if ( dyadic == TRUE ) {
+  #        stop("The aggregation of dyadic data is not supported. If you wish to
+  #          use the argument 'aggregate', you must first set the argument 'dyadic' to FALSE (default).", call. = FALSE)
+  #     }
+  #     if ( is.vector(aggregate)==FALSE | length(aggregate) != 2 ) {
+  #        stop(paste0("The 'aggregate' argument requires a character vector of length 2, for example: ", 'c("admin1", "month")'), call. = FALSE)
+  #     }
+  #
+  # acled.data <- aggregation.module(raw.data = acled.data)
+  # }
+
+
+  # return the final data frame
   acled.data
 
 }
