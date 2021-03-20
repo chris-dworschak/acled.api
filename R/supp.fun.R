@@ -18,14 +18,3 @@ get.api.regions <- function(){
 
 
 
-# aggregation.module <- function(raw.data){
-#
-#   if ( is.vector(aggregate)==FALSE | length(aggregate) != 2 ) {
-#     stop(paste0("The 'aggregate' argument requires a character vector of length 2, for example: ", 'c("admin1", "month")'), call. = FALSE)
-#   }
-#   country admin1  admin2 location
-# }
-
-
-
-
