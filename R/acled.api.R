@@ -11,9 +11,9 @@
 #' conditions of use, and that you agree with their attribution requirements.
 #' @param email.address character string. Supply the email address that you registered with [ACLED access](https://developer.acleddata.com/).
 #' The email address can also be set as an environment variable using _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_, in
-#' which case this argument can be skipped.
+#' which case this argument can be skipped. Usage examples below illustrate these two approaches.
 #' @param access.key character string. Supply your ACLED access key. The  access key can also be set as an environment variable
-#' using _`Sys.setenv(ACCESS_KEY="your.access.key")`_, in which case this argument can be skipped.
+#' using _`Sys.setenv(ACCESS_KEY="your.access.key")`_, in which case this argument can be skipped. Usage examples below illustrate these two approaches.
 #' @param country character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
 #' below for information on how the arguments "country" and "region" interact.
 #' @param region numeric or character vector. Supply one or more region codes (numeric) or region names (character)
@@ -59,7 +59,8 @@
 #' @examples
 #' \dontrun{
 #' # Email and access key provided as strings:
-#' my.data.frame1 <- acled.api(email.address = "your.email.address",
+#' my.data.frame1 <- acled.api(
+#'   email.address = "your.email.address",
 #'   access.key = "your.access.key",
 #'   region = c(1,7),
 #'   start.date = "2018-11-01",
@@ -67,7 +68,8 @@
 #' head(my.data.frame1)
 #'
 #' # Email and access key provided as environment variables:
-#' my.data.frame2 <- acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+#' my.data.frame2 <- acled.api(
+#'   email.address = Sys.getenv("EMAIL_ADDRESS"),
 #'   access.key = Sys.getenv("ACCESS_KEY"),
 #'   region = c(1,7),
 #'   start.date = "2020-01-01",

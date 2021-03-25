@@ -6,6 +6,9 @@
 * Resized README example data retrieval
 * Updated region names and codes based on new ACLED API guide
 * Bug fix in region call
+* testthat time frame check adjustment
+* testthat modules for region codes
+* Updates to arguments access.key and email.address documentation
 * Added support function module
 * 1 merge request by Rob Williams https://github.com/jayrobwilliams 
 + !3 Bug fix: %20 instead of % for white spaces in country names
