@@ -1,3 +1,5 @@
+readRenviron(".Renv")
+
 test_that("credential checks work", {
   skip_on_cran()
   expect_error(acled.api(email.address = "",
