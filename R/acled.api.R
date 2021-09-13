@@ -144,9 +144,18 @@ acled.api <- function(
     char.region <- which(region.data.frame$region%in%region)
     region1 <- paste0("&region=", paste(char.region, collapse = "|") )
         if(length(region) != length(char.region)){
-          warning('At least one of the region names supplied in argument "region = " does not match the original
-              ACLED region names. Check your spelling, or the ACLED codebook for the correct names.', call. = FALSE)
-        }
+          invalid_region <- region[!region %in% region.data.frame$region]
+          warning(paste0("Region ",
+                         ifelse(length(invalid_region) > 1, "names ", "name "),
+                         paste(sub("(.*)", "'\\1'", invalid_region),
+                               collapse = ", "),
+                         " supplied in argument 'region' ",
+                         ifelse(length(invalid_region) > 1, "do", "does"),
+                         " not match the ",
+                         "original ACLED region names.\n",
+                         "Check your spelling, or the ACLED codebook",
+                         " for the correct names."), call. = FALSE)
+         }
   }
   if(is.null(region) == TRUE){
     region1 <- ""
