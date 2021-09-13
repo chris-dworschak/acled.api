@@ -193,8 +193,15 @@ acled.api <- function(
   if (!(is.numeric(interaction) | is.null(interaction))) {
     stop("The 'interaction' argument requires a numeric value.")
   } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50, 55:58, 60, 66, 68, 78, 80))) {
-    stop(paste0("At least one of the interaction codes supplied to the argument ",
-                "'interaction' does not match the original ACLED interaction codes.\n",
+    invalid_interaction <- interaction[!interaction %in% c(10:18, 20, 22:28, 30,
+                                                           33:38, 40, 44:48, 50,
+                                                           55:58, 60, 66, 68,
+                                                           78, 80)]
+    stop(paste0("Interaction ",
+                ifelse(length(invalid_inter) > 1, "codes ", "code "),
+                paste(invalid_inter, collapse = ', '),
+                " supplied to the argument 'interaction' does not match the",
+                "original ACLED interaction codes.\n",
                 "Check the ACLED codebook for the correct codes."))
   }
 
