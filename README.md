@@ -59,31 +59,37 @@ library(acled.api) # loads the package
 #> by freely registering with ACLED on https://developer.acleddata.com/.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package. CRAN version 1.1.2.
+#> Event Data." R package. CRAN version 1.1.3.
 #> For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   email.address = Sys.getenv("EMAIL_ADDRESS"),
   access.key = Sys.getenv("ACCESS_KEY"),
-  region = c("Southern Asia", "Central America"), 
-  start.date = "2019-06-01", 
-  end.date = "2020-07-31")
+  region = c("South Asia", "Central America"), 
+  start.date = "2019-09-01", 
+  end.date = "2020-01-31")
 #> Your ACLED data request was successful. 
-#> Events were retrieved for the period starting 2019-06-01 until 2020-07-31.
+#> Events were retrieved for the period starting 2019-09-01 until 2020-01-31.
 
-my.data.frame[1:3,] # returns the first three observations of the ACLED sample
-#>        region country year event_date              source   admin1      admin2
-#> 1 Middle East  Israel 2020 2020-07-31 Black Flag Movement Tel Aviv    Tel Aviv
-#> 2  South Asia   India 2020 2020-07-31          Herald Goa      Goa   North Goa
-#> 3 Middle East  Israel 2020 2020-07-31 Black Flag Movement HaMerkaz Petah Tikva
-#>   admin3          location event_type   sub_event_type interaction fatalities
-#> 1        Mehlaf Alluf Sade   Protests Peaceful protest          60          0
-#> 2 Bardez         Calangute   Protests Peaceful protest          60          0
-#> 3                     Enat   Protests Peaceful protest          60          0
-#>    timestamp
-#> 1 1596472880
-#> 2 1596571063
-#> 3 1596472880
+my.data.frame[1:5,] # returns the first three observations of the ACLED sample
+#>   region        country year event_date                source
+#> 1 Europe        Belgium 2020 2020-01-31              L'Avenir
+#> 2 Europe    Netherlands 2020 2020-01-31 Noordhollands Dagblad
+#> 3 Europe         Russia 2020 2020-01-31        MBK Media; 7x7
+#> 4 Europe United Kingdom 2020 2020-01-31          The National
+#> 5 Europe         Sweden 2020 2020-01-31      FridaysForFuture
+#>               admin1                   admin2 admin3    location event_type
+#> 1           Wallonie               Luxembourg  Arlon       Arlon   Protests
+#> 2      Noord-Holland                    Hoorn              Hoorn   Protests
+#> 3 Arkhangelsk Oblast Arkhangelsk Municipality        Arkhangelsk   Protests
+#> 4           Scotland              Dundee City             Dundee   Protests
+#> 5              Skane                    Malmo              Malmo   Protests
+#>     sub_event_type interaction fatalities  timestamp
+#> 1 Peaceful protest          60          0 1610632165
+#> 2 Peaceful protest          60          0 1610632295
+#> 3 Peaceful protest          60          0 1580835409
+#> 4 Peaceful protest          60          0 1610632794
+#> 5 Peaceful protest          60          0 1610632057
 ```
 
 ## A note on replicability

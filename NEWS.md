@@ -2,9 +2,17 @@
 # Release updates
 
 
-<!-- Changes for future versions (long term):
-* Functionality to do immediate geographic/temporal aggregation as part of the data retrieval
- -->
+## alced.api version 1.1.3
+* Resized README example data retrieval
+* Updated region names and codes based on new ACLED API guide
+* Bug fix in region call
+* testthat time frame check adjustment
+* testthat modules for region codes
+* Updates to arguments access.key and email.address documentation
+* Added support function module
+* 1 merge request by Rob Williams https://github.com/jayrobwilliams 
++ !3 Bug fix: %20 instead of % for white spaces in country names
+
 
 ## alced.api version 1.1.2
 * 1 merge request by Rob Williams https://github.com/jayrobwilliams 

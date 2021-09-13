@@ -1,3 +1,5 @@
+readRenviron(".Renv")
+
 test_that("credential checks work", {
   skip_on_cran()
   expect_error(acled.api(email.address = "",
@@ -79,14 +81,42 @@ test_that("API extraction works", {
   expect_message(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                            access.key = Sys.getenv("ACCESS_KEY"),
                            start.date = "2007-04-01",
-                           end.date = "2007-04-8",
-                           region = 1),
-                 regexp = "Events were retrieved for the period starting 2007-04-01 until 2007-04-08")
+                           end.date = "2007-04-07",
+                           region = c(1,2)),
+                 regexp = "Events were retrieved for the period starting 2007-04-01 until 2007-04-07")
   expect_gt(nrow(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
                            access.key = Sys.getenv("ACCESS_KEY"),
                            start.date = "2007-04-01",
-                           end.date = "2007-04-8")),
+                           end.date = "2007-04-07")),
             expected = 1)
+})
+
+test_that("region specification works", {
+  skip_on_cran()
+  expect_equal(length(unique(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+                           access.key = Sys.getenv("ACCESS_KEY"),
+                           start.date = "2007-04-01",
+                           end.date = "2007-04-07",
+                           region = c(1))$region)),
+            expected = 1)
+  expect_equal(unique(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+                                       access.key = Sys.getenv("ACCESS_KEY"),
+                                       start.date = "2021-01-01",
+                                       end.date = "2021-02-01",
+                                       region = c(1))$region),
+               expected = "Western Africa")
+  expect_equal(unique(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+                                access.key = Sys.getenv("ACCESS_KEY"),
+                                start.date = "2021-01-01",
+                                end.date = "2021-02-01",
+                                region = c(12))$region),
+               expected = "Europe")
+  expect_equal(unique(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+                                access.key = Sys.getenv("ACCESS_KEY"),
+                                start.date = "2021-01-01",
+                                end.date = "2021-02-01",
+                                region = c(18))$region),
+               expected = "North America")
 })
 
 test_that("all.variables works", {
@@ -126,6 +156,15 @@ test_that("check add.variables works", {
               regexp = "Unknown column 'actor3' in 'field list'")
 })
 
+test_that("check URL encoding works for country", {
+  skip_on_cran()
+  expect_message(acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+                           access.key = Sys.getenv("ACCESS_KEY"),
+                           country = "Burkina Faso",
+                           start.date = "2007-04-01",
+                           end.date = "2007-12-31"),
+                 regexp = "Your ACLED data request was successful.")
+})
 
 test_that("other.query works", {
   skip_on_cran()

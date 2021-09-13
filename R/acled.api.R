@@ -11,13 +11,13 @@
 #' conditions of use, and that you agree with their attribution requirements.
 #' @param email.address character string. Supply the email address that you registered with [ACLED access](https://developer.acleddata.com/).
 #' The email address can also be set as an environment variable using _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_, in
-#' which case this argument can be skipped.
+#' which case this argument can be skipped. Usage examples below illustrate these two approaches.
 #' @param access.key character string. Supply your ACLED access key. The  access key can also be set as an environment variable
-#' using _`Sys.setenv(ACCESS_KEY="your.access.key")`_, in which case this argument can be skipped.
+#' using _`Sys.setenv(ACCESS_KEY="your.access.key")`_, in which case this argument can be skipped. Usage examples below illustrate these two approaches.
 #' @param country character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
 #' below for information on how the arguments "country" and "region" interact.
 #' @param region numeric or character vector. Supply one or more region codes (numeric) or region names (character)
-#' to narrow down which events should be retrieved (see [ACLED's codebook](https://acleddata.com/resources/general-guides/)
+#' to narrow down which events should be retrieved (see [ACLED's API user guide](https://acleddata.com/resources/general-guides/)
 #' for details on region codes and names). See the details below for information on how the arguments "country" and "region" interact.
 #' @param start.date character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".
 #' @param end.date character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".
@@ -59,7 +59,8 @@
 #' @examples
 #' \dontrun{
 #' # Email and access key provided as strings:
-#' my.data.frame1 <- acled.api(email.address = "your.email.address",
+#' my.data.frame1 <- acled.api(
+#'   email.address = "your.email.address",
 #'   access.key = "your.access.key",
 #'   region = c(1,7),
 #'   start.date = "2018-11-01",
@@ -67,7 +68,8 @@
 #' head(my.data.frame1)
 #'
 #' # Email and access key provided as environment variables:
-#' my.data.frame2 <- acled.api(email.address = Sys.getenv("EMAIL_ADDRESS"),
+#' my.data.frame2 <- acled.api(
+#'   email.address = Sys.getenv("EMAIL_ADDRESS"),
 #'   access.key = Sys.getenv("ACCESS_KEY"),
 #'   region = c(1,7),
 #'   start.date = "2020-01-01",
@@ -117,7 +119,7 @@ acled.api <- function(
   }
   if(is.character(country) == TRUE){
     country1 <- paste0("&country=",
-                       paste( gsub("\\s{1}", "%", country), collapse = "|")) }
+                       paste( gsub("\\s{1}", "%20", country), collapse = "|")) }
   if(is.null(country) == TRUE){
     country1 <- ""
   }
@@ -125,7 +127,7 @@ acled.api <- function(
   # region argument
   if ( (!is.null(region) & !is.numeric(region) & !is.character(region)) == TRUE ) {
     stop('If you wish to specify regions, these need to be supplied as a numeric vector (region codes) or character
-    vector (region names). See the ACLED codebook for region names and codes.
+    vector (region names). See the ACLED API guide for exact region names and codes.
     Usage example: \n
          acled.api(region = c(1,2), start.date = "2004-08-20", end.date = "2005-05-15") or \n
          acled.api(region = c("Western Africa", "Middle Africa"), start.date = "2004-08-20", end.date = "2005-05-15")', call. = FALSE)
@@ -133,15 +135,9 @@ acled.api <- function(
   if(is.numeric(region) == TRUE){
     region1 <- paste0("&region=", paste(region, collapse = "|") )
   }
-  region.data.frame <- data.frame(
-    region = c("Western Africa", "Middle Africa", "Eastern Africa", "Southern Africa", "Northern Africa",
-               "Southern Asia", "Western Asia", "South-Eastern Asia", "South Asia",
-               "Middle East", "Europe", "Caucasus and Central Asia", "Central America", "South America", "Caribbean"),
-    code = c(1,2,3,4,5,
-             7,8,9,10,
-             11,12,13,14,15,16))
+  region.data.frame <- get.api.regions()[[1]]
   if(is.character(region) == TRUE){
-    char.region <- which(region.data.frame$region%in%region)
+    char.region <- region.data.frame$code[which(region.data.frame$region%in%region)]
     region1 <- paste0("&region=", paste(char.region, collapse = "|") )
         if(length(region) != length(char.region)){
           invalid_region <- region[!region %in% region.data.frame$region]
@@ -197,7 +193,7 @@ acled.api <- function(
         stop("The argument 'dyadic' requires a logical value.", call. = FALSE)
   }
 
-  # check interaction
+  # interaction argument
   if (!(is.numeric(interaction) | is.null(interaction))) {
     stop("The 'interaction' argument requires a numeric value.")
   } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50,
@@ -215,8 +211,6 @@ acled.api <- function(
                 " original ACLED interaction codes.\n",
                 "Check the ACLED codebook for the correct codes."))
   }
-
-  # interaction filter argument
   interaction1 <- ifelse(is.null(interaction)==TRUE, "",
                          paste0("&", paste0("interaction=", interaction, collapse = ":OR:")))
 
@@ -285,6 +279,9 @@ acled.api <- function(
   message(paste0("Your ACLED data request was successful. \nEvents were retrieved for the period starting ",
                     range(acled.data$event_date)[1], " until ", range(acled.data$event_date)[2], "."))
 
+
+
+  # return the final data frame
   acled.data
 
 }
