@@ -151,8 +151,7 @@ acled.api <- function(
                                collapse = ", "),
                          " supplied in argument 'region' ",
                          ifelse(length(invalid_region) > 1, "do", "does"),
-                         " not match the ",
-                         "original ACLED region names.\n",
+                         " not match the original ACLED region names.\n",
                          "Check your spelling, or the ACLED codebook",
                          " for the correct names."), call. = FALSE)
          }
@@ -201,16 +200,19 @@ acled.api <- function(
   # check interaction
   if (!(is.numeric(interaction) | is.null(interaction))) {
     stop("The 'interaction' argument requires a numeric value.")
-  } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50, 55:58, 60, 66, 68, 78, 80))) {
+  } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50,
+                                     55:58, 60, 66, 68, 78, 80))) {
     invalid_interaction <- interaction[!interaction %in% c(10:18, 20, 22:28, 30,
                                                            33:38, 40, 44:48, 50,
                                                            55:58, 60, 66, 68,
                                                            78, 80)]
     stop(paste0("Interaction ",
-                ifelse(length(invalid_inter) > 1, "codes ", "code "),
-                paste(invalid_inter, collapse = ', '),
-                " supplied to the argument 'interaction' does not match the",
-                "original ACLED interaction codes.\n",
+                ifelse(length(invalid_interaction) > 1, "codes ", "code "),
+                paste(invalid_interaction, collapse = ', '),
+                " supplied to the argument 'interaction'",
+                ifelse(length(invalid_interaction) > 1, " do", " does"),
+                " not match the",
+                " original ACLED interaction codes.\n",
                 "Check the ACLED codebook for the correct codes."))
   }
 
