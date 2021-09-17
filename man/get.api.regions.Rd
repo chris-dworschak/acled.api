@@ -7,7 +7,11 @@
 get.api.regions()
 }
 \value{
-A list of length 2; a data frame containing ACLED region names and codes, and a string with supporting information.
+A list of length 2. \cr
+\enumerate{
+\item A data frame object containing ACLED region names and codes. \cr
+\item A string with version information.
+}
 }
 \description{
 List of region names and codes as they are supplied by the \href{https://acleddata.com/resources/general-guides/}{ACLED API user guide}.
