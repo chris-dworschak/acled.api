@@ -214,14 +214,14 @@ acled.api <- function(
                                                            33:38, 40, 44:48, 50,
                                                            55:58, 60, 66, 68,
                                                            78, 80)]
-    stop(paste0("Interaction ",
+    warning(paste0("Interaction ",
                 ifelse(length(invalid.interaction) > 1, "codes ", "code "),
                 paste(invalid.interaction, collapse = ', '),
                 " supplied to the argument 'interaction'",
                 ifelse(length(invalid.interaction) > 1, " do", " does"),
                 " not match the",
                 " original ACLED interaction codes.\n",
-                "Check the ACLED codebook for the correct codes."))
+                "Check the ACLED codebook for the correct codes."), call. = FALSE)
   }
   interaction1 <- ifelse(is.null(interaction)==TRUE, "",
                          paste0("&", paste0("interaction=", interaction, collapse = ":OR:")))
