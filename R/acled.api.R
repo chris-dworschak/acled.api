@@ -140,9 +140,17 @@ acled.api <- function(
     char.region <- region.data.frame$code[which(region.data.frame$region%in%region)]
     region1 <- paste0("&region=", paste(char.region, collapse = "|") )
         if(length(region) != length(char.region)){
-          warning('At least one of the region names supplied in argument "region = " does not match the original
-              ACLED region names. Check your spelling, or see the ACLED API Guide for the correct names.', call. = FALSE)
-        }
+          invalid_region <- region[!region %in% region.data.frame$region]
+          warning(paste0("Region ",
+                         ifelse(length(invalid_region) > 1, "names ", "name "),
+                         paste(sub("(.*)", "'\\1'", invalid_region),
+                               collapse = ", "),
+                         " supplied in argument 'region' ",
+                         ifelse(length(invalid_region) > 1, "do", "does"),
+                         " not match the original ACLED region names.\n",
+                         "Check your spelling, or the ACLED codebook",
+                         " for the correct names."), call. = FALSE)
+         }
   }
   if(is.null(region) == TRUE){
     region1 <- ""
@@ -188,9 +196,19 @@ acled.api <- function(
   # interaction argument
   if (!(is.numeric(interaction) | is.null(interaction))) {
     stop("The 'interaction' argument requires a numeric value.")
-  } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50, 55:58, 60, 66, 68, 78, 80))) {
-    stop(paste0("At least one of the interaction codes supplied to the argument ",
-                "'interaction' does not match the original ACLED interaction codes.\n",
+  } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50,
+                                     55:58, 60, 66, 68, 78, 80))) {
+    invalid_interaction <- interaction[!interaction %in% c(10:18, 20, 22:28, 30,
+                                                           33:38, 40, 44:48, 50,
+                                                           55:58, 60, 66, 68,
+                                                           78, 80)]
+    stop(paste0("Interaction ",
+                ifelse(length(invalid_interaction) > 1, "codes ", "code "),
+                paste(invalid_interaction, collapse = ', '),
+                " supplied to the argument 'interaction'",
+                ifelse(length(invalid_interaction) > 1, " do", " does"),
+                " not match the",
+                " original ACLED interaction codes.\n",
                 "Check the ACLED codebook for the correct codes."))
   }
   interaction1 <- ifelse(is.null(interaction)==TRUE, "",
