@@ -143,8 +143,8 @@ acled.api <- function(
                      " supplied in argument 'region' ",
                      ifelse(length(invalid.region) > 1, "do", "does"),
                      " not match the original ACLED region codes.\n",
-                     "Check your spelling, or the ACLED codebook",
-                     " for the correct codes."), call. = FALSE)
+                     "Check your spelling, and see the ACLED API User Guide",
+                     " for the correct codes or run get.api.regions()."), call. = FALSE)
       }
     region1 <- paste0("&region=", paste(region, collapse = "|") )
   }
@@ -159,8 +159,8 @@ acled.api <- function(
                          " supplied in argument 'region' ",
                          ifelse(length(invalid.region) > 1, "do", "does"),
                          " not match the original ACLED region names.\n",
-                         "Check your spelling, or the ACLED codebook",
-                         " for the correct names."), call. = FALSE)
+                         "Check your spelling, and see the ACLED API User Guide",
+                         " for the correct names or run get.api.regions()."), call. = FALSE)
          }
   }
   if(is.null(region) == TRUE){

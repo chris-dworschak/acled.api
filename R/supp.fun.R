@@ -1,4 +1,15 @@
-
+#' @title ACLED API region support function
+#' @name get.api.regions
+#' @description List of region names and codes as they are supplied by the [ACLED API user guide](https://acleddata.com/resources/general-guides/).
+#' @details This single-purpose support function does not take arguments. It is set up as a convenient way to return region names and region codes
+#' to be used in the _`acled.api()`_ main function's region argument.
+#' @return A list of length 2; a data frame containing ACLED region names and codes, and a string with supporting information.
+#' @author Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com/}{<https://chrisdworschak.com/>}
+#' @references Armed Conflict Location & Event Data Project (ACLED) [API user guide](https://acleddata.com/resources/general-guides/) \cr
+#' Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
+#' "Introducing ACLED-Armed Conflict Location and Event Data." _Journal of Peace Research_ 47 (5): 651-660.
+#' @export
+#'
 get.api.regions <- function(){
   region.names <- list(
     data.frame(
@@ -10,7 +21,7 @@ get.api.regions <- function(){
            7,8,9,
            11,12,13,14,15,16,
            17, 18)),
-    "Last update from https://acleddata.com/resources/general-guides/: ACLED API User Guide version February 2021, API Version 3.2")
+    "Last update from https://acleddata.com/resources/general-guides/: ACLED API User Guide version July 2021, API Version 3.3")
 
   return(region.names)
 
