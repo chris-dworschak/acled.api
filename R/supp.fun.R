@@ -3,7 +3,9 @@
 #' @description List of region names and codes as they are supplied by the [ACLED API user guide](https://acleddata.com/resources/general-guides/).
 #' @details This single-purpose support function does not take arguments. It is set up as a convenient way to return region names and region codes
 #' to be used in the _`acled.api()`_ main function's region argument.
-#' @return A list of length 2; a data frame containing ACLED region names and codes, and a string with supporting information.
+#' @return A list of length 2. \cr
+#' 1. A data frame object containing ACLED region names and codes. \cr
+#' 2. A string with version information.
 #' @author Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com/}{<https://chrisdworschak.com/>}
 #' @references Armed Conflict Location & Event Data Project (ACLED) [API user guide](https://acleddata.com/resources/general-guides/) \cr
 #' Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
