@@ -59,9 +59,8 @@ library(acled.api) # loads the package
 #> by freely registering with ACLED on https://developer.acleddata.com/.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package. CRAN version 1.1.3.
+#> Event Data." R package. CRAN version 1.1.4.
 #> For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/>
-
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   email.address = Sys.getenv("EMAIL_ADDRESS"),
   access.key = Sys.getenv("ACCESS_KEY"),
@@ -70,26 +69,25 @@ my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   end.date = "2020-01-31")
 #> Your ACLED data request was successful. 
 #> Events were retrieved for the period starting 2019-09-01 until 2020-01-31.
-
 my.data.frame[1:5,] # returns the first three observations of the ACLED sample
-#>   region        country year event_date                source
-#> 1 Europe        Belgium 2020 2020-01-31              L'Avenir
-#> 2 Europe    Netherlands 2020 2020-01-31 Noordhollands Dagblad
-#> 3 Europe         Russia 2020 2020-01-31        MBK Media; 7x7
-#> 4 Europe United Kingdom 2020 2020-01-31          The National
-#> 5 Europe         Sweden 2020 2020-01-31      FridaysForFuture
-#>               admin1                   admin2 admin3    location event_type
-#> 1           Wallonie               Luxembourg  Arlon       Arlon   Protests
-#> 2      Noord-Holland                    Hoorn              Hoorn   Protests
-#> 3 Arkhangelsk Oblast Arkhangelsk Municipality        Arkhangelsk   Protests
-#> 4           Scotland              Dundee City             Dundee   Protests
-#> 5              Skane                    Malmo              Malmo   Protests
-#>     sub_event_type interaction fatalities  timestamp
-#> 1 Peaceful protest          60          0 1610632165
-#> 2 Peaceful protest          60          0 1610632295
-#> 3 Peaceful protest          60          0 1580835409
-#> 4 Peaceful protest          60          0 1610632794
-#> 5 Peaceful protest          60          0 1610632057
+#>       region country year event_date                    source      admin1
+#> 1 South Asia   India 2020 2020-01-31 India Blooms News Service       Delhi
+#> 2 South Asia   India 2020 2020-01-31         Telegraph (India) West Bengal
+#> 3 South Asia   India 2020 2020-01-31                 The Hindu Maharashtra
+#> 4 South Asia   India 2020 2020-01-31         Telegraph (India) West Bengal
+#> 5 South Asia   India 2020 2020-01-31                 The Hindu  Tamil Nadu
+#>             admin2          admin3            location event_type
+#> 1       East Delhi     Preet Vihar Delhi - Laxmi Nagar   Protests
+#> 2          Kolkata         Kolkata             Kolkata   Protests
+#> 3  Mumbai Suburban Mumbai Suburban              Mumbai   Protests
+#> 4 Dakshin Dinajpur     Gangarampur         Gangarampur      Riots
+#> 5            Salem           Salem               Salem      Riots
+#>              sub_event_type interaction fatalities  timestamp
+#> 1 Protest with intervention          16          0 1618511523
+#> 2          Peaceful protest          60          0 1580841823
+#> 3          Peaceful protest          60          0 1618511527
+#> 4              Mob violence          57          0 1581453825
+#> 5     Violent demonstration          50          0 1580841823
 ```
 
 ## A note on replicability
