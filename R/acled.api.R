@@ -132,21 +132,32 @@ acled.api <- function(
          acled.api(region = c(1,2), start.date = "2004-08-20", end.date = "2005-05-15") or \n
          acled.api(region = c("Western Africa", "Middle Africa"), start.date = "2004-08-20", end.date = "2005-05-15")', call. = FALSE)
   }
+  region.data.frame <- get.api.regions()[[1]]
   if(is.numeric(region) == TRUE){
+    if(!all(region%in%region.data.frame$code)){
+      invalid.region <- region[!region%in%region.data.frame$code]
+      warning(paste0("Region ",
+                     ifelse(length(invalid.region) > 1, "codes ", "code "),
+                     paste(sub("(.*)", "'\\1'", invalid.region),
+                           collapse = ", "),
+                     " supplied in argument 'region' ",
+                     ifelse(length(invalid.region) > 1, "do", "does"),
+                     " not match the original ACLED region codes.\n",
+                     "Check your spelling, or the ACLED codebook",
+                     " for the correct codes."), call. = FALSE)
+      }
     region1 <- paste0("&region=", paste(region, collapse = "|") )
   }
-  region.data.frame <- get.api.regions()[[1]]
   if(is.character(region) == TRUE){
     char.region <- region.data.frame$code[which(region.data.frame$region%in%region)]
     region1 <- paste0("&region=", paste(char.region, collapse = "|") )
         if(length(region) != length(char.region)){
-          invalid_region <- region[!region %in% region.data.frame$region]
+          invalid.region <- region[!region %in% region.data.frame$region]
           warning(paste0("Region ",
-                         ifelse(length(invalid_region) > 1, "names ", "name "),
-                         paste(sub("(.*)", "'\\1'", invalid_region),
-                               collapse = ", "),
+                         ifelse(length(invalid.region) > 1, "names ", "name "),
+                         paste(paste0("'", invalid.region, "'"), collapse = ", "),
                          " supplied in argument 'region' ",
-                         ifelse(length(invalid_region) > 1, "do", "does"),
+                         ifelse(length(invalid.region) > 1, "do", "does"),
                          " not match the original ACLED region names.\n",
                          "Check your spelling, or the ACLED codebook",
                          " for the correct names."), call. = FALSE)
@@ -194,19 +205,20 @@ acled.api <- function(
   }
 
   # interaction argument
-  if (!(is.numeric(interaction) | is.null(interaction))) {
+  if(!(is.numeric(interaction) | is.null(interaction))) {
     stop("The 'interaction' argument requires a numeric value.")
-  } else if (!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50,
-                                     55:58, 60, 66, 68, 78, 80))) {
-    invalid_interaction <- interaction[!interaction %in% c(10:18, 20, 22:28, 30,
+  }
+  if(!all(interaction %in% c(10:18, 20, 22:28, 30, 33:38, 40, 44:48, 50,
+                             55:58, 60, 66, 68, 78, 80))){
+    invalid.interaction <- interaction[!interaction %in% c(10:18, 20, 22:28, 30,
                                                            33:38, 40, 44:48, 50,
                                                            55:58, 60, 66, 68,
                                                            78, 80)]
     stop(paste0("Interaction ",
-                ifelse(length(invalid_interaction) > 1, "codes ", "code "),
-                paste(invalid_interaction, collapse = ', '),
+                ifelse(length(invalid.interaction) > 1, "codes ", "code "),
+                paste(invalid.interaction, collapse = ', '),
                 " supplied to the argument 'interaction'",
-                ifelse(length(invalid_interaction) > 1, " do", " does"),
+                ifelse(length(invalid.interaction) > 1, " do", " does"),
                 " not match the",
                 " original ACLED interaction codes.\n",
                 "Check the ACLED codebook for the correct codes."))
