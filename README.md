@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version-last-release/acled.api)](https://CR
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable/)
 [![Travis build
-status](https://travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://travis-ci.com/gitlab/chris-dworschak/acled.api/)
+status](https://api.travis-ci.com/chris-dworschak/acled.api.svg?branch=master)](https://app.travis-ci.com/gitlab/chris-dworschak/acled.api/)
 [![License: CC BY-NC
 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![CRANlogs](http://cranlogs.r-pkg.org/badges/grand-total/acled.api)](https://CRAN.R-project.org/package=acled.api/)
