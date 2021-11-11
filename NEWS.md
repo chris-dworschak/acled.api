@@ -1,6 +1,10 @@
 
 # Release updates
 
+## alced.api version 1.1.5
+* Updated description based on GH issue #4
+
+
 ## alced.api version 1.1.4
 * Change of Maintainer email address to permanent address
 * Set up support function export for conveniently retrieving region names and codes 
