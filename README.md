@@ -59,7 +59,7 @@ library(acled.api) # loads the package
 #> by freely registering with ACLED on https://developer.acleddata.com/.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package. CRAN version 1.1.4.
+#> Event Data." R package. CRAN version 1.1.5.
 #> For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/>
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   email.address = Sys.getenv("EMAIL_ADDRESS"),
@@ -70,24 +70,24 @@ my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
 #> Your ACLED data request was successful. 
 #> Events were retrieved for the period starting 2019-09-01 until 2020-01-31.
 my.data.frame[1:5,] # returns the first three observations of the ACLED sample
-#>       region country year event_date                    source      admin1
-#> 1 South Asia   India 2020 2020-01-31 India Blooms News Service       Delhi
-#> 2 South Asia   India 2020 2020-01-31         Telegraph (India) West Bengal
-#> 3 South Asia   India 2020 2020-01-31                 The Hindu Maharashtra
-#> 4 South Asia   India 2020 2020-01-31         Telegraph (India) West Bengal
-#> 5 South Asia   India 2020 2020-01-31                 The Hindu  Tamil Nadu
-#>             admin2          admin3            location event_type
-#> 1       East Delhi     Preet Vihar Delhi - Laxmi Nagar   Protests
-#> 2          Kolkata         Kolkata             Kolkata   Protests
-#> 3  Mumbai Suburban Mumbai Suburban              Mumbai   Protests
-#> 4 Dakshin Dinajpur     Gangarampur         Gangarampur      Riots
-#> 5            Salem           Salem               Salem      Riots
-#>              sub_event_type interaction fatalities  timestamp
-#> 1 Protest with intervention          16          0 1618511523
-#> 2          Peaceful protest          60          0 1580841823
-#> 3          Peaceful protest          60          0 1618511527
-#> 4              Mob violence          57          0 1581453825
-#> 5     Violent demonstration          50          0 1580841823
+#>       region  country year event_date                  source   admin1
+#> 1 South Asia    India 2020 2020-01-31 Indo-Asian News Service    Delhi
+#> 2 South Asia    India 2020 2020-01-31          Times of India   Punjab
+#> 3 South Asia Pakistan 2020 2020-01-31         Dawn (Pakistan)    Sindh
+#> 4 South Asia    India 2020 2020-01-31         Hindustan Times    Bihar
+#> 5 South Asia    India 2020 2020-01-31          Morung Express Nagaland
+#>         admin2        admin3          location event_type   sub_event_type
+#> 1    New Delhi               Delhi - New Delhi   Protests Peaceful protest
+#> 2   Chandigarh    Chandigarh        Chandigarh   Protests Peaceful protest
+#> 3 Karachi City  Karachi West  Karachi - Kemari   Protests Peaceful protest
+#> 4  Muzaffarpur       Musahri       Muzaffarpur    Battles      Armed clash
+#> 5      Dimapur Dimapur Sadar           Dimapur   Protests Peaceful protest
+#>   interaction fatalities  timestamp
+#> 1          60          0 1618959178
+#> 2          60          0 1618959180
+#> 3          60          0 1631067167
+#> 4          33          0 1618511541
+#> 5          60          0 1618511531
 ```
 
 ## A note on replicability
