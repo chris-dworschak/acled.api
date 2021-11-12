@@ -3,6 +3,8 @@
 
 ## alced.api version 1.1.5
 * Updated description based on GH issue #4
+* Updated test-acled: "other.query works" time frame was empty
+* Updated test-acled: removed duplicated tests
 
 
 ## alced.api version 1.1.4

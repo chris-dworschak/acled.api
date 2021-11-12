@@ -13,8 +13,7 @@ Authors@R:
 Author: Christoph Dworschak [aut, cre] (<https://orcid.org/0000-0003-0196-9545>), Rob Williams [ctb] (<https://orcid.org/0000-0001-9259-3883>)
 Maintainer: Christoph Dworschak <dworschak@posteo.de>
 Description: Access and manage the application programming interface (API) of the Armed Conflict Location & Event Data Project (ACLED) at <https://acleddata.com/>. The package makes it easy to retrieve a user-defined sample (or all of the available data) of ACLED, enabling a seamless integration of regular data updates into the research work flow. It requires a minimal number of dependencies. See the package's README file for a note on replicability when drawing on ACLED data. When using this package, you acknowledge that you have read ACLED's terms and conditions of use, and that you agree with their attribution requirements.
-URL: <https://CRAN.R-project.org/package=acled.api>
-BugReports: <https://gitlab.com/chris-dworschak/acled.api>
+URL: <https://gitlab.com/chris-dworschak/acled.api>
 License: CC BY-NC 4.0
 Encoding: UTF-8
 Language: en-US
