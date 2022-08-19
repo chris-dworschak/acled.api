@@ -61,33 +61,17 @@ library(acled.api) # loads the package
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
 #> Event Data." R package. CRAN version 1.1.5.
 #> For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/>
+
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
   email.address = Sys.getenv("EMAIL_ADDRESS"),
   access.key = Sys.getenv("ACCESS_KEY"),
   region = c("South Asia", "Central America"), 
   start.date = "2019-09-01", 
   end.date = "2020-01-31")
-#> Your ACLED data request was successful. 
-#> Events were retrieved for the period starting 2019-09-01 until 2020-01-31.
+#> GET request wasn't successful. The API returned status 403: You must confirm you have read and understood the latest terms of use.
+
 my.data.frame[1:5,] # returns the first three observations of the ACLED sample
-#>       region  country year event_date                  source   admin1
-#> 1 South Asia    India 2020 2020-01-31 Indo-Asian News Service    Delhi
-#> 2 South Asia    India 2020 2020-01-31          Times of India   Punjab
-#> 3 South Asia Pakistan 2020 2020-01-31         Dawn (Pakistan)    Sindh
-#> 4 South Asia    India 2020 2020-01-31         Hindustan Times    Bihar
-#> 5 South Asia    India 2020 2020-01-31          Morung Express Nagaland
-#>         admin2        admin3          location event_type   sub_event_type
-#> 1    New Delhi               Delhi - New Delhi   Protests Peaceful protest
-#> 2   Chandigarh    Chandigarh        Chandigarh   Protests Peaceful protest
-#> 3 Karachi City  Karachi West  Karachi - Kemari   Protests Peaceful protest
-#> 4  Muzaffarpur       Musahri       Muzaffarpur    Battles      Armed clash
-#> 5      Dimapur Dimapur Sadar           Dimapur   Protests Peaceful protest
-#>   interaction fatalities  timestamp
-#> 1          60          0 1618959178
-#> 2          60          0 1618959180
-#> 3          60          0 1631067167
-#> 4          33          0 1618511541
-#> 5          60          0 1618511531
+#> NULL
 ```
 
 ## A note on replicability

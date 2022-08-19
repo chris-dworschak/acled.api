@@ -1,6 +1,10 @@
 
 # Release updates
 
+## alced.api version 1.1.6
+* Update Rd files to HTML5 with current version of roxygen2.
+
+
 ## alced.api version 1.1.5
 * Updated description based on GH issue #4
 * Updated test-acled: "other.query works" time frame was empty

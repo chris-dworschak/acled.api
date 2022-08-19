@@ -7,7 +7,7 @@
     packageStartupMessage("by freely registering with ACLED on https://developer.acleddata.com/. \n")
     packageStartupMessage("The package may be cited as:")
     packageStartupMessage('Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict ')
-    packageStartupMessage('Event Data." R package. CRAN version 1.1.5. \n')
+    packageStartupMessage('Event Data." R package. CRAN version 1.1.6. \n')
     packageStartupMessage("For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/> \n")
   }
 
