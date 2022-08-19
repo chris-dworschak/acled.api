@@ -1,7 +1,7 @@
 #' @title Automated Retrieval of ACLED Conflict Event Data
 #' @name acled.api
-#' @description Access and manage the application programming
-#' interface (API) of the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/).
+#' @description Access and manage the application programming interface (API)
+#' of the [Armed Conflict Location & Event Data Project (ACLED)](https://acleddata.com/).
 #' The function _`acled.api()`_ makes it easy to retrieve a user-defined sample (or all of the
 #' available data) of ACLED, enabling a seamless integration of regular data updates into
 #' the research work flow. If the data are intended for replicable use (e.g., later publication of analysis results), the

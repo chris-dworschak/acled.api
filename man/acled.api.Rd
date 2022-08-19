@@ -59,8 +59,8 @@ GET call. Vector elements are assumed to be individual queries, and are automati
 A data frame containing ACLED events.
 }
 \description{
-Access and manage the application programming
-interface (API) of the \href{https://acleddata.com/}{Armed Conflict Location & Event Data Project (ACLED)}.
+Access and manage the application programming interface (API)
+of the \href{https://acleddata.com/}{Armed Conflict Location & Event Data Project (ACLED)}.
 The function \emph{\code{acled.api()}} makes it easy to retrieve a user-defined sample (or all of the
 available data) of ACLED, enabling a seamless integration of regular data updates into
 the research work flow. If the data are intended for replicable use (e.g., later publication of analysis results), the
