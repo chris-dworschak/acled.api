@@ -6,7 +6,7 @@
 #' @return A list of length 2. \cr
 #' 1. A data frame object containing ACLED region names and codes. \cr
 #' 2. A string with version information.
-#' @author Christoph Dworschak \cr Website: \href{https://www.chrisdworschak.com/}{<https://chrisdworschak.com/>}
+#' @author Christoph Dworschak \cr Website: \url{https://chrisdworschak.com/}
 #' @references Armed Conflict Location & Event Data Project (ACLED) [API user guide](https://acleddata.com/resources/general-guides/) \cr
 #' Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
 #' "Introducing ACLED-Armed Conflict Location and Event Data." _Journal of Peace Research_ 47 (5): 651-660.
