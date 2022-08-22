@@ -2,7 +2,9 @@
 # Release updates
 
 ## alced.api version 1.1.6
-* Update Rd files to HTML5 with current version of roxygen2.
+* Updated Rd files to HTML5 with current version of roxygen2.
+* Fixed links.
+* Updated ACLED API country list.
 
 
 ## alced.api version 1.1.5
