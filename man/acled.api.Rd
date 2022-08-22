@@ -115,5 +115,5 @@ Clionadh Raleigh, Andrew Linke, Havard Hegre and Joakim Karlsen. 2010.
 "Introducing ACLED-Armed Conflict Location and Event Data." \emph{Journal of Peace Research} 47 (5): 651-660.
 }
 \author{
-Christoph Dworschak \cr Website: \url{https://chrisdworschak.com/}
+Christoph Dworschak \cr Website: \url{https://www.chrisdworschak.com/}
 }
