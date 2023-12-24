@@ -57,8 +57,8 @@ Using `acled.api` is straight forward. To download data on, for example, all ACL
 library(acled.api) # loads the package
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
-  email.address = Sys.getenv("EMAIL_ADDRESS"),
-  access.key = Sys.getenv("ACCESS_KEY"),
+  email.address = Sys.getenv("ACLED_EMAIL_ADDRESS"),
+  access.key = Sys.getenv("ACLED_ACCESS_KEY"),
   region = c("South Asia", "Central America"), 
   start.date = "2019-09-01", 
   end.date = "2020-01-31")

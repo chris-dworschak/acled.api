@@ -1,7 +1,7 @@
 Package: acled.api
 Title: Automated Retrieval of ACLED Conflict Event Data
-Version: 1.1.6
-Date: 2022-08-19
+Version: 1.1.7
+Date: 2023-12-24
 Authors@R: 
     c(person(given = "Christoph",
            family = "Dworschak",
@@ -19,7 +19,7 @@ Encoding: UTF-8
 Language: en-US
 LazyData: false
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports: httr, jsonlite
 Suggests: 
     testthat

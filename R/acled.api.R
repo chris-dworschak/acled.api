@@ -10,10 +10,10 @@
 #' When using this package, you acknowledge that you have read ACLED's terms and
 #' conditions of use, and that you agree with their attribution requirements.
 #' @param email.address character string. Supply the email address that you registered with [ACLED access](https://developer.acleddata.com/).
-#' The email address can also be set as an environment variable using _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_, in
+#' The email address can also be set as an environment variable using _`Sys.setenv(ACLED_EMAIL_ADDRESS="your.email.address")`_, in
 #' which case this argument can be skipped. Usage examples below illustrate these two approaches.
 #' @param access.key character string. Supply your ACLED access key. The  access key can also be set as an environment variable
-#' using _`Sys.setenv(ACCESS_KEY="your.access.key")`_, in which case this argument can be skipped. Usage examples below illustrate these two approaches.
+#' using _`Sys.setenv(ACLED_ACCESS_KEY="your.access.key")`_, in which case this argument can be skipped. Usage examples below illustrate these two approaches.
 #' @param country character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
 #' below for information on how the arguments "country" and "region" interact.
 #' @param region numeric or character vector. Supply one or more region codes (numeric) or region names (character)
@@ -42,7 +42,7 @@
 #' expression `^[0-9]+$` are coerced into _`numeric`_ before the _`data.frame`_ object is returned. \cr \cr
 #' The user's registered email address and ACLED access key can be supplied as strings directly to their respective arguments,
 #' or set in advance as environment variables
-#' using \cr \cr _`Sys.setenv(EMAIL_ADDRESS="your.email.address")`_ and \cr \cr _`Sys.setenv(ACCESS_KEY="your.access.key")`_. \cr \cr
+#' using \cr \cr _`Sys.setenv(ACLED_EMAIL_ADDRESS="your.email.address")`_ and \cr \cr _`Sys.setenv(ACLED_ACCESS_KEY="your.access.key")`_. \cr \cr
 #' If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
 #' the time frame when both the start date and the end date are NULL (default). Note that the API cannot handle requests with only one
 #' of the dates specified (either none of them or both of them need to be supplied). \cr \cr
@@ -69,8 +69,8 @@
 #'
 #' # Email and access key provided as environment variables:
 #' my.data.frame2 <- acled.api(
-#'   email.address = Sys.getenv("EMAIL_ADDRESS"),
-#'   access.key = Sys.getenv("ACCESS_KEY"),
+#'   email.address = Sys.getenv("ACLED_EMAIL_ADDRESS"),
+#'   access.key = Sys.getenv("ACLED_ACCESS_KEY"),
 #'   region = c(1,7),
 #'   start.date = "2020-01-01",
 #'   end.date = "2020-11-31",
@@ -81,8 +81,8 @@
 #' @export
 #'
 acled.api <- function(
-  email.address = Sys.getenv("EMAIL_ADDRESS"),
-  access.key = Sys.getenv("ACCESS_KEY"),
+  email.address = Sys.getenv("ACLED_EMAIL_ADDRESS"),
+  access.key = Sys.getenv("ACLED_ACCESS_KEY"),
   country = NULL,
   region = NULL,
   start.date = NULL,
@@ -95,21 +95,39 @@ acled.api <- function(
 
 
   # access key
-  if ( (is.null(access.key) | !is.character(access.key) | access.key=="") == TRUE ) {
-    stop('ACLED requires an access key, which needs to be supplied to the argument "access.key" as a character string.
+  legacy <- c(0,0)
+  legacy.key <- Sys.getenv("ACCESS_KEY")
+  if( (is.null(access.key) | !is.character(access.key) | access.key=="" ) == TRUE ) {
+    if( (is.null(legacy.key) | !is.character(legacy.key) | legacy.key=="" ) == TRUE ) {
+      stop('ACLED requires an access key, which needs to be supplied to the argument "access.key" as a character string.
     You can request an access key by registering on https://developer.acleddata.com/.', call. = FALSE)
+    }else{
+      if( (is.character(legacy.key) & legacy.key!="") == TRUE){
+        access.key1 <- paste0("key=", legacy.key)
+        legacy[1] <- 1 }}
+  }else{
+    if( (is.character(access.key) & access.key!="") == TRUE){
+      access.key1 <- paste0("key=", access.key)}
   }
-  if( (is.character(access.key) & access.key!="") == TRUE){
-  access.key1 <- paste0("key=", access.key)}
 
   # email address
+  legacy.email <- Sys.getenv("EMAIL_ADDRESS")
   if ( (is.null(email.address) | !is.character(email.address) | email.address=="") == TRUE ) {
-    stop('ACLED requires an email address for access, which needs to be supplied to the argument "email.address" as a character string.
+    if ( (is.null(legacy.email) | !is.character(legacy.email) | legacy.email=="") == TRUE ) {
+      stop('ACLED requires an email address for access, which needs to be supplied to the argument "email.address" as a character string.
     Use the email address you provided when registering on https://developer.acleddata.com/.', call. = FALSE)
+    }else{
+      if( (is.character(legacy.email) & legacy.email!="") == TRUE){
+        email.address1 <- paste0("&email=", legacy.email)
+        legacy[2] <- 1 }}
+  }else{
+    if( (is.character(email.address) & email.address!="") == TRUE){
+      email.address1 <- paste0("&email=", email.address)}
   }
-  if( (is.character(email.address) & email.address!="") == TRUE){
-  email.address1 <- paste0("&email=", email.address)}
 
+  if(sum(legacy)==2){
+    warning('Please update your environment variable names to "ACLED_ACCESS_KEY" and "ACLED_EMAIL_ADDRESS". The generic names "ACCESS_KEY" and "EMAIL_ADDRESS" are depreceated.')
+  }
 
   # country argument
   if ( (!is.null(country) & !is.character(country)) == TRUE ) {

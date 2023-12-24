@@ -5,8 +5,8 @@
 \title{Automated Retrieval of ACLED Conflict Event Data}
 \usage{
 acled.api(
-  email.address = Sys.getenv("EMAIL_ADDRESS"),
-  access.key = Sys.getenv("ACCESS_KEY"),
+  email.address = Sys.getenv("ACLED_EMAIL_ADDRESS"),
+  access.key = Sys.getenv("ACLED_ACCESS_KEY"),
   country = NULL,
   region = NULL,
   start.date = NULL,
@@ -20,11 +20,11 @@ acled.api(
 }
 \arguments{
 \item{email.address}{character string. Supply the email address that you registered with \href{https://developer.acleddata.com/}{ACLED access}.
-The email address can also be set as an environment variable using \emph{\code{Sys.setenv(EMAIL_ADDRESS="your.email.address")}}, in
+The email address can also be set as an environment variable using \emph{\code{Sys.setenv(ACLED_EMAIL_ADDRESS="your.email.address")}}, in
 which case this argument can be skipped. Usage examples below illustrate these two approaches.}
 
 \item{access.key}{character string. Supply your ACLED access key. The  access key can also be set as an environment variable
-using \emph{\code{Sys.setenv(ACCESS_KEY="your.access.key")}}, in which case this argument can be skipped. Usage examples below illustrate these two approaches.}
+using \emph{\code{Sys.setenv(ACLED_ACCESS_KEY="your.access.key")}}, in which case this argument can be skipped. Usage examples below illustrate these two approaches.}
 
 \item{country}{character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
 below for information on how the arguments "country" and "region" interact.}
@@ -78,7 +78,7 @@ Variables which only contain numbers as recognized by the regular
 expression \verb{^[0-9]+$} are coerced into \emph{\code{numeric}} before the \emph{\code{data.frame}} object is returned. \cr \cr
 The user's registered email address and ACLED access key can be supplied as strings directly to their respective arguments,
 or set in advance as environment variables
-using \cr \cr \emph{\code{Sys.setenv(EMAIL_ADDRESS="your.email.address")}} and \cr \cr \emph{\code{Sys.setenv(ACCESS_KEY="your.access.key")}}. \cr \cr
+using \cr \cr \emph{\code{Sys.setenv(ACLED_EMAIL_ADDRESS="your.email.address")}} and \cr \cr \emph{\code{Sys.setenv(ACLED_ACCESS_KEY="your.access.key")}}. \cr \cr
 If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
 the time frame when both the start date and the end date are NULL (default). Note that the API cannot handle requests with only one
 of the dates specified (either none of them or both of them need to be supplied). \cr \cr
@@ -99,8 +99,8 @@ head(my.data.frame1)
 
 # Email and access key provided as environment variables:
 my.data.frame2 <- acled.api(
-  email.address = Sys.getenv("EMAIL_ADDRESS"),
-  access.key = Sys.getenv("ACCESS_KEY"),
+  email.address = Sys.getenv("ACLED_EMAIL_ADDRESS"),
+  access.key = Sys.getenv("ACLED_ACCESS_KEY"),
   region = c(1,7),
   start.date = "2020-01-01",
   end.date = "2020-11-31",

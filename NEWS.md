@@ -1,6 +1,10 @@
 
 # Release updates
 
+## alced.api version 1.1.7 (Christmas version)
+* Depreciate generic environment variable names for access information, adding "ACLED" to their names.
+
+
 ## alced.api version 1.1.6
 * Updated Rd files to HTML5 with current version of roxygen2.
 * Fixed links.
