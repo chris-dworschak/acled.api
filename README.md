@@ -59,36 +59,60 @@ library(acled.api) # loads the package
 #> by freely registering with ACLED on https://developer.acleddata.com/.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package. CRAN version 1.1.5.
+#> Event Data." R package. CRAN version 1.1.6.
 #> For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
-  email.address = Sys.getenv("EMAIL_ADDRESS"),
-  access.key = Sys.getenv("ACCESS_KEY"),
+  email.address = Sys.getenv("ACLED_EMAIL_ADDRESS"),
+  access.key = Sys.getenv("ACLED_ACCESS_KEY"),
   region = c("South Asia", "Central America"), 
   start.date = "2019-09-01", 
   end.date = "2020-01-31")
-#> GET request wasn't successful. The API returned status 403: You must confirm you have read and understood the latest terms of use.
+#> Your ACLED data request was successful. 
+#> Events were retrieved for the period starting 2019-09-01 until 2020-01-31.
 
 my.data.frame[1:5,] # returns the first three observations of the ACLED sample
-#> NULL
+#>            region   country year event_date
+#> 1 Central America  Honduras 2020 2020-01-31
+#> 2 Central America  Honduras 2020 2020-01-31
+#> 3 Central America Guatemala 2020 2020-01-31
+#> 4 Central America Guatemala 2020 2020-01-31
+#> 5 Central America  Honduras 2020 2020-01-31
+#>                                       source            admin1           admin2
+#> 1                      El Heraldo (Honduras) Francisco Morazan Distrito Central
+#> 2                            Proceso Digital            Cortes          La Lima
+#> 3 Dialogos - Observatorio sobre la Violencia     Huehuetenango      La Libertad
+#> 4 Dialogos - Observatorio sobre la Violencia         Guatemala         Palencia
+#> 5       Once Noticias; La Tribuna (Honduras) Francisco Morazan Distrito Central
+#>             admin3      location                 event_type sub_event_type
+#> 1 Distrito Central   Tegucigalpa Violence against civilians         Attack
+#> 2          La Lima       La Lima Violence against civilians         Attack
+#> 3                  Camoja Grande Violence against civilians         Attack
+#> 4                       Palencia Violence against civilians         Attack
+#> 5 Distrito Central   Tegucigalpa                    Battles    Armed clash
+#>   interaction fatalities  timestamp
+#> 1          37          1 1618511562
+#> 2          37          1 1618511533
+#> 3          37          1 1618511538
+#> 4          47          1 1612223078
+#> 5          38          1 1618511549
 ```
 
 ## A note on replicability
 
-Some tasks, like real-time analyses and continuously updated forecasting
-models (e.g., as used by practitioners), may not require replicability
-of results. However, most research-related tasks assume the possibility
-of replication at a later stage (e.g., when results are intended for
-publication, or a data project taking multiple days where a change to
-the underlying sample is not desirable). After the release of versions 1
-through 8, ACLED changed their update system to allow for real-time
-amendments and post-release corrections, thereby forgoing traditional
-data versioning. This change requires researchers to take additional
-steps in order to ensure the replicability of their results when using
-ACLED data.
+After the release of versions 1 through 8, ACLED changed their update
+system to allow for real-time amendments and post-release corrections,
+thereby forgoing traditional data versioning. This change requires
+researchers to take additional steps in order to ensure the
+replicability of their results when using ACLED data. Some tasks, like
+real-time forecasting models used by practitioners, may not require
+replicability of intermediate results. However, most research-related
+tasks assume the possibility of replication at a later stage. This is
+especially the case for results that are intended for publication, or
+for an ongoing data project where constant changes to the underlying
+sample are not desirable.
 
-Importantly, downloaded data intended for replicable use must be
+To this end, downloaded data intended for replicable use must be
 permanently stored by the analyst. Data downloaded through `acled.api()`
 are only stored temporarily in the working space, and may be lost after
 closing R. Therefore, if replicability is important to the analyst’s
@@ -99,9 +123,8 @@ stored data file can then be used again at a later point by calling
 `readRDS(file = "my_acled_data.rds")`, and ensures that the analysis
 sample stays constant over time.
 
-ACLED provides a time stamp for each individual observation, enabling
-researchers to do “micro versioning” of data points if necessary, and to
-verify congruence across samples. For this it is important that
-researchers do not drop the variable *timestamp* during the data
-management process. Starting version 1.0.9 the function `acled.api()`
-includes the *timestamp* variable in its default API call.
+ACLED provides a time stamp for each individual observation (column
+*timestamp*), enabling researchers to do “micro versioning” of data
+points if necessary, and to verify congruence across samples. Starting
+from version 1.0.9, the function `acled.api()` includes the *timestamp*
+variable in its default API call.
