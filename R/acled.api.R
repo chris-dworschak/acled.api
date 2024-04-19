@@ -17,8 +17,9 @@
 #' @param country character vector. Supply one or more country names to narrow down which events should be retrieved. See the details
 #' below for information on how the arguments "country" and "region" interact.
 #' @param region numeric or character vector. Supply one or more region codes (numeric) or region names (character)
-#' to narrow down which events should be retrieved (see [ACLED's API user guide](https://acleddata.com/resources/general-guides/)
-#' for details on region codes and names). See the details below for information on how the arguments "country" and "region" interact.
+#' to narrow down which events should be retrieved. You can run `get.api.regions()` to view supported region codes and names,
+#' or visit [ACLED's resource library](https://acleddata.com/resources/general-guides/).
+#' See the details below for information on how the arguments "country" and "region" interact.
 #' @param start.date character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".
 #' @param end.date character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".
 #' @param add.variables character vector. Supply the names of ACLED variables you wish to add to the
@@ -161,7 +162,7 @@ acled.api <- function(
                      " supplied in argument 'region' ",
                      ifelse(length(invalid.region) > 1, "do", "does"),
                      " not match the original ACLED region codes.\n",
-                     "Check your spelling, and see the ACLED API User Guide",
+                     "Check your spelling, and see the ACLED resource library",
                      " for the correct codes or run get.api.regions()."), call. = FALSE)
       }
     region1 <- paste0("&region=", paste(region, collapse = "|") )
@@ -177,7 +178,7 @@ acled.api <- function(
                          " supplied in argument 'region' ",
                          ifelse(length(invalid.region) > 1, "do", "does"),
                          " not match the original ACLED region names.\n",
-                         "Check your spelling, and see the ACLED API User Guide",
+                         "Check your spelling, and see the ACLED resource library",
                          " for the correct names or run get.api.regions()."), call. = FALSE)
          }
   }
@@ -281,7 +282,7 @@ acled.api <- function(
   }
   if (httr::http_type(response) != "application/json" | length(response$content)==0) {
     message(paste0("GET request was unsuccessful, giving the status code ",
-                response$status_code, ". \n More information on HTTP status codes: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status"), call. = FALSE)
+                response$status_code, ". \n For information on HTTP status codes, see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status"), call. = FALSE)
     return(NULL)
   }
 
