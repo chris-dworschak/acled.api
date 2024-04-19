@@ -23,8 +23,8 @@
 #' @param end.date character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".
 #' @param add.variables character vector. Supply the names of ACLED variables you wish to add to the
 #' default output (see [ACLED's codebook](https://acleddata.com/resources/general-guides/) for details). The default
-#' output includes: region, country, year, event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type,
-#' interaction, fatalities.
+#' output includes: region, country, year, event_date, source, admin1, admin2, admin3, location, latitude, longitude, event_type, sub_event_type,
+#' interaction, fatalities, tags, and the download timestamp.
 #' @param all.variables logical. When set to FALSE (default), a narrow default selection of variables is returned (which
 #' can be refined using the argument add.variables). If set to TRUE, all variables are included in the output (overrides
 #' argument add.variables).
@@ -200,13 +200,20 @@ acled.api <- function(
   }
   time.frame1 <- paste0("&event_date=", paste(start.date, end.date, sep = "|"), "&event_date_where=BETWEEN")
 
+  if ( (is.null(start.date) & is.null(end.date) & is.null(region) & is.null(country)) == TRUE ) {
+    warning('You are trying to download data for all available regions and time periods.
+    ACLED has implemented bandwidth restrictions that may prevent you from doing so.
+    Therefore, if you are encountering an error, try to make separate calls by regions or time periods.
+    After downloading the data in these chunks, you can then combine them with rbind().', call. = FALSE)
+  }
+
   # add.variables and all.variables argument
   if( is.logical(all.variables)==TRUE ){
     if( all.variables==FALSE ){
         if( is.null(add.variables)==TRUE ){
-          variables <- "&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities|timestamp"
+          variables <- "&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|latitude|longitude|event_type|sub_event_type|interaction|fatalities|tags|timestamp"
           }else{
-            variables <- paste0("&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|event_type|sub_event_type|interaction|fatalities|timestamp",
+            variables <- paste0("&fields=region|country|year|event_date|source|admin1|admin2|admin3|location|latitude|longitude|event_type|sub_event_type|interaction|fatalities|tags|timestamp",
                         "|", paste(add.variables, collapse = "|") )
             }
       }else{
@@ -272,9 +279,9 @@ acled.api <- function(
     call. = FALSE)
     return(NULL)
   }
-  if (httr::http_type(response) != "application/json") {
-    message(paste0("GET request was unsuccessful: the API did not return a JSON file, giving the status code ",
-                response$status_code, "."), call. = FALSE)
+  if (httr::http_type(response) != "application/json" | length(response$content)==0) {
+    message(paste0("GET request was unsuccessful, giving the status code ",
+                response$status_code, ". \n More information on HTTP status codes: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status"), call. = FALSE)
     return(NULL)
   }
 

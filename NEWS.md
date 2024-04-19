@@ -1,6 +1,14 @@
 
 # Release updates
 
+## alced.api version 1.1.8
+* Improved error messages when calls to the API return unsuccessful.
+* Addressing ACLED bandwidth limits: 
+  + Accommodate empty content returns when bandwidth limit is hit.
+  + Give warning message to users when making calls to download the whole dataset.
+* Added the variables latitude, longitude, and tags to the default output. 
+
+
 ## alced.api version 1.1.7 (Christmas version)
 * Depreciate generic environment variable names for access information, adding "ACLED" to their names.
 
