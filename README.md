@@ -53,13 +53,11 @@ between June 2019 and July 2020, you can supply:
 ``` r
 library(acled.api) # loads the package
 #> 
-#> By using this package, you acknowledge that you have read ACLED's terms and
-#> conditions. The data must be cited as per ACLED attribution requirements. To
-#> download ACLED data, you require an ACLED access key. You can request your key
-#> by freely registering with ACLED on https://developer.acleddata.com/.
+#>  Before using this package to download data, you require an ACLED access key.
+#> You can request your key by registering with ACLED on https://developer.acleddata.com/.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package. CRAN version 1.1.7.
+#> Event Data." R package. CRAN version 1.1.8.
 #> For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
@@ -72,30 +70,30 @@ my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
 #> Events were retrieved for the period starting 2019-09-01 until 2020-01-31.
 
 my.data.frame[1:5,] # returns the first three observations of the ACLED sample
-#>            region   country year event_date
-#> 1 Central America  Honduras 2020 2020-01-31
-#> 2 Central America Guatemala 2020 2020-01-31
-#> 3      South Asia     India 2020 2020-01-31
-#> 4      South Asia     India 2020 2020-01-31
-#> 5      South Asia     India 2020 2020-01-31
+#>   event_id_cnty          region   country year event_date
+#> 1       HND1343 Central America  Honduras 2020 2020-01-31
+#> 2       GTM2921 Central America Guatemala 2020 2020-01-31
+#> 3      IND70618      South Asia     India 2020 2020-01-31
+#> 4      IND70620      South Asia     India 2020 2020-01-31
+#> 5      IND70609      South Asia     India 2020 2020-01-31
 #>                                       source        admin1      admin2
 #> 1                            Proceso Digital        Cortes     La Lima
 #> 2 Dialogos - Observatorio sobre la Violencia Huehuetenango La Libertad
 #> 3                   Asian News International         Bihar       Patna
 #> 4                            Hindustan Times   Maharashtra        Pune
 #> 5                            Hindustan Times         Bihar      Kaimur
-#>       admin3      location                 event_type   sub_event_type
-#> 1    La Lima       La Lima Violence against civilians           Attack
-#> 2            Camoja Grande Violence against civilians           Attack
-#> 3 Sampatchak         Patna                   Protests Peaceful protest
-#> 4  Pune City          Pune                   Protests Peaceful protest
-#> 5     Bhabua        Bhabua                    Battles      Armed clash
-#>   interaction fatalities  timestamp
-#> 1          37          1 1618511533
-#> 2          37          1 1618511538
-#> 3          60          0 1649276878
-#> 4          60          0 1649276878
-#> 5          44          0 1649276878
+#>       admin3      location latitude longitude                 event_type
+#> 1    La Lima       La Lima  15.4333  -87.9167 Violence against civilians
+#> 2            Camoja Grande  15.5823  -91.9006 Violence against civilians
+#> 3 Sampatchak         Patna  25.5941   85.1356                   Protests
+#> 4  Pune City          Pune  18.5195   73.8553                   Protests
+#> 5     Bhabua        Bhabua  25.0404   83.6074                    Battles
+#>     sub_event_type interaction fatalities                 tags  timestamp
+#> 1           Attack          37          1                      1618511533
+#> 2           Attack          37          1                      1618511538
+#> 3 Peaceful protest          60          0 crowd size=no report 1649276878
+#> 4 Peaceful protest          60          0 crowd size=no report 1649276878
+#> 5      Armed clash          44          0                      1649276878
 ```
 
 ## A note on replicability
