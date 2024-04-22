@@ -25,7 +25,6 @@ test_that("check that country validation works", {
                          country = 1),
                regexp = "If you wish to specify country names")
 })
-
 test_that("check that region validation works", {
   skip_on_cran()
   expect_error(acled.api(email.address = Sys.getenv("ACLED_EMAIL_ADDRESS"),
@@ -137,7 +136,7 @@ test_that("check that data outside coverage return empty", {
                            country = "turkey",
                            start.date = "1999-01-01",
                            end.date = "1999-12-31"),
-                 regexp = "No data found for this area and time period.")
+                 regexp = "No data found for this area, time period, and/or page.")
 })
 
 test_that("check add.variables works", {
@@ -147,7 +146,7 @@ test_that("check add.variables works", {
                               start.date = "2007-04-01",
                               end.date = "2007-04-8",
                               add.variables = "geo_precision")),
-               15)
+               19)
   expect_message(acled.api(email.address = Sys.getenv("ACLED_EMAIL_ADDRESS"),
                            access.key = Sys.getenv("ACLED_ACCESS_KEY"),
                            start.date = "2007-04-01",

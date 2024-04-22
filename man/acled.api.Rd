@@ -30,8 +30,9 @@ using \emph{\code{Sys.setenv(ACLED_ACCESS_KEY="your.access.key")}}, in which cas
 below for information on how the arguments "country" and "region" interact.}
 
 \item{region}{numeric or character vector. Supply one or more region codes (numeric) or region names (character)
-to narrow down which events should be retrieved (see \href{https://acleddata.com/resources/general-guides/}{ACLED's API user guide}
-for details on region codes and names). See the details below for information on how the arguments "country" and "region" interact.}
+to narrow down which events should be retrieved. You can run \code{get.api.regions()} to view supported region codes and names,
+or see \href{https://apidocs.acleddata.com/}{ACLED's API Guide}.
+See the details below for information on how the arguments "country" and "region" interact.}
 
 \item{start.date}{character string. Supply the earliest date to be retrieved. Format: "yyyy-mm-dd".}
 
@@ -39,8 +40,8 @@ for details on region codes and names). See the details below for information on
 
 \item{add.variables}{character vector. Supply the names of ACLED variables you wish to add to the
 default output (see \href{https://acleddata.com/resources/general-guides/}{ACLED's codebook} for details). The default
-output includes: region, country, year, event_date, source, admin1, admin2, admin3, location, event_type, sub_event_type,
-interaction, fatalities.}
+output includes: event_id_cnty, region, country, year, event_date, source, admin1, admin2, admin3, location, latitude, longitude, event_type, sub_event_type,
+interaction, fatalities, tags, and the download timestamp.}
 
 \item{all.variables}{logical. When set to FALSE (default), a narrow default selection of variables is returned (which
 can be refined using the argument add.variables). If set to TRUE, all variables are included in the output (overrides
@@ -53,7 +54,8 @@ observation per event). If set to TRUE, dyadic data is returned.}
 retrieved (see \href{https://acleddata.com/resources/general-guides/}{ACLED's codebook} for details.}
 
 \item{other.query}{character vector. Allows users to add their own ACLED API queries to the
-GET call. Vector elements are assumed to be individual queries, and are automatically separated by an & sign.}
+GET call. Vector elements are assumed to be individual queries, and are automatically separated by an & sign.
+See \href{https://apidocs.acleddata.com/}{ACLED's API Guide} for information on making your custom query.}
 }
 \value{
 A data frame containing ACLED events.
@@ -76,15 +78,22 @@ Internally it uses \emph{\code{httr}} to access the API, and \emph{\code{jsonlit
 are converted into the base class \emph{\code{data.frame}}. Variables are of class \emph{\code{character}} by default.
 Variables which only contain numbers as recognized by the regular
 expression \verb{^[0-9]+$} are coerced into \emph{\code{numeric}} before the \emph{\code{data.frame}} object is returned. \cr \cr
-The user's registered email address and ACLED access key can be supplied as strings directly to their respective arguments,
+\emph{Authentification:} The user's registered email address and ACLED access key, which they obtain after registering with \href{https://developer.acleddata.com/}{ACLED access}, can be supplied as strings directly to their respective arguments,
 or set in advance as environment variables
-using \cr \cr \emph{\code{Sys.setenv(ACLED_EMAIL_ADDRESS="your.email.address")}} and \cr \cr \emph{\code{Sys.setenv(ACLED_ACCESS_KEY="your.access.key")}}. \cr \cr
-If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
+using \cr \emph{\code{Sys.setenv(ACLED_EMAIL_ADDRESS="your.email.address")}} and \cr \emph{\code{Sys.setenv(ACLED_ACCESS_KEY="your.access.key")}}. \cr \cr
+\emph{Retrieving all data at once:} If both the country argument and the region argument are NULL (default), all available countries are retrieved. The same applies to
 the time frame when both the start date and the end date are NULL (default). Note that the API cannot handle requests with only one
-of the dates specified (either none of them or both of them need to be supplied). \cr \cr
-The ACLED API combines the country argument and the region argument with a logical AND operator. Therefore, specifying e.g. the
+of the dates specified (either none of them or both of them need to be supplied). More recent versions of the API implemented a bandwidth limit that prevents
+users from retrieving larger amounts of data in a single call. At the time of this writing (v. \emph{\code{acled.api()}} 1.1.8), ACLED recommends using pagination to retrieve data
+in separate calls of 5000 rows each. This is much less than what is actually possible to retrieve in a single call, and with a full dataset of >2 million rows, pagination is less
+practicable than simply downloading by individual regions or time periods. The separate data chunks obtained this way can then be combined using rbind(). Users who want to make use of
+pagination can do so using the \emph{\code{other.query}} filter. \cr \cr
+\emph{Filter combinations:} By default, \emph{\code{acled.api()}} combines different filters with a logical AND operator.
+This usually conforms with desired behavior, with the country argument and the region argument as important exception: for example, specifying the
 country "Togo" and the region "Southern Africa" leads the API to query for a country named "Togo" in the region "Southern Africa".
-In this case, no data will be returned as no events match this query.
+In this case, no data will be returned as no events match this query, and it is recommended to make two separate calls, one for Togo and one for Southern Africa.
+More recent versions of the API also support OR operators to separate filters. These can be implemented through \emph{\code{acled.api()}} by using the \emph{\code{other.query}} filter.
+To do so, see the \href{https://apidocs.acleddata.com/}{ACLED API Guide} for details.
 }
 \examples{
 \dontrun{

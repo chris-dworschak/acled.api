@@ -16,11 +16,11 @@ get.api.regions <- function(){
   region.names <- list(
     data.frame(
       region = c("Western Africa", "Middle Africa", "Eastern Africa", "Southern Africa", "Northern Africa",
-             "South Asia", "Western Asia", "Southeast Asia",
+             "South Asia", "Southeast Asia",
              "Middle East", "Europe", "Caucasus and Central Asia", "Central America", "South America", "Caribbean",
              "East Asia", "North America", "Oceania", "Antarctica"),
       code = c(1,2,3,4,5,
-           7,8,9,
+           7,9,
            11,12,13,14,15,16,
            17, 18, 19, 20)),
     "Last update from https://acleddata.com/resources/general-guides/: ACLED API User Guide version February 2022, API Version 3.4")
@@ -28,6 +28,4 @@ get.api.regions <- function(){
   return(region.names)
 
 }
-
-
 

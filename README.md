@@ -59,7 +59,7 @@ library(acled.api) # loads the package
 #> by freely registering with ACLED on https://developer.acleddata.com/.
 #> The package may be cited as:
 #> Dworschak, Christoph. 2020. "Acled.api: Automated Retrieval of ACLED Conflict
-#> Event Data." R package. CRAN version 1.1.6.
+#> Event Data." R package. CRAN version 1.1.7.
 #> For the development version of this package, visit <https://gitlab.com/chris-dworschak/acled.api/>
 
 my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
@@ -74,28 +74,28 @@ my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
 my.data.frame[1:5,] # returns the first three observations of the ACLED sample
 #>            region   country year event_date
 #> 1 Central America  Honduras 2020 2020-01-31
-#> 2 Central America  Honduras 2020 2020-01-31
-#> 3 Central America Guatemala 2020 2020-01-31
-#> 4 Central America Guatemala 2020 2020-01-31
-#> 5 Central America  Honduras 2020 2020-01-31
-#>                                       source            admin1           admin2
-#> 1                      El Heraldo (Honduras) Francisco Morazan Distrito Central
-#> 2                            Proceso Digital            Cortes          La Lima
-#> 3 Dialogos - Observatorio sobre la Violencia     Huehuetenango      La Libertad
-#> 4 Dialogos - Observatorio sobre la Violencia         Guatemala         Palencia
-#> 5       Once Noticias; La Tribuna (Honduras) Francisco Morazan Distrito Central
-#>             admin3      location                 event_type sub_event_type
-#> 1 Distrito Central   Tegucigalpa Violence against civilians         Attack
-#> 2          La Lima       La Lima Violence against civilians         Attack
-#> 3                  Camoja Grande Violence against civilians         Attack
-#> 4                       Palencia Violence against civilians         Attack
-#> 5 Distrito Central   Tegucigalpa                    Battles    Armed clash
+#> 2 Central America Guatemala 2020 2020-01-31
+#> 3      South Asia     India 2020 2020-01-31
+#> 4      South Asia     India 2020 2020-01-31
+#> 5      South Asia     India 2020 2020-01-31
+#>                                       source        admin1      admin2
+#> 1                            Proceso Digital        Cortes     La Lima
+#> 2 Dialogos - Observatorio sobre la Violencia Huehuetenango La Libertad
+#> 3                   Asian News International         Bihar       Patna
+#> 4                            Hindustan Times   Maharashtra        Pune
+#> 5                            Hindustan Times         Bihar      Kaimur
+#>       admin3      location                 event_type   sub_event_type
+#> 1    La Lima       La Lima Violence against civilians           Attack
+#> 2            Camoja Grande Violence against civilians           Attack
+#> 3 Sampatchak         Patna                   Protests Peaceful protest
+#> 4  Pune City          Pune                   Protests Peaceful protest
+#> 5     Bhabua        Bhabua                    Battles      Armed clash
 #>   interaction fatalities  timestamp
-#> 1          37          1 1618511562
-#> 2          37          1 1618511533
-#> 3          37          1 1618511538
-#> 4          47          1 1612223078
-#> 5          38          1 1618511549
+#> 1          37          1 1618511533
+#> 2          37          1 1618511538
+#> 3          60          0 1649276878
+#> 4          60          0 1649276878
+#> 5          44          0 1649276878
 ```
 
 ## A note on replicability
@@ -127,4 +127,6 @@ ACLED provides a time stamp for each individual observation (column
 *timestamp*), enabling researchers to do “micro versioning” of data
 points if necessary, and to verify congruence across samples. Starting
 from version 1.0.9, the function `acled.api()` includes the *timestamp*
-variable in its default API call.
+variable in its default API call. More recently, ACLED also introduced a
+discussion of data versioning in its [API
+Guide](https://apidocs.acleddata.com/).

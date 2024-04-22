@@ -6,7 +6,10 @@
 * Addressing ACLED bandwidth limits: 
   + Accommodate empty content returns when bandwidth limit is hit.
   + Give warning message to users when making calls to download the whole dataset.
-* Added the variables latitude, longitude, and tags to the default output. 
+* Improved descriptions and explanations in Details.
+* Adjusted all descriptions to match ACLED's API updates.
+* Adjusted get.api.regions() to reflect ACLED's changes to region codes.
+* Added the variables event_id_cnty, latitude, longitude, and tags to the default output. 
 
 
 ## alced.api version 1.1.7 (Christmas version)
