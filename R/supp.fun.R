@@ -23,7 +23,7 @@ get.api.regions <- function(){
            7,9,
            11,12,13,14,15,16,
            17, 18, 19, 20)),
-    "Last update from https://acleddata.com/resources/general-guides/: ACLED API User Guide version February 2022, API Version 3.4")
+    "Last checked against ACLED API Endpoint guide (https://apidocs.acleddata.com/) at time of package version release.")
 
   return(region.names)
 

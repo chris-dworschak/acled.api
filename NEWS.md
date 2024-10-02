@@ -1,6 +1,13 @@
 
 # Release updates
 
+## alced.api version 1.1.9
+* Updates to documentation: 
+  + Interaction argument description updated.
+  + get.api.regions() updated.
+  + Change of URLs to follow ACLED Codebook wandering around again, from https://acleddata.com/resources/general-guides/ to https://acleddata.com/knowledge-base/codebook/.
+
+
 ## alced.api version 1.1.8
 * Improved error messages when calls to the API return unsuccessful.
 * Addressing ACLED bandwidth limits: 
