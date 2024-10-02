@@ -39,7 +39,7 @@ See the details below for information on how the arguments "country" and "region
 \item{end.date}{character string. Supply the last date to be retrieved. Format: "yyyy-mm-dd".}
 
 \item{add.variables}{character vector. Supply the names of ACLED variables you wish to add to the
-default output (see \href{https://acleddata.com/resources/general-guides/}{ACLED's codebook} for details). The default
+default output (see \href{https://acleddata.com/knowledge-base/codebook/}{ACLED's codebook} for details). The default
 output includes: event_id_cnty, region, country, year, event_date, source, admin1, admin2, admin3, location, latitude, longitude, event_type, sub_event_type,
 interaction, fatalities, tags, and the download timestamp.}
 
@@ -51,7 +51,8 @@ argument add.variables).}
 observation per event). If set to TRUE, dyadic data is returned.}
 
 \item{interaction}{numeric vector. Supply one or more interaction codes to narrow down which events should be
-retrieved (see \href{https://acleddata.com/resources/general-guides/}{ACLED's codebook} for details.}
+retrieved. See \href{https://acleddata.com/knowledge-base/codebook/}{ACLED's codebook} for information on which
+interactions are represented by which numeric codes.}
 
 \item{other.query}{character vector. Allows users to add their own ACLED API queries to the
 GET call. Vector elements are assumed to be individual queries, and are automatically separated by an & sign.

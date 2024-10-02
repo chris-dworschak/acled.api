@@ -70,30 +70,30 @@ my.data.frame <- acled.api( # stores an ACLED sample in object my.data.frame
 #> Events were retrieved for the period starting 2019-09-01 until 2020-01-31.
 
 my.data.frame[1:5,] # returns the first three observations of the ACLED sample
-#>   event_id_cnty          region   country year event_date
-#> 1       HND1343 Central America  Honduras 2020 2020-01-31
-#> 2       GTM2921 Central America Guatemala 2020 2020-01-31
-#> 3      IND70618      South Asia     India 2020 2020-01-31
-#> 4      IND70620      South Asia     India 2020 2020-01-31
-#> 5      IND70609      South Asia     India 2020 2020-01-31
-#>                                       source        admin1      admin2
-#> 1                            Proceso Digital        Cortes     La Lima
-#> 2 Dialogos - Observatorio sobre la Violencia Huehuetenango La Libertad
-#> 3                   Asian News International         Bihar       Patna
-#> 4                            Hindustan Times   Maharashtra        Pune
-#> 5                            Hindustan Times         Bihar      Kaimur
-#>       admin3      location latitude longitude                 event_type
-#> 1    La Lima       La Lima  15.4333  -87.9167 Violence against civilians
-#> 2            Camoja Grande  15.5823  -91.9006 Violence against civilians
-#> 3 Sampatchak         Patna  25.5941   85.1356                   Protests
-#> 4  Pune City          Pune  18.5195   73.8553                   Protests
-#> 5     Bhabua        Bhabua  25.0404   83.6074                    Battles
-#>     sub_event_type interaction fatalities                 tags  timestamp
-#> 1           Attack          37          1                      1618511533
-#> 2           Attack          37          1                      1618511538
-#> 3 Peaceful protest          60          0 crowd size=no report 1649276878
-#> 4 Peaceful protest          60          0 crowd size=no report 1649276878
-#> 5      Armed clash          44          0                      1649276878
+#>   event_id_cnty          region  country year event_date
+#> 1       HND1343 Central America Honduras 2020 2020-01-31
+#> 2      IND70618      South Asia    India 2020 2020-01-31
+#> 3      IND70620      South Asia    India 2020 2020-01-31
+#> 4      IND70869      South Asia    India 2020 2020-01-31
+#> 5      IND70611      South Asia    India 2020 2020-01-31
+#>                     source      admin1         admin2     admin3   location
+#> 1          Proceso Digital      Cortes        La Lima    La Lima    La Lima
+#> 2 Asian News International       Bihar          Patna Sampatchak      Patna
+#> 3          Hindustan Times Maharashtra           Pune  Pune City       Pune
+#> 4           Siliguri Times West Bengal Uttar Dinajpur   Islampur   Islampur
+#> 5           Times of India Maharashtra          Thane   Bhiwandi Chimbipada
+#>   latitude longitude                 event_type   sub_event_type
+#> 1  15.4333  -87.9167 Violence against civilians           Attack
+#> 2  25.5941   85.1356                   Protests Peaceful protest
+#> 3  18.5195   73.8553                   Protests Peaceful protest
+#> 4  26.2654   88.1898                   Protests Peaceful protest
+#> 5  19.3771   73.0035                      Riots     Mob violence
+#>                   interaction fatalities                 tags  timestamp
+#> 1 Political militia-Civilians          1                      1618511533
+#> 2             Protesters only          0 crowd size=no report 1649276878
+#> 3             Protesters only          0 crowd size=no report 1649276878
+#> 4             Protesters only          0 crowd size=no report 1649276878
+#> 5           Rioters-Civilians          1       crowd size=6-7 1649276878
 ```
 
 ## A note on replicability
